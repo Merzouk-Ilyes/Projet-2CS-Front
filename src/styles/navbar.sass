@@ -1,0 +1,93 @@
+@import "./_variables"
+.navbar
+    height: 10vh
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 0 100px
+    @media screen and (max-width:900px) 
+         padding: 0 50px
+
+    .logo
+        font-size: 1.5em
+        font-weight: 600
+    .links
+        display: flex
+        p
+            margin: 0 1em
+    .search
+        position: relative
+        input
+            width: 500px
+            height: 45px
+            border-radius: 5px
+            border: 1px solid #00000026
+            padding: 20px
+            &:focus
+                border: 1px solid $primary-color
+                outline: none
+        .icon-box  
+            position: absolute
+            top: 0
+            right: 0
+            font-size: 1.5em
+            height: 45px
+            width: 50px
+            display: flex
+            justify-content: center 
+            align-items: center
+            background-color: $primary-color
+            border-top-right-radius: 5px
+            border-bottom-right-radius: 5px
+            color: #FFF
+            
+    .join
+        button
+            width: 150px
+            height: 45px
+            border: none
+            border-radius: 5px
+            background-color: $primary-color
+            color: #ffffff
+            cursor: pointer
+            letter-spacing: 1px
+            text-align: center
+            font-weight: 600
+    .drawer-icon
+        font-size: 2em
+
+
+.drawer-body
+    .search
+        position: relative
+        margin: 2em
+
+        input
+            width: 100%
+            height: 45px
+            border-radius: 5px
+            border: 1px solid #00000026
+            padding: 20px
+            &:focus
+                border: 1px solid $primary-color
+                outline: none
+        .icon-box  
+            position: absolute
+            top: 0
+            right: 0
+            font-size: 1.5em
+            height: 45px
+            width: 50px
+            display: flex
+            justify-content: center 
+            align-items: center
+            background-color: $primary-color
+            border-top-right-radius: 5px
+            border-bottom-right-radius: 5px
+            color: #FFF
+    .links
+        display: flex
+        justify-content: center
+        align-items: center
+        p
+            margin: 0 1em

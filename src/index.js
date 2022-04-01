@@ -5,24 +5,34 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Admin from "./components/admin/Admin";
 import Agent from "./components/agent/Agent";
 import Host from "./components/host/Host";
-ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="admin" element={<Admin />} />
-      <Route path="host" element={<Host />} />
-      <Route path="agent" element={<Agent />} />
+import Login from "./components/auth/login";
+import SignupHost from "./components/auth/signup_host"
+import SignupClient from "./components/auth/signup_client"
+import { ChakraProvider } from "@chakra-ui/react";
 
-      <Route
-        path="*"
-        element={
-          <main style={{ padding: "3rem" }}>
-            <p>There's nothing here , Leave me alone !</p>
-          </main>
-        }
-      />
-    </Routes>
-  </BrowserRouter>,
+ReactDOM.render(
+  <ChakraProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signuphost" element={<SignupHost />} />
+        <Route path="/signupclient" element={<SignupClient />} />
+        {/* <Route path="admin" element={<Admin />} />
+        <Route path="host" element={<Host />} />
+        <Route path="agent" element={<Agent />} /> */}
+
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: "3rem" }}>
+              <p>There's nothing here , Leave me alone !</p>
+            </main>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  </ChakraProvider>,
   document.getElementById("root")
 );
 
