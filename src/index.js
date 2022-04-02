@@ -6,13 +6,25 @@ import Admin from "./components/admin/Admin";
 import Agent from "./components/agent/Agent";
 import Host from "./components/host/Host";
 import Login from "./components/auth/login";
-import SignupHost from "./components/auth/signup_host"
-import SignupClient from "./components/auth/signup_client"
+import SignupHost from "./components/auth/signup_host";
+import SignupClient from "./components/auth/signup_client";
 import { ChakraProvider } from "@chakra-ui/react";
+import { ToastContainer } from "react-toastify";
 
 ReactDOM.render(
   <ChakraProvider>
     <BrowserRouter>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} />
