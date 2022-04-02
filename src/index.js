@@ -10,6 +10,7 @@ import SignupHost from "./components/auth/signup_host";
 import SignupClient from "./components/auth/signup_client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ToastContainer } from "react-toastify";
+import ResetPwd from "./components/auth/reset";
 
 ReactDOM.render(
   <ChakraProvider>
@@ -30,6 +31,7 @@ ReactDOM.render(
         <Route path="/login" element={<Login />} />
         <Route path="/signuphost" element={<SignupHost />} />
         <Route path="/signupclient" element={<SignupClient />} />
+        <Route path="/reset" element={<ResetPwd />} />
         {/* <Route path="admin" element={<Admin />} />
         <Route path="host" element={<Host />} />
         <Route path="agent" element={<Agent />} /> */}
@@ -37,9 +39,9 @@ ReactDOM.render(
         <Route
           path="*"
           element={
-            <main style={{ padding: "3rem" }}>
-              <p>There's nothing here , Leave me alone !</p>
-            </main>
+            <div style={{ margin: "45vh 45vw"}}>
+              <h2>404 | NOT FOUND</h2>
+            </div>
           }
         />
       </Routes>
