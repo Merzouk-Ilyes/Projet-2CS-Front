@@ -10,43 +10,48 @@ import SignupHost from "./components/auth/signup_host";
 import SignupClient from "./components/auth/signup_client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ResetPwd from "./components/auth/reset";
+import { store } from './state/store'
+import { Provider } from 'react-redux'
 
 ReactDOM.render(
+  <Provider store={store}>
   <ChakraProvider>
+    <ToastContainer
+      position="top-center"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
     <BrowserRouter>
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signuphost" element={<SignupHost />} />
         <Route path="/signupclient" element={<SignupClient />} />
         <Route path="/reset" element={<ResetPwd />} />
-        {/* <Route path="admin" element={<Admin />} />
+        <Route path="admin" element={<Admin />} />
         <Route path="host" element={<Host />} />
-        <Route path="agent" element={<Agent />} /> */}
+        <Route path="agent" element={<Agent />} />
 
         <Route
           path="*"
           element={
-            <div style={{ margin: "45vh 45vw"}}>
+            <div style={{ margin: "45vh 45vw" }}>
               <h2>404 | NOT FOUND</h2>
             </div>
           }
         />
       </Routes>
     </BrowserRouter>
-  </ChakraProvider>,
+  </ChakraProvider>
+  </Provider>,
   document.getElementById("root")
 );
 
