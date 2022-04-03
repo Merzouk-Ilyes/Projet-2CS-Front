@@ -1,5 +1,6 @@
 import React from "react";
 import "../../styles/login.sass";
+import axios from "axios";
 import face from "../../assets/h3.svg";
 import Navbar from "../utilities/Navbar";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -7,7 +8,28 @@ import {Link}  from "react-router-dom"
 function Login() {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
+  const hendelSabmit =(e)=>{ 
+    e.preventDefault();
+    let user = {
+      email:"ilyes@mail.dz",
+      password:"dd"
+      }
+    const registerData = JSON.stringify(user);
+    axios({
+      method: 'POST',
+      url: 'http://localhost:8000/login',
+      headers: {
+          'Content-Type': 'application/json',
+              },
+      data: registerData,
+  })
+      .then((response) => {
+        console.log(response.err);
+      })
+      .catch(error => console.log(error))
+  }; 
   return (
+
     <>
       <Navbar />
       <div className="login">
@@ -41,7 +63,7 @@ function Login() {
             </div>
 
             <div className="forget"> Forget Password?</div>
-            <button className="btn" type="submit">
+            <button className="btn" onClick={hendelSabmit} type="submit">
               Log in{" "}
             </button>
           </form>
