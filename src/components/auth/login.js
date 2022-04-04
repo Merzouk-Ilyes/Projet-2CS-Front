@@ -4,10 +4,39 @@ import axios from "axios";
 import face from "../../assets/h3.svg";
 import Navbar from "../utilities/Navbar";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+<<<<<<< HEAD
+import {Link}  from "react-router-dom"
+function Login() {
+  const [show, setShow] = React.useState(false);
+  const handleClick = () => setShow(!show);
+
+
+  const hendelSabmit =(e)=>{ 
+    e.preventDefault();
+  
+    axios.post('http://localhost:8000/login', {
+      data : {email:"abir@mail.dz",
+      password:"dd"}
+    }, {
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            }
+    })
+    .then(response=> { 
+      console.log(response)
+      
+    })
+    .catch(error => {
+        console.log(error.response.data.err)
+    });
+  }
+  return (
+=======
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { actions } from "../../state/auth_slice";
 import { useDispatch,useSelector } from "react-redux";
+>>>>>>> 410f8486d84354cbbf482291ffa162677735b6b3
 
 function Login() {
   const [show, setShow] = useState(false);

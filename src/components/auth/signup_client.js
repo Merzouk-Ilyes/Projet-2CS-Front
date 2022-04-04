@@ -31,7 +31,7 @@ function SignupClient() {
     if (!pattern.test(signupData.phonenumber)) {
       toast.error("Your phone number is not valid");
     }
-    if (signupData.password == signupData.confirmpassword ) {
+    if (signupData.password === signupData.confirmpassword ) {
       axios
       .post("http://localhost:8000/signup", {
         firstname: signupData.firstname,
@@ -48,7 +48,7 @@ function SignupClient() {
         toast.error("Account successfully created");
         navigate("/");
       }else{
-          if (response.data.keyPattern.email==1) {
+          if (response.data.keyPattern.email===1) {
             toast.error("the email is already used");
           }
          }
