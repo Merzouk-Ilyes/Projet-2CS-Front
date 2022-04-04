@@ -21,7 +21,9 @@ function SignupHost() {
     email: "",
     password: "",
     confirmpassword:"",
-    image:""
+    image:"",
+    ville:"",
+    street:""
 
   });
   const handleSubmit = (e) => {
@@ -39,7 +41,9 @@ function SignupHost() {
         email: signupData.email,
         password: signupData.password,
         role:"host",
-        image:signupData.image
+        image:signupData.image,
+        ville:signupData.ville,
+        street:e.target.street
 
       })
       .then((response) => {
@@ -171,6 +175,63 @@ function SignupHost() {
             />
           </div>
         </div>
+
+
+
+        <div className="input-grp">
+          <div>
+            <p>Ville</p>
+            <input
+              type="text"
+              placeholder="Ville"
+              className="form-control"
+              value={signupData.ville}
+              required
+              onChange={(e) => {
+                const data = {
+                  firstname: signupData.firstname,
+                  lastname:signupData.lastname ,
+                  phonenumber: e.target.value ,
+                  email: signupData.email ,
+                  password: signupData.password ,
+                  confirmpassword:signupData.confirmpassword ,
+                  image:signupData.image,
+                  ville:e.target.value,
+                  street:signupData.street
+                };
+                setSignupData(data);
+              }}
+            />
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <div>
+            <p>Street</p>
+            <input
+              type="text"
+              value={signupData.street}
+              className="form-control"
+              placeholder="Street"
+              required
+              onChange={(e) => {
+                const data = {
+                  firstname: signupData.firstname,
+                  lastname:signupData.lastname ,
+                  phonenumber: signupData.phonenumber ,
+                  email: e.target.value ,
+                  password: signupData.password ,
+                  confirmpassword:signupData.confirmpassword ,
+                  image:signupData.image,
+                  ville:signupData.ville,
+                  street:e.target.value
+                };
+                setSignupData(data);
+              }}
+            />
+          </div>
+        </div>
+
+
+
         <div className="input-grp" >
           <div>
             <p>Password</p>
