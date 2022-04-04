@@ -8,26 +8,27 @@ import {Link}  from "react-router-dom"
 function Login() {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
+
+
   const hendelSabmit =(e)=>{ 
     e.preventDefault();
-    let user = {
-      email:"ilyes@mail.dz",
-      password:"dd"
-      }
-    const registerData = JSON.stringify(user);
-    axios({
-      method: 'POST',
-      url: 'http://localhost:8000/login',
-      headers: {
-          'Content-Type': 'application/json',
-              },
-      data: registerData,
-  })
-      .then((response) => {
-        console.log(response.err);
-      })
-      .catch(error => console.log(error))
-  }; 
+  
+    axios.post('http://localhost:8000/login', {
+      data : {email:"abir@mail.dz",
+      password:"dd"}
+    }, {
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            }
+    })
+    .then(response=> { 
+      console.log(response)
+      
+    })
+    .catch(error => {
+        console.log(error.response.data.err)
+    });
+  }
   return (
 
     <>
