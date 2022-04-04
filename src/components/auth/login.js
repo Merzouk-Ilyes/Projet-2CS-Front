@@ -7,15 +7,15 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { actions } from "../../state/auth_slice";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Login() {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  const isLogged = useSelector((state) => state.isLogged)
-  console.log(isLogged)
+  const isLogged = useSelector((state) => state.isLogged);
+  console.log(isLogged);
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -37,7 +37,7 @@ function Login() {
           if (response.data.user.role === "admin") {
             setTimeout(() => {
               navigate("/admin");
-            }, 3000);
+            }, 2500);
           } else if (response.data.user.role === "agent") {
             setTimeout(() => {
               navigate("/agent");
