@@ -16,8 +16,6 @@ function Login() {
   const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.isLogged)
   console.log(isLogged)
-
-
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -33,7 +31,6 @@ function Login() {
       .then((response) => {
         if (response.data.token) {
           toast.success("Login successful !");
-
           //Changing the isLogged state in the redux store
           dispatch(actions.setLogin(true));
           //Redirection arroding to user role
