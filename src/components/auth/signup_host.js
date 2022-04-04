@@ -41,7 +41,7 @@ function SignupHost() {
           password: signupData.password,
           role: "host",
           image: signupData.image,
-          ville: signupData.ville,
+          city: signupData.ville,
           street: e.target.street,
         })
         .then((response) => {
@@ -168,10 +168,10 @@ function SignupHost() {
 
             <div className="input-grp">
               <div>
-                <p>Ville</p>
+                <p>City</p>
                 <input
                   type="text"
-                  placeholder="Ville"
+                  placeholder="City"
                   className="form-control"
                   value={signupData.ville}
                   required
