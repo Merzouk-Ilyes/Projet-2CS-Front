@@ -44,7 +44,7 @@ function SignupClient() {
           phonenumber: signupData.phonenumber,
           email: signupData.email,
           password: signupData.password,
-          role: "client",
+          role: 2,
           image: signupData.image,
         })
         .then((response) => {

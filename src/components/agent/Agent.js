@@ -2,7 +2,7 @@ import React from 'react'
 
 function Agent() {
   return (
-    <div>Agent</div>
+    <h1 style={{ margin: "40vh 40vw" , fontSize:"3em" }}>Agent</h1>
   )
 }
 

@@ -44,7 +44,7 @@ function SignupHost() {
           phonenumber: signupData.phonenumber,
           email: signupData.email,
           password: signupData.password,
-          role: "host",
+          role: 3,
           image: signupData.image,
           city: signupData.ville,
           street: e.target.street,

@@ -34,15 +34,15 @@ function Login() {
           //Changing the isLogged state in the redux store
           dispatch(actions.setLogin(true));
           //Redirection arroding to user role
-          if (response.data.user.role === "admin") {
+          if (response.data.user.role === 0) {
             setTimeout(() => {
               navigate("/admin");
             }, 2500);
-          } else if (response.data.user.role === "agent") {
+          } else if (response.data.user.role === 1) {
             setTimeout(() => {
               navigate("/agent");
             }, 2500);
-          } else if (response.data.user.role === "host") {
+          } else if (response.data.user.role === 3) {
             setTimeout(() => {
               navigate("/host");
             }, 2500);
