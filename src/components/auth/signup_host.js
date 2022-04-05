@@ -30,6 +30,11 @@ function SignupHost() {
     var pattern = new RegExp("[0][5-7][0-9]*");
     if (!pattern.test(signupData.phonenumber)) {
       toast.error("Your phone number is not valid");
+      return;
+    }
+    if (!signupData.image) {
+      toast.error("Please upload an ID image");
+      return;
     }
     if (signupData.password === signupData.confirmpassword) {
       axios
@@ -47,7 +52,12 @@ function SignupHost() {
         .then((response) => {
           if (response.data.user) {
             toast.success("Account successfully created");
-            navigate("/login");
+            setTimeout(() => {
+              navigate("/login");
+            }, 2500);
+            setTimeout(() => {
+              toast.warning("An email has been sent to verify your account");
+            }, 4000);
           } else {
             if (response.data.keyPattern.email === 1) {
               toast.error("the email is already used");
@@ -179,7 +189,7 @@ function SignupHost() {
                     const data = {
                       firstname: signupData.firstname,
                       lastname: signupData.lastname,
-                      phonenumber: e.target.value,
+                      phonenumber: signupData.phonenumber,
                       email: signupData.email,
                       password: signupData.password,
                       confirmpassword: signupData.confirmpassword,
@@ -205,7 +215,7 @@ function SignupHost() {
                       firstname: signupData.firstname,
                       lastname: signupData.lastname,
                       phonenumber: signupData.phonenumber,
-                      email: e.target.value,
+                      email: signupData.email,
                       password: signupData.password,
                       confirmpassword: signupData.confirmpassword,
                       image: signupData.image,
@@ -285,7 +295,6 @@ function SignupHost() {
               </div>
             </div>
 
-            {/* <input type="file" placeholder="Upload ID"  /> */}
             <button
               type="button"
               className="upload-file"

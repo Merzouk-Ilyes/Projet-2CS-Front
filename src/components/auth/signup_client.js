@@ -30,6 +30,11 @@ function SignupClient() {
 
     if (!pattern.test(signupData.phonenumber)) {
       toast.error("Your phone number is not valid");
+      return;
+    }
+    if (!signupData.image) {
+      toast.error("Please upload an ID image");
+      return;
     }
     if (signupData.password === signupData.confirmpassword) {
       axios
@@ -45,7 +50,12 @@ function SignupClient() {
         .then((response) => {
           if (response.data.user) {
             toast.success("Account successfully created");
-            navigate("/login");
+            setTimeout(() => {
+              navigate("/login");
+            }, 2500);
+            setTimeout(() => {
+              toast.warning("An email has been sent to verify your account");
+            }, 4000);
           } else {
             if (response.data.keyPattern.email === 1) {
               toast.error("the email is already used");

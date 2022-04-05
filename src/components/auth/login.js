@@ -41,11 +41,11 @@ function Login() {
           } else if (response.data.user.role === "agent") {
             setTimeout(() => {
               navigate("/agent");
-            }, 3000);
+            }, 2500);
           } else if (response.data.user.role === "host") {
             setTimeout(() => {
               navigate("/host");
-            }, 3000);
+            }, 2500);
           } else {
             setTimeout(() => {
               navigate("/");
