@@ -37,19 +37,19 @@ function Login() {
           if (response.data.user.role === 0) {
             setTimeout(() => {
               navigate("/admin");
-            }, 2500);
+            }, 2000);
           } else if (response.data.user.role === 1) {
             setTimeout(() => {
               navigate("/agent");
-            }, 2500);
+            }, 2000);
           } else if (response.data.user.role === 3) {
             setTimeout(() => {
               navigate("/host");
-            }, 2500);
+            }, 2000);
           } else {
             setTimeout(() => {
               navigate("/");
-            }, 3000);
+            }, 2000);
           }
         } else {
           toast.error(response.data.err);

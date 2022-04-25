@@ -1,0 +1,36 @@
+.filters
+    padding: 20px 50px
+
+    .tab-list
+        padding: 10px 10px
+        overflow: auto
+        white-space: nowrap
+        -ms-overflow-style: none
+        scrollbar-width: none
+    .posts-grid
+        margin-top: 20px
+        display: grid
+        grid-template-columns: repeat(4,1fr)
+        gap: 20px
+        @media screen and (max-width: 1200px)
+            grid-template-columns: repeat(2,1fr)
+        @media screen and (max-width: 760px)
+            grid-template-columns: repeat(1,1fr)
+            margin: auto
+.tab-list::-webkit-scrollbar
+    display: none
+
+
+.image-box
+    position: relative
+    .heart-outline
+        position: absolute
+        top: 20px
+        right: 20px
+        fill: #ffffffc2
+        font-size: 22px
+    img
+        height: 100%
+        width: 100%
+        
+        
