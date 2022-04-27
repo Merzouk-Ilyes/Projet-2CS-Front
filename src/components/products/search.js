@@ -29,7 +29,7 @@ function Search() {
 
   useEffect(() => {
     getPosts();
-    setLoading(false)
+    setLoading(false);
   }, []);
 
   const getPosts = () => {
@@ -77,7 +77,9 @@ function Search() {
             <TabPanel>
               <div className="posts-grid">
                 {loading
-                  ? Array(8).fill('').map((_, i) => <SkeltonPostCard />)
+                  ? Array(8)
+                      .fill("")
+                      .map((_, i) => <SkeltonPostCard key={i} />)
                   : posts.map((post, i) => (
                       <PostCard
                         key={post._id}
@@ -88,6 +90,7 @@ function Search() {
                         beds={post.nbrBeds}
                         rating={post.RatingTotal}
                         verified={post.verified}
+                        space={post.space}
                       />
                     ))}
               </div>
@@ -122,6 +125,7 @@ export const PostCard = ({
   reviewCount,
   price,
   verified,
+  space,
 }) => {
   const property = {
     imageAlt: "Rear view of modern home with pool",
@@ -143,9 +147,12 @@ export const PostCard = ({
     >
       <Box height={"250px"} overflow="hidden" className="image-box">
         <img src={imageUrl} alt={property.imageAlt} />
-        <BsHeartFill className="heart-outline" />
-
-        {/* < BsHeartFill/> */}
+        {/* <div className="heart">
+          <BsHeartFill className="heart-outline" />
+        </div> */}
+        <div className="heart">
+          <BsHeart className="heart-outline" />
+        </div>
       </Box>
       <Box p="6">
         <Box display="flex" alignItems="baseline">
@@ -157,7 +164,7 @@ export const PostCard = ({
             textTransform="uppercase"
             mr="2"
           >
-            {beds} beds &bull; {baths} baths
+            {beds} beds &bull; {baths} baths &bull; {space} m°2
           </Box>
           {verified ? (
             <Badge

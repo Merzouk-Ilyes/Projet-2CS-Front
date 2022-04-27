@@ -1,3 +1,5 @@
+@import "./_variables"
+
 .filters
     padding: 20px 50px
 
@@ -23,12 +25,22 @@
 
 .image-box
     position: relative
-    .heart-outline
+    .heart
+        height: 30px
+        width: 30px
+        background-color: #F7F5F2
         position: absolute
         top: 20px
         right: 20px
-        fill: #ffffffc2
-        font-size: 22px
+        display: flex
+        justify-content: center
+        align-items: center
+        border-radius: 4px
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        cursor: pointer
+        .heart-outline
+            fill: $primary-color
+            font-size: 22px
     img
         height: 100%
         width: 100%
