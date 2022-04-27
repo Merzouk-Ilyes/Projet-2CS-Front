@@ -1,8 +1,24 @@
 import React from 'react'
+import "../../styles/Host.sass";
+import Sidebar from "../utilities/sidebar";
 
 function Host() {
   return (
-    <h1 style={{ margin: "40vh 40vw" , fontSize:"3em" }}>Host</h1>
+    <>
+    <div className="dashbord">
+         <Sidebar/>
+         
+         <div></div>
+         <div></div>
+        
+        
+
+    </div>
+
+
+  
+  
+  </>
     
   )
 }
