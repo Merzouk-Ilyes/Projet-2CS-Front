@@ -11,6 +11,7 @@ import {
   DrawerContent,
   useDisclosure,
 } from "@chakra-ui/react";
+import {Link} from "react-router-dom"
 function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -18,9 +19,9 @@ function Navbar() {
       <div className="logo">Logo</div>
       <Show breakpoint="(min-width: 1200px)">
         <div className="links">
-          <p>Home</p>
-          <p>Locals</p>
-          <p>About</p>
+        <Link to="/">  <p>Home</p></Link> 
+             <Link to="/search">   <p>Locals</p></Link> 
+             <Link to="/about"> <p>About</p></Link>
         </div>
         <div className="search">
           <input type="text" placeholder="Ex: apartement, villa ..etc" />
@@ -40,9 +41,9 @@ function Navbar() {
             <DrawerHeader borderBottomWidth="1px">Logo</DrawerHeader>
             <DrawerBody className="drawer-body">
               <div className="links">
-                <p>Home</p>
-                <p>Locals</p>
-                <p>About</p>
+             <Link to="/">  <p>Home</p></Link> 
+             <Link to="/search">   <p>Locals</p></Link> 
+             <Link to="/about"> <p>About</p></Link> 
               </div>
               <div className="search">
                 <input type="text" placeholder="Ex: apartement, villa ..etc" />

@@ -15,6 +15,7 @@ import ResetPwd from "./components/auth/reset";
 import { store } from './state/store'
 import { Provider } from 'react-redux'
 import Search from "./components/products/search";
+import About from "./components/about" 
 
 ReactDOM.render(
   <Provider store={store}>
@@ -33,7 +34,8 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="search" element={<Search />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="about" element={<About />} />
         <Route path="login" element={<Login />} />
         <Route path="signuphost" element={<SignupHost />} />
         <Route path="signupclient" element={<SignupClient />} />

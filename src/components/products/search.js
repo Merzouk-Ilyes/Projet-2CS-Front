@@ -80,32 +80,114 @@ function Search() {
                   ? Array(8)
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
-                  : posts.map((post, i) => (
-                      <PostCard
-                        key={post._id}
-                        imageUrl={post.image}
-                        title={post.title}
-                        price={post.PricePerNight}
-                        baths={post.nbrBathes}
-                        beds={post.nbrBeds}
-                        rating={post.RatingTotal}
-                        verified={post.verified}
-                        space={post.space}
-                      />
-                    ))}
+                  : posts
+                      .filter((post) => post.type == 1)
+                      .map((post, i) => (
+                        <PostCard
+                          key={post._id}
+                          imageUrl={post.images[0]}
+                          title={post.title}
+                          price={post.PricePerNight}
+                          baths={post.nbrBathes}
+                          beds={post.nbrBeds}
+                          rating={post.RatingTotal}
+                          verified={post.verified}
+                          space={post.space}
+                        />
+                      ))}
               </div>
             </TabPanel>
             <TabPanel>
-              <div className="posts-grid"></div>
+              <div className="posts-grid">
+                {loading
+                  ? Array(8)
+                      .fill("")
+                      .map((_, i) => <SkeltonPostCard key={i} />)
+                  : posts
+                      .filter((post) => post.type == 2)
+                      .map((post, i) => (
+                        <PostCard
+                          key={post._id}
+                          imageUrl={post.images[0]}
+                          title={post.title}
+                          price={post.PricePerNight}
+                          baths={post.nbrBathes}
+                          beds={post.nbrBeds}
+                          rating={post.RatingTotal}
+                          verified={post.verified}
+                          space={post.space}
+                        />
+                      ))}
+              </div>
             </TabPanel>
             <TabPanel>
-              <div className="posts-grid"></div>
+              <div className="posts-grid">
+                {loading
+                  ? Array(8)
+                      .fill("")
+                      .map((_, i) => <SkeltonPostCard key={i} />)
+                  : posts
+                      .filter((post) => post.type == 3)
+                      .map((post, i) => (
+                        <PostCard
+                          key={post._id}
+                          imageUrl={post.images[0]}
+                          title={post.title}
+                          price={post.PricePerNight}
+                          baths={post.nbrBathes}
+                          beds={post.nbrBeds}
+                          rating={post.RatingTotal}
+                          verified={post.verified}
+                          space={post.space}
+                        />
+                      ))}
+              </div>
             </TabPanel>
             <TabPanel>
-              <div className="posts-grid"></div>
+              <div className="posts-grid">
+                {loading
+                  ? Array(8)
+                      .fill("")
+                      .map((_, i) => <SkeltonPostCard key={i} />)
+                  : posts
+                      .filter((post) => post.type == 4)
+                      .map((post, i) => (
+                        <PostCard
+                          key={post._id}
+                          imageUrl={post.images[0]}
+                          title={post.title}
+                          price={post.PricePerNight}
+                          baths={post.nbrBathes}
+                          beds={post.nbrBeds}
+                          rating={post.RatingTotal}
+                          verified={post.verified}
+                          space={post.space}
+                        />
+                      ))}
+              </div>
             </TabPanel>
             <TabPanel>
-              <div className="posts-grid"></div>
+              <div className="posts-grid">
+                {loading
+                  ? Array(8)
+                      .fill("")
+                      .map((_, i) => <SkeltonPostCard key={i} />)
+                  : posts
+                      .filter((post) => post.type == 5)
+                      .map((post, i) => (
+                        <PostCard
+                          key={post._id}
+                          imageUrl={post.images[0]}
+                          title={post.title}
+                          price={post.PricePerNight}
+                          baths={post.nbrBathes}
+                          beds={post.nbrBeds}
+                          rating={post.RatingTotal}
+                          verified={post.verified}
+                          space={post.space}
+                        />
+                      ))}
+              </div>
             </TabPanel>
           </TabPanels>
         </Tabs>
@@ -204,9 +286,9 @@ export const PostCard = ({
             .map((_, i) => (
               <AiFillStar key={i} fill={i < rating ? "gold" : "grey"} />
             ))}
-          <Box as="span" ml="2" color="gray.600" fontSize="sm">
+          {/* <Box as="span" ml="2" color="gray.600" fontSize="sm">
             {property.reviewCount} reviews
-          </Box>
+          </Box> */}
         </Box>
       </Box>
     </Box>
