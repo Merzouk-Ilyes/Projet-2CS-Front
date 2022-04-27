@@ -12,7 +12,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import {Link} from "react-router-dom"
-function Navbar() {
+function Navbar({searchInput}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div className="navbar">
@@ -24,7 +24,7 @@ function Navbar() {
              <Link to="/about"> <p>About</p></Link>
         </div>
         <div className="search">
-          <input type="text" placeholder="Ex: apartement, villa ..etc" />
+          <input type="text" placeholder="Ex: apartement, villa ..etc"  onChange = {searchInput} />
           <div className="icon-box">
             <FaSearchLocation className="icon" />
           </div>

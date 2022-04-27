@@ -25,6 +25,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 function Search() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchField, setSearchField] = useState("");
   const url = "http://localhost:8001/findAllPosts";
 
   useEffect(() => {
@@ -44,10 +45,29 @@ function Search() {
         console.log(err);
       });
   };
+  const filteredPosts = posts.filter(
+    post => {
+      return (
+        post
+        .title
+        .toLowerCase()
+        .includes(searchField.toLowerCase()) ||
+        post
+        .city
+        .toLowerCase()
+        .includes(searchField.toLowerCase())
+      );
+    }
+  );
+
+  const handleChange = e => {
+    setSearchField(e.target.value);
+    console.log(searchField);
+  };
 
   return (
     <>
-      <Navbar />
+      <Navbar searchInput={handleChange} />
       <div className="filters">
         <Tabs variant="soft-rounded" colorScheme="red">
           <TabList className="tab-list">
@@ -80,7 +100,7 @@ function Search() {
                   ? Array(8)
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
-                  : posts
+                  : filteredPosts
                       .filter((post) => post.type == 1)
                       .map((post, i) => (
                         <PostCard
@@ -93,6 +113,7 @@ function Search() {
                           rating={post.RatingTotal}
                           verified={post.verified}
                           space={post.space}
+                          city={post.city}
                         />
                       ))}
               </div>
@@ -103,7 +124,7 @@ function Search() {
                   ? Array(8)
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
-                  : posts
+                  : filteredPosts
                       .filter((post) => post.type == 2)
                       .map((post, i) => (
                         <PostCard
@@ -116,6 +137,8 @@ function Search() {
                           rating={post.RatingTotal}
                           verified={post.verified}
                           space={post.space}
+                          city={post.city}
+
                         />
                       ))}
               </div>
@@ -126,7 +149,7 @@ function Search() {
                   ? Array(8)
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
-                  : posts
+                  : filteredPosts
                       .filter((post) => post.type == 3)
                       .map((post, i) => (
                         <PostCard
@@ -139,6 +162,8 @@ function Search() {
                           rating={post.RatingTotal}
                           verified={post.verified}
                           space={post.space}
+                          city={post.city}
+
                         />
                       ))}
               </div>
@@ -149,7 +174,7 @@ function Search() {
                   ? Array(8)
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
-                  : posts
+                  : filteredPosts
                       .filter((post) => post.type == 4)
                       .map((post, i) => (
                         <PostCard
@@ -162,6 +187,8 @@ function Search() {
                           rating={post.RatingTotal}
                           verified={post.verified}
                           space={post.space}
+                          city={post.city}
+
                         />
                       ))}
               </div>
@@ -172,7 +199,7 @@ function Search() {
                   ? Array(8)
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
-                  : posts
+                  : filteredPosts
                       .filter((post) => post.type == 5)
                       .map((post, i) => (
                         <PostCard
@@ -185,6 +212,8 @@ function Search() {
                           rating={post.RatingTotal}
                           verified={post.verified}
                           space={post.space}
+                          city={post.city}
+
                         />
                       ))}
               </div>
@@ -208,6 +237,7 @@ export const PostCard = ({
   price,
   verified,
   space,
+  city
 }) => {
   const property = {
     imageAlt: "Rear view of modern home with pool",
@@ -270,7 +300,7 @@ export const PostCard = ({
           lineHeight="tight"
           isTruncated
         >
-          {title}
+          {title} - {city}
         </Box>
 
         <Box>
