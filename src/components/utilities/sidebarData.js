@@ -4,16 +4,21 @@ import { BsFilePost  } from "react-icons/bs";
 export  const sidebarData = [
 
     {
-       icon : ImHome, 
+
+        path : "/host/dashboard" ,
+        icon : ImHome, 
         heading : "dashboard"
 
     } , 
     {
-      icon : BsFilePost  , 
+
+        path : "/host/posts" ,
+        icon : BsFilePost  , 
         heading : "posts"
 
     } , 
     {
+        path : "/host/statistics" ,
         icon : ImHome , 
         heading : "statistics"
 

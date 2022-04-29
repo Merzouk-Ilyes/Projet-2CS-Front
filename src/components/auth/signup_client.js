@@ -83,7 +83,7 @@ function SignupClient() {
                   className="form-control"
                   placeholder="First name"
                   onChange={(e) => {
-                    const data = {
+                    const data =  {
                       firstname: e.target.value,
                       lastname: signupData.lastname,
                       phonenumber: signupData.phonenumber,

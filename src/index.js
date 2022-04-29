@@ -6,6 +6,9 @@ import Admin from "./components/admin/Admin";
 import Agent from "./components/agent/Agent";
 import Host from "./components/host/Host";
 import Login from "./components/auth/login";
+import Dashboard  from "./components/host/dashboardCopoments/Dashboard";
+import Statistics from "./components/host/dashboardCopoments/Statistics";
+import Posts from "./components/host/dashboardCopoments/Posts" 
 import SignupHost from "./components/auth/signup_host";
 import SignupClient from "./components/auth/signup_client";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -39,6 +42,11 @@ ReactDOM.render(
         <Route path="admin" element={<Admin />} />
         <Route path="host" element={<Host />} />
         <Route path="agent" element={<Agent />} />
+        <Route path="/host/dashboard" element ={<Dashboard />} />
+        <Route path="/host/posts" element={<Posts />} />
+        <Route path="/host/statistics" element={<Statistics />} />
+        
+        
 
         <Route
           path="*"
