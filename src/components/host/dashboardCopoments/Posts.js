@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import Checkbox from "react-custom-checkbox"; 
 import * as Icon from "react-icons/fi";
 import { BsFillCloudUploadFill } from "react-icons/bs";
+import BtnSlider from './Slider/BtnSlider'; 
 
 function Posts() {
 
@@ -21,12 +22,15 @@ function Posts() {
     gas :"false" , 
     electricty :"false" ,
     water :"false" , 
+    image :[]
     
     
   });
 
   const [images , setPath ] = useState([]) ; 
   // console.log( images , "images")
+
+  console.log(images)
 
   const handleSubmit =(e) =>{
     e.preventDefault();
@@ -55,7 +59,7 @@ function Posts() {
       return;
     }
 
-    if ( postData.nbBeds != ""  && !pattern.test(postData.nbBeds ) ){
+    if ( postData.nbBeds !== ""  && !pattern.test(postData.nbBeds ) ){
      
         toast.error("number of beds should contain only numbers ");
         return;
@@ -68,6 +72,48 @@ function Posts() {
 
 
   } 
+
+
+  const [selectedImages, setSelectedImages] = useState([]);
+
+
+  const onSelectFile = (event) => {
+    const selectedFiles = event.target.files;
+    const selectedFilesArray = Array.from(selectedFiles);
+
+    const imagesArray = selectedFilesArray.map((file) => {
+      return URL.createObjectURL(file);
+    });
+
+    setSelectedImages((previousImages) => previousImages.concat(imagesArray));
+  };
+
+
+
+
+  const [slideIndex, setSlideIndex] = useState(1)
+
+  const nextSlide = () => {
+      if(slideIndex !== selectedImages.length){
+          setSlideIndex(slideIndex + 1)
+      } 
+      else if (slideIndex === selectedImages.length){
+          setSlideIndex(1)
+      }
+  }
+
+  const prevSlide = () => {
+      if(slideIndex !== 1){
+          setSlideIndex(slideIndex - 1)
+      }
+      else if (slideIndex === 1){
+          setSlideIndex(selectedImages.length)
+      }
+  }
+
+  const moveDot = index => {
+      setSlideIndex(index)
+  }
 
 
   return (
@@ -474,7 +520,7 @@ function Posts() {
               onClick={() => {
                 document.getElementById("file").click();
               }}
-            >
+               >
               {" "}
               Upload images  &nbsp;&nbsp;&nbsp; <BsFillCloudUploadFill />{" "}
             </button>
@@ -483,15 +529,80 @@ function Posts() {
               type="file"
               id="file"
               name="file"
-              multiple accept="image/*"
-              value={images}
-              onChange={(e) => {
-  
-                setPath([ ...e.target.value ]);
-                console.log(e.target.value)
-               
-              }}
+              multiple
+              accept='image/*'
+              // value={images}
+              
+                onChange={onSelectFile}
+                
+              
             />
+
+
+
+{/* <div className="slider">
+        {selectedImages &&
+          selectedImages.map((image, index) => {
+            return (
+              <div key={image} className="image">
+                <img src={image} height="200" alt="upload" />
+                <button
+                  onClick={() =>
+                    setSelectedImages(selectedImages.filter((e) => e !== image))
+                  }
+                >
+                  delete image
+                </button>
+                <p>{index + 1}</p>
+              </div>
+            );
+          })}
+      </div> */}
+
+       <div className="slider">
+       <div className='column'  > 
+         {/* image slider   */}     
+        <div className="container-slider">     
+       
+       {selectedImages &&
+       selectedImages.map((image, index) => {
+         return (
+           <div key={image} className={slideIndex === index + 1 ? "slide active-anim" : "slide"}>
+             <img src={image}  alt="upload" />
+             <button
+               onClick={() =>
+                 setSelectedImages(selectedImages.filter((e) => e !== image))
+               }
+             >
+               delete image
+             </button>
+             <p>{index + 1}</p>
+           </div>
+         );
+       })}
+        </div>
+        {/* privious and next buttons  */}
+        <div className='btns'>
+
+     <BtnSlider moveSlide={nextSlide} direction={"next"} />
+     <BtnSlider moveSlide={prevSlide} direction={"prev"}/>
+        </div></div>
+       
+
+          {/* dots  */}
+         <div className="container-dots">
+                  {Array.from({length: selectedImages.length }).map((item, index) => (
+                    <div 
+                    onClick={() => moveDot(index + 1)}
+                    className={slideIndex === index + 1 ? "dot active" : "dot"}
+                    ></div>
+                ))}
+         </div>
+
+
+      </div>
+
+
 
        </div>
      
