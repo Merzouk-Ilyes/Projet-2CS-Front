@@ -131,7 +131,7 @@ function Posts() {
                   type="text"
                   value={postData.title}
                   className="form-control titre"
-                  placeholder="title"
+                  placeholder="title" 
                   onChange={(e) => {
                     const data =  {
                       title: e.target.value,
@@ -514,6 +514,54 @@ function Posts() {
         </form>
        </div> 
        <div className='div2'>
+
+
+
+
+
+       <div className="slider">
+       {/* image slider   */}
+       <div className="container-slider">     
+       
+          {selectedImages &&
+          selectedImages.map((image, index) => {
+            return (
+              <div key={image} className={slideIndex === index + 1 ? "slide active-anim" : "slide"}>
+                <img src={image}  alt="upload" />
+                <button
+                  onClick={() =>
+                    setSelectedImages(selectedImages.filter((e) => e !== image))
+                  }
+                >
+                  delete image
+                </button>
+                <p>{index + 1}</p>
+
+              </div>
+            );
+
+          })}
+
+        {/* privious and next buttons  */}
+        <BtnSlider moveSlide={nextSlide} direction={"next"} />
+        <BtnSlider moveSlide={prevSlide} direction={"prev"}/>
+                  {/* dots  */}
+         <div className="container-dots">
+                  {Array.from({length: selectedImages.length }).map((item, index) => (
+                    <div 
+                    onClick={() => moveDot(index + 1)}
+                    className={slideIndex === index + 1 ? "dot active" : "dot"}
+                    ></div>
+                ))}
+         </div>
+       </div>
+        
+ 
+
+
+
+       </div>
+
        <button 
               type="button"
               className="upload-file"
@@ -538,75 +586,8 @@ function Posts() {
               
             />
 
-
-
-{/* <div className="slider">
-        {selectedImages &&
-          selectedImages.map((image, index) => {
-            return (
-              <div key={image} className="image">
-                <img src={image} height="200" alt="upload" />
-                <button
-                  onClick={() =>
-                    setSelectedImages(selectedImages.filter((e) => e !== image))
-                  }
-                >
-                  delete image
-                </button>
-                <p>{index + 1}</p>
-              </div>
-            );
-          })}
-      </div> */}
-
-       <div className="slider">
-       <div className='column'  > 
-         {/* image slider   */}     
-        <div className="container-slider">     
-       
-       {selectedImages &&
-       selectedImages.map((image, index) => {
-         return (
-           <div key={image} className={slideIndex === index + 1 ? "slide active-anim" : "slide"}>
-             <img src={image}  alt="upload" />
-             <button
-               onClick={() =>
-                 setSelectedImages(selectedImages.filter((e) => e !== image))
-               }
-             >
-               delete image
-             </button>
-             <p>{index + 1}</p>
-           </div>
-         );
-       })}
-        </div>
-        {/* privious and next buttons  */}
-        <div className='btns'>
-
-     <BtnSlider moveSlide={nextSlide} direction={"next"} />
-     <BtnSlider moveSlide={prevSlide} direction={"prev"}/>
-        </div></div>
-       
-
-          {/* dots  */}
-         <div className="container-dots">
-                  {Array.from({length: selectedImages.length }).map((item, index) => (
-                    <div 
-                    onClick={() => moveDot(index + 1)}
-                    className={slideIndex === index + 1 ? "dot active" : "dot"}
-                    ></div>
-                ))}
-         </div>
-
-
-      </div>
-
-
-
-       </div>
      
-      
+      </div>
       
       
       
