@@ -18,6 +18,7 @@ import {
   MdPool,
   MdOutlineHouse,
 } from "react-icons/md";
+import {GiSpookyHouse} from "react-icons/gi";
 import { BsCheck2Circle, BsHeart, BsHeartFill } from "react-icons/bs";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
@@ -77,7 +78,7 @@ function Search() {
             </Tab>
             <Tab>
               {" "}
-              <MdOutlineCabin /> &nbsp; Cabins
+              <MdOutlineCabin /> &nbsp; Apartement
             </Tab>
             <Tab>
               {" "}
@@ -90,7 +91,7 @@ function Search() {
             </Tab>
             <Tab>
               {" "}
-              <MdOutlineHouse /> &nbsp;Tiny homes
+              <GiSpookyHouse /> &nbsp;Villa
             </Tab>
           </TabList>
           <TabPanels>
