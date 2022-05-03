@@ -14,6 +14,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import ResetPwd from './components/auth/reset'
 import { store } from './state/store'
 import { Provider } from 'react-redux'
+import Search from './components/products/search'
+import About from './components/about'
 import ForgetPassword from './components/auth/forget'
 
 ReactDOM.render(
@@ -33,9 +35,11 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<App />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signuphost' element={<SignupHost />} />
-          <Route path='/signupclient' element={<SignupClient />} />
+          <Route path='/search' element={<Search />} />
+          <Route path='about' element={<About />} />
+          <Route path='login' element={<Login />} />
+          <Route path='signuphost' element={<SignupHost />} />
+          <Route path='signupclient' element={<SignupClient />} />
           <Route path='/reset' element={<ResetPwd />} />
           <Route path='/forget' element={<ForgetPassword />} />
           <Route path='admin' element={<Admin />} />

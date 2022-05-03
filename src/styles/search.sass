@@ -1,0 +1,48 @@
+@import "./_variables"
+
+.filters
+    padding: 20px 50px
+
+    .tab-list
+        padding: 10px 10px
+        overflow: auto
+        white-space: nowrap
+        -ms-overflow-style: none
+        scrollbar-width: none
+    .posts-grid
+        margin-top: 20px
+        display: grid
+        grid-template-columns: repeat(4,1fr)
+        gap: 20px
+        @media screen and (max-width: 1200px)
+            grid-template-columns: repeat(2,1fr)
+        @media screen and (max-width: 760px)
+            grid-template-columns: repeat(1,1fr)
+            margin: auto
+.tab-list::-webkit-scrollbar
+    display: none
+
+
+.image-box
+    position: relative
+    .heart
+        height: 30px
+        width: 30px
+        background-color: #F7F5F2
+        position: absolute
+        top: 20px
+        right: 20px
+        display: flex
+        justify-content: center
+        align-items: center
+        border-radius: 4px
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        cursor: pointer
+        .heart-outline
+            fill: $primary-color
+            font-size: 22px
+    img
+        height: 100%
+        width: 100%
+        
+        

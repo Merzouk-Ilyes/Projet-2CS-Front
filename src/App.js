@@ -4,7 +4,7 @@ import './App.sass';
 function App() {
   return (
     <div className="App">
-      App.js
+     Landing page
     </div>
   );
 }
