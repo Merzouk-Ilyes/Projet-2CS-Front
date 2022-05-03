@@ -1,15 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../styles/login.sass'
+import axios from 'axios'
 import face from '../../assets/q.svg'
-import Navbar from '../utilities/Navbar'
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-function ForgetPassword() {
-  const [show, setShow] = React.useState(false)
-  const [show2, setShow2] = React.useState(false)
-  const handleClick = () => setShow(!show)
-  const handleClick2 = () => setShow2(!show2)
+import Navbar from '../utilities/Navbar'
+import { toast } from 'react-toastify'
 
+function ForgetPassword() {
+  const [loginData, setLoginData] = useState({
+    email: '',
+  })
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    axios
+      .post('http://localhost:8000/forgetpass', {
+        email: loginData.email,
+      })
+      .then((response) => {
+        if (response.data.message) {
+          toast.success(response.data.message)
+        } else {
+          toast.error(response.data.err)
+        }
+      })
+      .catch((error) => console.log(error))
+  }
   return (
     <>
       <Navbar />
@@ -18,17 +34,23 @@ function ForgetPassword() {
           <div className='logo'> Logo</div>
 
           <h2 className='title'>Reset Password </h2>
-          <form className='form'>
+          <form className='form' onSubmit={handleSubmit}>
             <p>Your email</p>
             <input
               type='email'
               className='form-control'
               placeholder='Email Address'
+              onChange={(e) => {
+                const data = {
+                  email: e.target.value,
+                }
+                setLoginData(data)
+              }}
               required
             />
 
             <button className='btn' type='submit'>
-              Reset Password
+              Get the reset link
             </button>
           </form>
           <div className='devider'></div>
