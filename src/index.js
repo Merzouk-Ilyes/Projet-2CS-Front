@@ -42,9 +42,9 @@ ReactDOM.render(
         <Route path="admin" element={<Admin />} />
         <Route path="host" element={<Host />} />
         <Route path="agent" element={<Agent />} />
-        {/* <Route path="/host/dashboard" element ={<Dashboard />} />
+        <Route path="/host/dashboard" element ={<Dashboard />} />
         <Route path="/host/posts" element={<Posts />} />
-        <Route path="/host/statistics" element={<Statistics />} /> */}
+        <Route path="/host/statistics" element={<Statistics />} /> 
         
         
 

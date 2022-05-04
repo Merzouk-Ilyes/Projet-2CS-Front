@@ -6,8 +6,9 @@ import face from "../../assets/host.png";
 import { sidebarData } from './sidebarData';
 import {AiFillFileAdd ,FaAccessibleIcon, BsFilePost , FcStatistics} from "react-icons/fa"
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 //import { Item } from 'framer-motion/types/components/Reorder/Item';
-function Sidebar() {
+function Sidebar({children}) {
   const [selected, setSelected] = useState(0)
   return (
     <div className='sidebar'> 
@@ -30,7 +31,7 @@ function Sidebar() {
         return(
 
 
-          <NavLink to={item.path} key={index} >
+          <Link to={item.path} key={index} >
             {/* className="link" activeclassName="active" */}
             <div className={selected === index ? "menuItem active" : "menuItem"}
             key={index} 
@@ -41,20 +42,17 @@ function Sidebar() {
                 <span> {item.heading} </span>
             
             </div>
-            </NavLink>
+            </Link>
              ) ; })}
 
 
-          
-    
-    
         </div> 
         <div className="menuItem" >
         <FiLogOut />  
         </div>
 
 
-      {/* //  <main>{children}</main> */}
+       <main>{children}</main>
        
 
     </div>
