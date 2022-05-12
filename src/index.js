@@ -1,28 +1,30 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Admin from "./components/admin/Admin";
-import Agent from "./components/agent/Agent";
-import Host from "./components/host/layout";
-import Login from "./components/auth/login";
-import SignupHost from "./components/auth/signup_host";
-import SignupClient from "./components/auth/signup_client";
-import { ChakraProvider } from "@chakra-ui/react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import ResetPwd from "./components/auth/reset";
-import { store } from "./state/store";
-import { Provider } from "react-redux";
-import Search from "./components/products/search";
-import About from "./components/about";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Admin from './components/admin/Admin'
+import Agent from './components/agent/Agent'
+import Login from './components/auth/login'
+import SignupHost from './components/auth/signup_host'
+import SignupClient from './components/auth/signup_client'
+import { ChakraProvider } from '@chakra-ui/react'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import ResetPwd from './components/auth/reset'
+import { store } from './state/store'
+import { Provider } from 'react-redux'
+import Search from './components/products/search'
+import About from './components/about'
+import ForgetPassword from './components/auth/forget'
 import Home from "./components/host/home";
 import Reservations from "./components/host/reservations";
+
 
 ReactDOM.render(
   <Provider store={store}>
     <ChakraProvider>
       <ToastContainer
+
         position="top-center"
         autoClose={3500}
         hideProgressBar={false}
@@ -35,27 +37,25 @@ ReactDOM.render(
       />
       <BrowserRouter>
         <Routes>
-          <Route path="" element={<App />} />
-          <Route path="search" element={<Search />} />
-          <Route path="about" element={<About />} />
-          <Route path="login" element={<Login />} />
-          <Route path="signuphost" element={<SignupHost />} />
-          <Route path="signupclient" element={<SignupClient />} />
-          <Route path="reset" element={<ResetPwd />} />
-
-          <Route path="admin" element={<Admin />} />
-
+          <Route path='/' element={<App />} />
+          <Route path='/search' element={<Search />} />
+          <Route path='about' element={<About />} />
+          <Route path='login' element={<Login />} />
+          <Route path='signuphost' element={<SignupHost />} />
+          <Route path='signupclient' element={<SignupClient />} />
+          <Route path='/reset' element={<ResetPwd />} />
+          <Route path='/forget' element={<ForgetPassword />} />
+          <Route path='admin' element={<Admin />} />
           <Route path="host" >
             <Route path="" element={<Home />} />
             <Route path="reservations" element={<Reservations />} />
           </Route>
-          
-          <Route path="agent" element={<Agent />} />
+          <Route path='agent' element={<Agent />} />
 
           <Route
-            path="*"
+            path='*'
             element={
-              <div style={{ margin: "45vh 45vw" }}>
+              <div style={{ margin: '45vh 45vw' }}>
                 <h2>404 | NOT FOUND</h2>
               </div>
             }
@@ -64,8 +64,8 @@ ReactDOM.render(
       </BrowserRouter>
     </ChakraProvider>
   </Provider>,
-  document.getElementById("root")
-);
+  document.getElementById('root')
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
