@@ -27,7 +27,7 @@ function Search() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchField, setSearchField] = useState("");
-  const url = "http://localhost:8001/findAllPosts";
+  const url = "http://localhost:8001/findAllPosts"; 
 
   useEffect(() => {
     getPosts();
@@ -46,6 +46,9 @@ function Search() {
         console.log(err);
       });
   };
+
+
+
   const filteredPosts = posts.filter(
     post => {
       return (
@@ -106,7 +109,7 @@ function Search() {
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
-                          imageUrl={post.images[0]}
+                          imageUrl={post.images[0]} 
                           title={post.title}
                           price={post.PricePerNight}
                           baths={post.nbrBathes}

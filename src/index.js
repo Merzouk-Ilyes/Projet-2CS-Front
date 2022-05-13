@@ -16,10 +16,15 @@ import { store } from './state/store'
 import { Provider } from 'react-redux'
 import Search from './components/products/search'
 import About from './components/about'
-import ForgetPassword from './components/auth/forget'
+import ForgetPassword from './components/auth/forget' ; 
+
 import Home from "./components/host/home";
 import Reservations from "./components/host/reservations";
+
+import Posts from "./components/host/dashboardCopoments/Posts"
+import SeePosts from "./components/host/dashboardCopoments/Dashboard"
 import './App.sass';
+
 
 
 ReactDOM.render(
@@ -52,9 +57,13 @@ ReactDOM.render(
           <Route path="host" >
             <Route path="" element={<Home />} />
             <Route path="reservations" element={<Reservations />} />
+            <Route path="addpost" element={<Posts />} />
+            <Route path="posts" element={<SeePosts />} />
           </Route>
           
           <Route path='agent' element={<Agent />} />
+
+
 
           <Route
             path='*'

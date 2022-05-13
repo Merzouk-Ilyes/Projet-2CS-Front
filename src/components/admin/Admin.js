@@ -1,9 +1,19 @@
 import React from 'react'
+import "../../styles/Admin.sass";
 
 function Admin() {
   return (
-       <h1 style={{ margin: "40vh 40vw" , fontSize:"3em" }}>Admin</h1>
+       <>
+         
+             
+             
 
+       <h1>admin </h1>
+
+
+       
+       
+       </>
   )
 }
 

@@ -1,0 +1,184 @@
+@import ".././_variables"
+
+.addpost
+    height: 100vh
+    display: grid
+    grid-template-columns: 50% 50%
+    @media screen and (max-width:900px)
+        grid-template-columns: 100%
+.title
+    font-size: 2.5em
+    letter-spacing: 1px 
+    margin : 2rem 0rem 0rem 2rem
+
+.form
+    margin : 20px   
+    
+    
+
+.group
+   display: flex
+   justify-content: space-between
+
+p
+   font-size: 1em
+    margin: 1em 0 .2em 0
+    font-weight: 500
+input 
+    width: 200px
+    height: 45px
+    border-radius: 5px
+    border: 1px solid #00000026
+    padding: 20px
+    &:focus
+        border: 1px solid $primary-color
+        outline: none
+
+::placeholder
+   padding : 15px         
+
+.titre
+    width: 100%
+            
+textarea 
+    width: 100%
+    height: 100px
+    border-radius: 5px
+    border: 1px solid #00000026
+    padding: 20px
+    &:focus
+        border: 1px solid $primary-color
+        outline: none        
+input[type="file"]
+                display: none
+.chekboxes
+    display : flex 
+
+input[chekbox]
+    backgroundColor: 'red'
+
+.cb 
+    display : flex       
+    margin : 1rem
+    gap : 0rem
+.btn
+    width:  100%
+    height: 45px
+    border: none
+    border-radius: 5px
+    background-color: $primary-color
+    color: #ffffff
+    argin-top: 1.5em
+    cursor: pointer
+    letter-spacing: 1px
+    display: flex
+    align-items: center
+    justify-content: center
+
+
+   
+.upload-file
+   height: 50px
+   width: 93%
+   margin: 50px  20px  auto 20px 
+   background-color: #fff
+   border: 1px solid $primary-color
+   border-radius: 5px
+   color: $primary-color 
+   display: flex
+   justify-content: center
+   align-items: center
+   font-size: 1.2em  
+
+
+
+.container-slider 
+
+   
+    overflow: hidden
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)
+
+@media screen and (max-width: 700px)
+  .container-slider 
+    margin: 100px 10px 0
+
+.slider 
+    display : flex
+    flex-direction: column;    
+  
+.slide 
+    width: 100%
+    height: 93%
+    position: absolute
+    opacity: 0
+    transition: opacity ease-in-out 0.4s
+
+.slide  img 
+        width: 100%
+        height: 100%
+        object-fit: cover
+
+.active-anim 
+    opacity: 1
+ 
+
+.btn-slide 
+   
+    width: 60px
+    height: 60px
+    border-radius: 50%
+    background: #f1f1f1
+    border: 1px solid rgba(34, 34, 34, 0.287)
+    position: absolute
+    display: flex
+    justify-content: center
+    align-items: center
+    cursor: pointer
+
+
+.btn-slide img 
+    width: 25px
+    height: 25px
+    pointer-events: none
+
+
+
+.prev
+
+    top : 40% 
+    margin-left : 20px
+    
+
+.next 
+    
+    top : 40%  
+    right : 20px    
+
+
+
+.container-dots 
+    position: absolute
+
+    
+    transform: translateX(-50%);
+    display: flex;
+
+
+.dot 
+    width: 20px
+    height: 20px
+    border-radius: 50%
+    border: 3px solid #f1f1f1
+    margin: 0 5px
+    background: #f1f1f1
+
+.dot.active 
+    background: rgb(32, 32, 32)
+
+
+    
+           
+        
+
+
+    

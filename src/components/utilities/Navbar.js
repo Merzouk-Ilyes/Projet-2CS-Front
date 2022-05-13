@@ -10,8 +10,10 @@ import {
   DrawerOverlay,
   DrawerContent,
   useDisclosure,
-} from "@chakra-ui/react";
+} from "@chakra-ui/react"; 
 import {Link} from "react-router-dom"
+
+
 function Navbar({searchInput}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -42,7 +44,7 @@ function Navbar({searchInput}) {
             <DrawerBody className="drawer-body">
               <div className="links">
              <Link to="/">  <p>Home</p></Link> 
-             <Link to="/search">   <p>Locals</p></Link> 
+             <Link to="/search">   <p>Locals</p> </Link> 
              <Link to="/about"> <p>About</p></Link> 
               </div>
               <div className="search">

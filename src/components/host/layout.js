@@ -33,8 +33,12 @@ import { BiTimeFive } from "react-icons/bi";
 import { Link as reactRouter } from "react-router-dom";
 
 const LinkItems = [
-  { name: "Home", icon: FiHome, path: "/host" },
-  { name: "Reservations", icon: BsCalendarCheck, path: "/host/reservations" },
+
+  { name: "Home", icon: FiHome,path:"/host" },
+  { name: "Reservations", icon: BsCalendarCheck,path:"/host/reservations" },
+  { name: "Add post", icon: BsCalendarCheck ,path:"/host/addpost" },
+  { name: "Posts", icon: BsCalendarCheck ,path:"/host/posts" },
+
 ];
 
 export default function SidebarWithHeader({ children }) {
