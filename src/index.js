@@ -4,6 +4,7 @@ import App from './App'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Admin from './components/admin/Admin'
 import Agent from './components/agent/Agent'
+
 import Login from './components/auth/login'
 import SignupHost from './components/auth/signup_host'
 import SignupClient from './components/auth/signup_client'
@@ -18,6 +19,7 @@ import About from './components/about'
 import ForgetPassword from './components/auth/forget'
 import Home from "./components/host/home";
 import Reservations from "./components/host/reservations";
+import './App.sass';
 
 
 ReactDOM.render(
@@ -37,19 +39,21 @@ ReactDOM.render(
       />
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<App />} />
-          <Route path='/search' element={<Search />} />
+          {/* <Route path='/' element={<App />} /> */}
+          <Route path='/' element={<Search />} />
           <Route path='about' element={<About />} />
           <Route path='login' element={<Login />} />
           <Route path='signuphost' element={<SignupHost />} />
           <Route path='signupclient' element={<SignupClient />} />
-          <Route path='/reset' element={<ResetPwd />} />
-          <Route path='/forget' element={<ForgetPassword />} />
+          <Route path='reset' element={<ResetPwd />} />
+          <Route path='forget' element={<ForgetPassword />} />
           <Route path='admin' element={<Admin />} />
+
           <Route path="host" >
             <Route path="" element={<Home />} />
             <Route path="reservations" element={<Reservations />} />
           </Route>
+          
           <Route path='agent' element={<Agent />} />
 
           <Route
