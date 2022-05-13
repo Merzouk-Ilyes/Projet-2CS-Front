@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import '../../../styles/dashboardCompoments/Dashboard.sass'
 import axios from 'axios'
 import {
@@ -20,10 +20,34 @@ import SidebarWithHeader from ".././layout"
 
 
 function Dashboard() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    getPosts();
+    setLoading(false);
+   
+  }, []);
+
+  const getPosts = () => {
+    axios
+      .get("http://localhost:8001/findPostByIdHost")  
+      .then((response) => {
+        const posts = response.data.result ;
+        setPosts(posts);
+         console.log(posts);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }; 
+
+  // console.log(posts);
   return (
     <SidebarWithHeader>
     <div className='posts'>
-     { getHostPosts.map((item, index ) => {
+     
+
+     { posts.map((item, index ) => {
       return (
  
         <PostCard 
@@ -37,6 +61,7 @@ function Dashboard() {
         verified={item.verified}
         space={item.space}
         city={item.city}
+        
       />  
 
 

@@ -48,6 +48,7 @@ function SignupClient() {
           image: signupData.image,
         })
         .then((response) => {
+          console.log(response)
           if (response.data.user) {
             toast.success("Account successfully created");
             setTimeout(() => {

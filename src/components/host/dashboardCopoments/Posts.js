@@ -33,10 +33,10 @@ function Posts() {
     space: "",
     description :"" , 
     pricePerNight :"" , 
-    furnish: "false",
-    gas :"false" , 
-    electricty :"false" ,
-    water :"false" , 
+    furnish: false,
+    gas :false , 
+    electricty : false ,
+    water : false , 
     type : "" ,  
     image :[] , 
    
@@ -92,37 +92,38 @@ function Posts() {
       
     }
 
-    // axios
-    // .post("http://localhost:8001/addpost", {
+    axios
+    .post("http://localhost:8001/addpost", {
 
-    //   title: postData.title ,
-    //   city: postData.city,
-    //   street: postData.street,
-    //   nbBeds: postData.nbBeds,
-    //   nbBaths: postData.nbBaths,
-    //   space: postData.space,
-    //   description :postData.description, 
-    //   pricePerNight :postData.pricePerNight , 
-    //   furnish: postData.furnish,
-    //   gas : postData.gas, 
-    //   electricty :postData.electricty ,
-    //   water :postData.water , 
-    //   type : postData.type , 
-    //   image : postData.image 
-    // })
-    // .then((response) => {
+      title: postData.title ,
+      idUser: 3 , 
+      city: postData.city,
+      street: postData.street,
+      nbrBeds: postData.nbBeds,
+      nbrBathes: postData.nbBaths,
+      space: postData.space,
+      description :postData.description, 
+      PricePerNight :postData.pricePerNight , 
+      furnish: postData.furnish,
+      gas : postData.gas, 
+      electricty :postData.electricty ,
+      water :postData.water , 
+      type : postData.type , 
+      images : postData.image 
+    })
+    .then((response) => {
 
-    //   console.log(response)
-    //   // if (response.data.post) {
-    //   //   toast.success("post added succefuly");
+      console.log(response)
+      if (response.data.post) {
+        toast.success("post added succefuly");
 
-    //   // } else {
-    //   //   if (response.data.err) {
-    //   //     toast.error("use error occurred please try again");
-    //   //    }
-    //   // }
-    // })
-    // .catch((error) => console.log(error));
+      } else {
+         if (response.data.err) {
+          toast.error("use error occurred please try again");
+          }
+      }
+    })
+    .catch((error) => console.log(error));
 }
 
 
@@ -202,7 +203,9 @@ function Posts() {
                furnish: postData.furnish,
                gas : postData.gas, 
                electricty :postData.electricty ,
-               water :postData.water
+               water :postData.water , 
+               type : postData.type , 
+               image : postData.image 
 
              };
              setPostData(data);
@@ -237,7 +240,9 @@ function Posts() {
                   furnish: postData.furnish,
                   gas : postData.gas, 
                   electricty :postData.electricty ,
-                  water :postData.water
+                  water :postData.water ,    
+                   type : postData.type , 
+                  image : postData.image 
 
                   };
                  setPostData(data);
@@ -266,7 +271,9 @@ function Posts() {
                   furnish: postData.furnish,
                   gas : postData.gas, 
                   electricty :postData.electricty ,
-                  water :postData.water
+                  water :postData.water , 
+                  type : postData.type , 
+                  image : postData.image 
 
                   };
                  setPostData(data);
@@ -300,7 +307,9 @@ function Posts() {
                   furnish: postData.furnish,
                   gas : postData.gas, 
                   electricty :postData.electricty ,
-                  water :postData.water
+                  water :postData.water , 
+                  type : postData.type , 
+                  image : postData.image 
 
                   };
                  setPostData(data);
@@ -329,7 +338,9 @@ function Posts() {
                   furnish: postData.furnish,
                   gas : postData.gas, 
                   electricty :postData.electricty ,
-                  water :postData.water
+                  water :postData.water , 
+                  type : postData.type , 
+                  image : postData.image 
 
                   };
                  setPostData(data);
@@ -360,7 +371,9 @@ function Posts() {
                   furnish: postData.furnish,
                   gas : postData.gas, 
                   electricty :postData.electricty ,
-                  water :postData.water
+                  water :postData.water , 
+                  type : postData.type , 
+                  image : postData.image 
 
                   };
                  setPostData(data);
@@ -389,7 +402,9 @@ function Posts() {
                   furnish: postData.furnish,
                   gas : postData.gas, 
                   electricty :postData.electricty ,
-                  water :postData.water
+                  water :postData.water , 
+                  type : postData.type , 
+                  image : postData.image 
 
                   };
                  setPostData(data);
@@ -420,9 +435,11 @@ function Posts() {
   description :postData.description, 
   pricePerNight :postData.pricePerNight , 
   furnish: postData.furnish,
-  gas : ! postData.gas , 
+  gas : !postData.gas , 
   electricty :postData.electricty ,
-  water :postData.water
+  water :postData.water ,
+  type : postData.type , 
+  image : postData.image 
 
   };
  setPostData(data);
@@ -450,8 +467,10 @@ function Posts() {
      pricePerNight :postData.pricePerNight , 
      furnish: postData.furnish,
      gas : postData.gas, 
-     electricty : ! postData.electricty,
-     water :postData.water
+     electricty : !postData.electricty,
+     water :postData.water , 
+     type : postData.type , 
+     image : postData.image 
 
   };
  setPostData(data);
@@ -481,7 +500,9 @@ className="cb"
      furnish: postData.furnish,
      gas : postData.gas, 
      electricty : postData.electricty,
-     water : !postData.water 
+     water : !postData.water , 
+     type : postData.type , 
+     image : postData.image 
 
   };
  setPostData(data);
@@ -508,10 +529,12 @@ className="cb"
      space: postData.space,
      description :postData.description, 
      pricePerNight :postData.pricePerNight , 
-     furnish: ! postData.furnish,
+     furnish: !postData.furnish,
      gas : postData.gas, 
      electricty :  postData.electricty,
-     water :postData.water
+     water :postData.water ,
+     type : postData.type , 
+     image : selectedImages  
 
   };
  setPostData(data);
@@ -576,7 +599,10 @@ className="cb"
                   gas : postData.gas, 
                   electricty :postData.electricty ,
                   water :postData.water , 
-                  type :2 };
+                  type :2 ,
+                      
+      image : postData.image 
+};
                  setPostData(data);
                  alert(postData.type) ; }
                  } >apartment</MenuItem>
@@ -593,7 +619,8 @@ className="cb"
                   gas : postData.gas, 
                   electricty :postData.electricty ,
                   water :postData.water , 
-                  type :3 };
+                  type :3 ,    
+                  image : postData.image  };
                  setPostData(data);
                  alert(postData.type) ; }
                  }>beach front </MenuItem>
@@ -610,7 +637,9 @@ className="cb"
                   gas : postData.gas, 
                   electricty :postData.electricty ,
                   water :postData.water , 
-                  type :4 };
+                  type :4 ,
+                 
+                  image : postData.image };
                  setPostData(data);
                  alert(postData.type) ; }
                  }>pool</MenuItem>
@@ -627,7 +656,9 @@ className="cb"
                   gas : postData.gas, 
                   electricty :postData.electricty ,
                   water :postData.water , 
-                  type :5 };
+                  type :5 , 
+                  
+                  image : postData.image  };
                  setPostData(data);
                  alert(postData.type) ; }
                  }>villa</MenuItem>
@@ -655,7 +686,9 @@ className="cb"
                   furnish: postData.furnish,
                   gas : postData.gas, 
                   electricty :postData.electricty ,
-                  water :postData.water
+                  water :postData.water , 
+                  type : postData.type , 
+                  image : postData.image 
 
                   };
                  setPostData(data);
