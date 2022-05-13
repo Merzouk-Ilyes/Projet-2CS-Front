@@ -1,5 +1,6 @@
 import React from 'react'
 import '../../../styles/dashboardCompoments/Dashboard.sass'
+import axios from 'axios'
 import {
   Tabs,
   TabList,
@@ -13,11 +14,14 @@ import { BsCheck2Circle, BsHeart, BsHeartFill } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 import "../../../styles/Host.sass";
 import { getHostPosts } from '../../utilities/Data';
+import SidebarWithHeader from ".././layout"
+
 
 
 
 function Dashboard() {
   return (
+    <SidebarWithHeader>
     <div className='posts'>
      { getHostPosts.map((item, index ) => {
       return (
@@ -41,6 +45,7 @@ function Dashboard() {
      } )}
 
     </div>
+    </SidebarWithHeader>
   )
 }
 export const PostCard = ({

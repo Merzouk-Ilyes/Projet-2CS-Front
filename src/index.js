@@ -4,7 +4,6 @@ import App from './App'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Admin from './components/admin/Admin'
 import Agent from './components/agent/Agent'
-import Host from './components/host/Host'
 import Login from './components/auth/login'
 import SignupHost from './components/auth/signup_host'
 import SignupClient from './components/auth/signup_client'
@@ -16,16 +15,20 @@ import { store } from './state/store'
 import { Provider } from 'react-redux'
 import Search from './components/products/search'
 import About from './components/about'
-import ForgetPassword from './components/auth/forget'
-import Dashboard from './components/host/dashboardCopoments/Dashboard'
-import Posts from './components/host/dashboardCopoments/Posts'
-import Statistics from './components/host/dashboardCopoments/Statistics'
+import ForgetPassword from './components/auth/forget' ; 
+
+import Home from "./components/host/home";
+import Reservations from "./components/host/reservations";
+import Posts from "./components/host/dashboardCopoments/Posts"
+import SeePosts from "./components/host/dashboardCopoments/Dashboard"
+
 
 ReactDOM.render(
   <Provider store={store}>
     <ChakraProvider>
       <ToastContainer
-        position='top-center'
+
+        position="top-center"
         autoClose={3500}
         hideProgressBar={false}
         newestOnTop={false}
@@ -46,13 +49,15 @@ ReactDOM.render(
           <Route path='/reset' element={<ResetPwd />} />
           <Route path='/forget' element={<ForgetPassword />} />
           <Route path='admin' element={<Admin />} />
-          <Route path='host' element={<Host />} />
+          <Route path="host" >
+            <Route path="" element={<Home />} />
+            <Route path="reservations" element={<Reservations />} />
+            <Route path="addpost" element={<Posts />} />
+            <Route path="posts" element={<SeePosts />} />
+          </Route>
           <Route path='agent' element={<Agent />} />
 
-          
-          {/* <Route path="/host/dashboard" element ={<Dashboard />} />
-          <Route path="/host/posts" element={<Posts />} />
-          <Route path="/host/statistics" element={<Statistics />} />  */}
+
 
           <Route
             path='*'
