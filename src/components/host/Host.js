@@ -9,30 +9,13 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function Host() {
   return (
   
-  
-    <div className="dashbord">
-  
 
-    
       
       
       
-      <Sidebar /> 
-
-{/* <Route path="/host/dashboard" element ={<Dashboard />} /> */}
-{/* <Route path="/host/posts" component={Posts} /> */}
-
-{/* <Route path="/host/statistics" element={<Statistics />} />  */}
-{/* <Posts></Posts> */}
-
+    <h1> HELLO </h1>
 
       
-  <Posts />
-
-        
-        
-
-    </div>
 
 
   

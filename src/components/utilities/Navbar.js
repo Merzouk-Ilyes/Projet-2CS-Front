@@ -10,20 +10,23 @@ import {
   DrawerOverlay,
   DrawerContent,
   useDisclosure,
-} from "@chakra-ui/react";
-function Navbar() {
+} from "@chakra-ui/react"; 
+import {Link} from "react-router-dom"
+
+
+function Navbar({searchInput}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div className="navbar">
       <div className="logo">Logo</div>
       <Show breakpoint="(min-width: 1200px)">
         <div className="links">
-          <p>Home</p>
-          <p>Locals</p>
-          <p>About</p>
+        <Link to="/">  <p>Home</p></Link> 
+             <Link to="/search">   <p>Locals</p></Link> 
+             <Link to="/about"> <p>About</p></Link>
         </div>
         <div className="search">
-          <input type="text" placeholder="Ex: apartement, villa ..etc" />
+          <input type="text" placeholder="Ex: apartement, villa ..etc"  onChange = {searchInput} />
           <div className="icon-box">
             <FaSearchLocation className="icon" />
           </div>
@@ -40,9 +43,9 @@ function Navbar() {
             <DrawerHeader borderBottomWidth="1px">Logo</DrawerHeader>
             <DrawerBody className="drawer-body">
               <div className="links">
-                <p>Home</p>
-                <p>Locals</p>
-                <p>About</p>
+             <Link to="/">  <p>Home</p></Link> 
+             <Link to="/search">   <p>Locals</p> </Link> 
+             <Link to="/about"> <p>About</p></Link> 
               </div>
               <div className="search">
                 <input type="text" placeholder="Ex: apartement, villa ..etc" />
