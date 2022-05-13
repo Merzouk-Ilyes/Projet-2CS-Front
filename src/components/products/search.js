@@ -102,7 +102,7 @@ function Search() {
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
                   : filteredPosts
-                      .filter((post) => post.type == 1)
+                      .filter((post) => post.type === 1)
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
@@ -126,32 +126,7 @@ function Search() {
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
                   : filteredPosts
-                      .filter((post) => post.type == 2)
-                      .map((post, i) => (
-                        <PostCard
-                          key={post._id}
-                          imageUrl={post.images[0]}
-                          title={post.title}
-                          price={post.PricePerNight}
-                          baths={post.nbrBathes}
-                          beds={post.nbrBeds}
-                          rating={post.RatingTotal}
-                          verified={post.verified}
-                          space={post.space}
-                          city={post.city}
-
-                        />
-                      ))}
-              </div>
-            </TabPanel>
-            <TabPanel>
-              <div className="posts-grid">
-                {loading
-                  ? Array(8)
-                      .fill("")
-                      .map((_, i) => <SkeltonPostCard key={i} />)
-                  : filteredPosts
-                      .filter((post) => post.type == 3)
+                      .filter((post) => post.type === 2)
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
@@ -176,7 +151,7 @@ function Search() {
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
                   : filteredPosts
-                      .filter((post) => post.type == 4)
+                      .filter((post) => post.type === 3)
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
@@ -201,7 +176,32 @@ function Search() {
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
                   : filteredPosts
-                      .filter((post) => post.type == 5)
+                      .filter((post) => post.type === 4)
+                      .map((post, i) => (
+                        <PostCard
+                          key={post._id}
+                          imageUrl={post.images[0]}
+                          title={post.title}
+                          price={post.PricePerNight}
+                          baths={post.nbrBathes}
+                          beds={post.nbrBeds}
+                          rating={post.RatingTotal}
+                          verified={post.verified}
+                          space={post.space}
+                          city={post.city}
+
+                        />
+                      ))}
+              </div>
+            </TabPanel>
+            <TabPanel>
+              <div className="posts-grid">
+                {loading
+                  ? Array(8)
+                      .fill("")
+                      .map((_, i) => <SkeltonPostCard key={i} />)
+                  : filteredPosts
+                      .filter((post) => post.type === 5)
                       .map((post, i) => (
                         <PostCard
                           key={post._id}

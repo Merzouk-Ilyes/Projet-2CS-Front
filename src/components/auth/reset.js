@@ -119,7 +119,7 @@ function ResetPwd() {
           </Link>
         </div>
         <div className='question'>
-          <img src={face} />
+          <img src={face} alt="" />
         </div>
       </div>
     </>

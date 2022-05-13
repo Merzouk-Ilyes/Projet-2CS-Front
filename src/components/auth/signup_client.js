@@ -285,7 +285,7 @@ function SignupClient() {
           </Link>
         </div>
         <div className="illustrations">
-          <img src={face} />
+          <img src={face} alt=""/>
         </div>
       </div>
     </>
