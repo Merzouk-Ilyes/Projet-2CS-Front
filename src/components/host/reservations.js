@@ -47,11 +47,32 @@ function Reservations() {
                     status="Pending"
                   />
                   <TableItem
+                    clientName="Nadia elouali"
+                    amount="4300"
+                    startDate="may 13,2022"
+                    endDate="may 20,2022"
+                    status="Ended"
+                  />
+                  <TableItem
                     clientName="Abir benaissa"
-                    amount="100"
+                    amount="1000"
                     startDate="may 13,2022"
                     endDate="may 20,2022"
                     status="Refused"
+                  />
+                  <TableItem
+                    clientName="Dacine boulma"
+                    amount="1230"
+                    startDate="may 13,2022"
+                    endDate="may 20,2022"
+                    status="Accepted"
+                  />
+                  <TableItem
+                    clientName="Zineddine feddag"
+                    amount="300"
+                    startDate="may 13,2022"
+                    endDate="may 20,2022"
+                    status="On going"
                   />
                 </tbody>
               </table>
@@ -79,7 +100,7 @@ const TableItem = ({ clientName, amount, startDate, endDate, status }) => {
         </div>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">{amount}$</p>
+        <p className="text-gray-900 whitespace-no-wrap">${amount}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 whitespace-no-wrap">{startDate}</p>
@@ -87,7 +108,7 @@ const TableItem = ({ clientName, amount, startDate, endDate, status }) => {
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 whitespace-no-wrap">{endDate}</p>
-        <p className="text-gray-600 whitespace-no-wrap">Due in 3 days</p>
+        <p className="text-gray-600 whitespace-no-wrap">Due in 7 days</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <Status status={status} />
@@ -98,7 +119,7 @@ const TableItem = ({ clientName, amount, startDate, endDate, status }) => {
             as={IconButton}
             aria-label="Options"
             icon={<BsThreeDotsVertical />}
-            variant="outline"
+            variant="ghost"
             fontSize={20}
           />
           <MenuList>
@@ -133,6 +154,10 @@ const Status = ({ status }) => {
   } else if (status.toLowerCase().includes("pen")) {
     bgColor = "bg-orange-200";
     color = "text-orange-900";
+  }
+  else if (status.toLowerCase().includes("en")) {
+    bgColor = "bg-gray-200";
+    color = "text-gray-900";
   }
   return (
     <span

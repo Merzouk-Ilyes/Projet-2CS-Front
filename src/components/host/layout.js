@@ -22,20 +22,19 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
+import { FiHome, FiMenu, FiChevronDown } from "react-icons/fi";
 import {
-  FiHome,
-  FiMenu,
-  FiBell,
-  FiChevronDown,
-} from "react-icons/fi";
-import {BsCalendarCheck} from "react-icons/bs"
-import {Link  as reactRouter} from "react-router-dom"
-
+  BsCalendarCheck,
+  BsBell,
+  BsPatchCheck,
+  BsPatchExclamation,
+} from "react-icons/bs";
+import { BiTimeFive } from "react-icons/bi";
+import { Link as reactRouter } from "react-router-dom";
 
 const LinkItems = [
-  { name: "Home", icon: FiHome,path:"/host" },
-  { name: "Reservations", icon: BsCalendarCheck,path:"/host/reservations" },
- 
+  { name: "Home", icon: FiHome, path: "/host" },
+  { name: "Reservations", icon: BsCalendarCheck, path: "/host/reservations" },
 ];
 
 export default function SidebarWithHeader({ children }) {
@@ -95,14 +94,13 @@ const SidebarContent = ({ onClose, ...rest }) => {
   );
 };
 
-const NavItem = ({ icon, children,path, ...rest }) => {
+const NavItem = ({ icon, children, path, ...rest }) => {
   return (
     <Link
-    as={reactRouter} 
+      as={reactRouter}
       to={path}
       style={{ textDecoration: "none" }}
-      _focus={{ boxShadow: "none", }}
-      
+      _focus={{ boxShadow: "none" }}
     >
       <Flex
         align="center"
@@ -115,7 +113,6 @@ const NavItem = ({ icon, children,path, ...rest }) => {
           bg: "#FF5A5F",
           color: "white",
         }}
-        
         {...rest}
       >
         {icon && (
@@ -165,12 +162,34 @@ const MobileNav = ({ onOpen, ...rest }) => {
       </Text>
 
       <HStack spacing={{ base: "0", md: "6" }}>
-        <IconButton
-          size="lg"
-          variant="ghost"
-          aria-label="open menu"
-          icon={<FiBell />}
-        />
+        <Menu>
+          <MenuButton
+            as={IconButton}
+            aria-label="open menu"
+            size="lg"
+            icon={<BsBell />}
+            variant="ghost"
+            transition="all 0.3s"
+          />
+          <MenuList>
+            <NotificationItem
+              notif="One of your posts has been verified"
+              iconType={1}
+            />
+            <NotificationItem
+              notif="One of your posts has been declined"
+              iconType={2}
+            />
+            <NotificationItem
+              notif="You have a new reservation request"
+              iconType={3}
+            />
+            <NotificationItem
+              notif="One of your posts is under verification"
+              iconType={4}
+            />
+          </MenuList>
+        </Menu>
         <Flex alignItems={"center"}>
           <Menu>
             <MenuButton
@@ -179,21 +198,16 @@ const MobileNav = ({ onOpen, ...rest }) => {
               _focus={{ boxShadow: "none" }}
             >
               <HStack>
-                <Avatar
-                  size={"sm"}
-                  src={
-                    "https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                  }
-                />
+                <Avatar size={"sm"} name="Merzouk ilyes reda" />
                 <VStack
                   display={{ base: "none", md: "flex" }}
                   alignItems="flex-start"
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">Justina Clark</Text>
+                  <Text fontSize="sm">Merzouk ilyes reda</Text>
                   <Text fontSize="xs" color="gray.600">
-                    Admin
+                    Host
                   </Text>
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>
@@ -216,4 +230,42 @@ const MobileNav = ({ onOpen, ...rest }) => {
       </HStack>
     </Flex>
   );
+};
+
+const NotificationItem = ({ notif, iconType }) => {
+  if (iconType == 1) {
+    return (
+      <MenuItem minH="75px" minW="350px">
+        <BsPatchCheck fontSize="25" className="mr-5" />
+        <span>{notif}</span>
+      </MenuItem>
+    );
+  } else if (iconType == 2) {
+    return (
+      <MenuItem minH="75px" minW="350px">
+        <BsPatchExclamation fontSize="25" className="mr-5" />
+        <span>{notif}</span>
+      </MenuItem>
+    );
+  } else if (iconType == 3) {
+    return (
+      <MenuItem minH="75px" minW="350px">
+        <BsCalendarCheck fontSize="25" className="mr-5" />
+        <span>{notif}</span>
+      </MenuItem>
+    );
+  } else if (iconType == 4) {
+    return (
+      <MenuItem minH="75px" minW="350px">
+        <BiTimeFive fontSize="25" className="mr-5" />
+        <span>{notif}</span>
+      </MenuItem>
+    );
+  } else
+    return (
+      <MenuItem minH="75px" minW="350px">
+        <BiTimeFive fontSize="25" className="mr-5" />
+        <span>{notif}</span>
+      </MenuItem>
+    );
 };
