@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import {
   IconButton,
   Avatar,
@@ -31,15 +31,10 @@ import {
 } from "react-icons/bs";
 import { BiTimeFive } from "react-icons/bi";
 import { Link as reactRouter } from "react-router-dom";
-import {MdPublic} from "react-icons/md"
-
+import { MdPublic } from "react-icons/md";
 const LinkItems = [
-
-  { name: "Home", icon: FiHome,path:"/host" },
-  { name: "Reservations", icon: BsCalendarCheck,path:"/host/reservations" },
-  { name: "Add post", icon: BsCalendarCheck ,path:"/host/addpost" },
-  { name: "Posts", icon: MdPublic ,path:"/host/posts" },
-
+  { name: "Home", icon: FiHome, path: "/admin" },
+  { name: "Posts", icon: MdPublic, path: "/admin/posts" },
 ];
 
 export default function SidebarWithHeader({ children }) {
@@ -212,7 +207,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                 >
                   <Text fontSize="sm">Merzouk ilyes reda</Text>
                   <Text fontSize="xs" color="gray.600">
-                    Host
+                    Admin
                   </Text>
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>

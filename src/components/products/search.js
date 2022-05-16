@@ -38,9 +38,10 @@ function Search() {
     axios
       .get(url)
       .then((response) => {
-        const posts = response.data;
+      
+        const posts = response.data.result;
         setPosts(posts);
-        console.log(posts);
+        console.log("posts =>"+posts);
       })
       .catch((err) => {
         console.log(err);

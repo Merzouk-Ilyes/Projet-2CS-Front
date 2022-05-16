@@ -5,7 +5,17 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  IconButton,Avatar
+  IconButton,
+  Avatar,
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { AiOutlineDelete, AiOutlineThunderbolt } from "react-icons/ai";
@@ -15,6 +25,7 @@ function Reservations() {
     <SidebarWithHeader>
       <div className="container mx-auto px-4 sm:px-8">
         <div className="py-8">
+          <h1 className="text-[34px] font-semibold">Reservations</h1>
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div className="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
               <table className="min-w-full leading-normal">
@@ -92,7 +103,7 @@ const TableItem = ({ clientName, amount, startDate, endDate, status }) => {
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <div className="flex">
           <div className="flex-shrink-0 w-10 h-10 flex items-center">
-          <Avatar name={clientName} size="sm" />
+            <Avatar name={clientName} size="sm" />
           </div>
           <div className="ml-3 flex items-center">
             <p className="text-gray-900 whitespace-no-wrap">{clientName}</p>
@@ -123,19 +134,113 @@ const TableItem = ({ clientName, amount, startDate, endDate, status }) => {
             fontSize={20}
           />
           <MenuList>
-            <MenuItem icon={<BiDetail fontSize={20} />} fontSize={18}>
-              Details
-            </MenuItem>
-            <MenuItem icon={<AiOutlineThunderbolt fontSize={20}/>} fontSize={18}>
-              Take action
-            </MenuItem>
-            <MenuItem icon={<AiOutlineDelete fontSize={20}/>} fontSize={18}>
-              Delete
-            </MenuItem>
+            <DetailsMenuItem />
+            <TakeActionmenuItem />
+            <DeleteMenuItem />
           </MenuList>
         </Menu>
       </td>
     </tr>
+  );
+};
+const DetailsMenuItem = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  return(
+    <MenuItem onClick={onOpen} icon={<BiDetail fontSize={20} />} fontSize={18}>
+    Details
+    <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Delete</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody></ModalBody>
+
+          <ModalFooter>
+            <Button
+              variant="ghost"
+              colorScheme="black"
+              mr={3}
+              onClick={onClose}
+            >
+              Close
+            </Button>
+           
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+  </MenuItem>
+    
+  )
+}
+const TakeActionmenuItem = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  return (
+    <MenuItem
+      onClick={onOpen}
+      icon={<AiOutlineThunderbolt fontSize={20} />}
+      fontSize={18}
+    >
+      Take action
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Reservation request</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>Would you like to accept this reservation request?</ModalBody>
+
+          <ModalFooter>
+            <Button
+              variant="ghost"
+              colorScheme="red"
+              mr={3}
+              onClick={onClose}
+            >
+              Refuse
+            </Button>
+            <Button variant="solid" colorScheme="green">
+              Accept
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </MenuItem>
+  );
+};
+const DeleteMenuItem = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  return (
+    <MenuItem
+      onClick={onOpen}
+      icon={<AiOutlineDelete fontSize={20} />}
+      fontSize={18}
+    >
+      Delete
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Delete</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>Are you sure you want to delete this?</ModalBody>
+
+          <ModalFooter>
+            <Button
+              variant="ghost"
+              colorScheme="black"
+              mr={3}
+              onClick={onClose}
+            >
+              Close
+            </Button>
+            <Button variant="solid" colorScheme="red">
+              Delete
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </MenuItem>
   );
 };
 
@@ -154,8 +259,7 @@ const Status = ({ status }) => {
   } else if (status.toLowerCase().includes("pen")) {
     bgColor = "bg-orange-200";
     color = "text-orange-900";
-  }
-  else if (status.toLowerCase().includes("en")) {
+  } else if (status.toLowerCase().includes("en")) {
     bgColor = "bg-gray-200";
     color = "text-gray-900";
   }

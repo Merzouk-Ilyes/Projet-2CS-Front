@@ -18,7 +18,9 @@ function Navbar({searchInput}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div className="navbar">
-      <div className="logo">Logo</div>
+      <div className="logo">
+       Rented
+      </div>
       <Show breakpoint="(min-width: 1200px)">
         <div className="links">
         <Link to="/">  <p>Home</p></Link> 
