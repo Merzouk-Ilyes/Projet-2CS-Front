@@ -207,7 +207,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                 >
                   <Text fontSize="sm">Merzouk ilyes reda</Text>
                   <Text fontSize="xs" color="gray.600">
-                    Admin
+                    Agent
                   </Text>
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>
@@ -221,7 +221,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
             >
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
-              <MenuItem>Billing</MenuItem>
+            
               <MenuDivider />
               <MenuItem>Sign out</MenuItem>
             </MenuList>

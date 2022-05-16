@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Admin from "./components/admin/adminHome";
-import Agent from "./components/agent/agentHome";
+import AgentHome from "./components/agent/agentHome";
 
 import Login from "./components/auth/login";
 import SignupHost from "./components/auth/signup_host";
@@ -62,7 +62,9 @@ ReactDOM.render(
             <Route path="posts" element={<SeePosts />} />
           </Route>
 
-          <Route path="agent" element={<Agent />} />
+          <Route path="agent">
+            <Route path="" element={<AgentHome />} />
+          </Route>
 
           <Route
             path="*"
