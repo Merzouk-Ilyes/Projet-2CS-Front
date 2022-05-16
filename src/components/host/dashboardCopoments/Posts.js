@@ -2,7 +2,7 @@
 import React , { useState } from 'react'
 import "../../../styles/dashboardCompoments/Posts.sass";
 import { toast } from "react-toastify";
-import Checkbox from "react-custom-checkbox"; 
+// import Checkbox from "react-custom-checkbox"; 
 import * as Icon from "react-icons/fi";
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import BtnSlider from './Slider/BtnSlider'; 
@@ -10,7 +10,7 @@ import SidebarWithHeader from "../layout" ;
 import {IoIosArrowDown} from "react-icons/io"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { Checkbox, Stack ,  CheckboxGroup } from '@chakra-ui/react'
 import {
   Menu,
   MenuButton,
@@ -184,7 +184,7 @@ function Posts() {
  {/* _______________________________________title ______________________________________________________ */}
       <div>
       <div>
-         <p>Title</p>
+         {/* <p>Title</p> */}
          <input
            type="text"
            value={postData.title}
@@ -221,7 +221,7 @@ function Posts() {
 
            
              <div>
-                 <p>city</p>
+                 {/* <p>city</p> */}
                   <input
                    type="text"
                    value={postData.city}
@@ -252,7 +252,7 @@ function Posts() {
              </div>
              {/* ________street */}
              <div>
-                 <p>street </p>
+                 {/* <p>street </p> */}
                   <input
                    type="text"
                    value={postData.street}
@@ -288,7 +288,7 @@ function Posts() {
       {/* _______________beds+ baths _______________ */}
       <div className='group'>
       <div>
-                 <p>beds </p>
+                 {/* <p>beds </p> */}
                   <input
                    type="text"
                    value={postData.nbBeds}
@@ -319,7 +319,7 @@ function Posts() {
              </div>
              
              <div>
-                 <p>baths </p>
+                 {/* <p>baths </p> */}
                   <input
                    type="text"
                    value={postData.nbBaths}
@@ -352,7 +352,7 @@ function Posts() {
       {/* _______________space + price_______________ */}
       <div className='group'>
       <div>
-                 <p>price </p>
+                 {/* <p>price </p> */}
                   <input
                    type="text"
                    value={postData.pricePerNight}
@@ -383,7 +383,7 @@ function Posts() {
              </div>
              
              <div>
-                 <p>space </p>
+                 {/* <p>space </p> */}
                   <input
                    type="text"
                    value={postData.space}
@@ -417,141 +417,124 @@ function Posts() {
 
          {/* ______gaz electricty water furnish ____ */}
       
-      <div className='chekboxes'>
+       <div className='chekboxes'>
+       <Stack spacing={3} direction='row'>
+  <Checkbox colorScheme='white'  
+   borderColor="#FF5A5F"
+   cursorColor = "#FF5A5F"
+   iconColor='#FF5A5F'
+   onChange={(e) => {
+    const data =  {
+   title: postData.title ,
+   city: postData.city ,
+   street:  postData.street,
+   nbBeds :postData.nbBeds,
+   nbBaths: postData.nbBaths,
+   space: postData.space,
+   description :postData.description, 
+   pricePerNight :postData.pricePerNight , 
+   furnish: postData.furnish,
+   gas : !postData.gas , 
+   electricty :postData.electricty ,
+   water :postData.water ,
+   type : postData.type , 
+   image : postData.image 
+ 
+   };
+  setPostData(data);
+  console.log(postData.gas)
+  }} >
+    gaz
+  </Checkbox>
+  <Checkbox 
+    colorScheme='white'  
+    borderColor="#FF5A5F"
+    cursorColor = "#FF5A5F"
+    iconColor='#FF5A5F'
+  
+    onChange={(e) => {
+    const data =  {
+      title: postData.title ,
+      city: postData.city ,
+      street:  postData.street,
+      nbBeds :postData.nbBeds,
+      nbBaths: postData.nbBaths,
+      space: postData.space,
+      description :postData.description, 
+      pricePerNight :postData.pricePerNight , 
+      furnish: postData.furnish,
+      gas : postData.gas, 
+      electricty : !postData.electricty,
+      water :postData.water , 
+      type : postData.type , 
+      image : postData.image 
+ 
+   };
+  setPostData(data);
+  console.log(postData.gas)
+  }}>
+    electricity
+  </Checkbox>
+  <Checkbox 
+      colorScheme='white'  
+      borderColor="#FF5A5F"
+      cursorColor = "#FF5A5F"
+      iconColor='#FF5A5F'
+      onChange={(e) => {
+        const data =  {
+          title: postData.title ,
+          city: postData.city ,
+          street:  postData.street,
+          nbBeds :postData.nbBeds,
+          nbBaths: postData.nbBaths,
+          space: postData.space,
+          description :postData.description, 
+          pricePerNight :postData.pricePerNight , 
+          furnish: postData.furnish,
+          gas : postData.gas, 
+          electricty : postData.electricty,
+          water : !postData.water , 
+          type : postData.type , 
+          image : postData.image 
+     
+       };
+      setPostData(data);
+      console.log(postData.gas)
+      }}  >
+    water
+  </Checkbox>
+  <Checkbox 
+      colorScheme='white'  
+      borderColor="#FF5A5F"
+      cursorColor = "#FF5A5F"
+      iconColor='#FF5A5F'
 
- <Checkbox
-   className="cb"
-  icon={<Icon.FiCheck color="#ff5F5A" size={17} />}
- name="gaz"
- checked={false}
- onChange={(e) => {
-   const data =  {
-  title: postData.title ,
-  city: postData.city ,
-  street:  postData.street,
-  nbBeds :postData.nbBeds,
-  nbBaths: postData.nbBaths,
-  space: postData.space,
-  description :postData.description, 
-  pricePerNight :postData.pricePerNight , 
-  furnish: postData.furnish,
-  gas : !postData.gas , 
-  electricty :postData.electricty ,
-  water :postData.water ,
-  type : postData.type , 
-  image : postData.image 
-
-  };
- setPostData(data);
- console.log(postData.gas)
- }}
- borderColor="#FF5A5F"
- style={{ cursor: "pointer"  ,marginRight: 5 }}
- labelStyle={{  userSelect: "none" }}
- label="gaz"
-/>
-<Checkbox
- className="cb"
- icon={<Icon.FiCheck color="#ff5F5A" size={17} />}
- name="electricity"
- checked={false}
- onChange={(e) => {
-   const data =  {
-     title: postData.title ,
-     city: postData.city ,
-     street:  postData.street,
-     nbBeds :postData.nbBeds,
-     nbBaths: postData.nbBaths,
-     space: postData.space,
-     description :postData.description, 
-     pricePerNight :postData.pricePerNight , 
-     furnish: postData.furnish,
-     gas : postData.gas, 
-     electricty : !postData.electricty,
-     water :postData.water , 
-     type : postData.type , 
-     image : postData.image 
-
-  };
- setPostData(data);
- console.log(postData.gas)
- }}
- borderColor="#FF5A5F"
- style={{ cursor: "pointer" ,marginRight: 5 }}
- labelStyle={{ userSelect: "none" }}
- label="electricity"
-/>
-
-<Checkbox
-className="cb"
- icon={<Icon.FiCheck color="#ff5F5A" size={17} />}
- name="water"
- checked={false}
- onChange={(e) => {
-   const data =  {
-     title: postData.title ,
-     city: postData.city ,
-     street:  postData.street,
-     nbBeds :postData.nbBeds,
-     nbBaths: postData.nbBaths,
-     space: postData.space,
-     description :postData.description, 
-     pricePerNight :postData.pricePerNight , 
-     furnish: postData.furnish,
-     gas : postData.gas, 
-     electricty : postData.electricty,
-     water : !postData.water , 
-     type : postData.type , 
-     image : postData.image 
-
-  };
- setPostData(data);
- console.log(postData.gas)
- }}
- borderColor="#FF5A5F"
- style={{ cursor: "pointer" ,marginRight: 5 }}
- labelStyle={{ userSelect: "none" }}
- label="water"
-/>
-
-<Checkbox
- className="cb"
- icon={<Icon.FiCheck color="#ff5F5A" size={17} />}
- name="furnish"
- checked={false}
- onChange={(e) => {
-   const data =  {
-     title: postData.title ,
-     city: postData.city ,
-     street:  postData.street,
-     nbBeds :postData.nbBeds,
-     nbBaths: postData.nbBaths,
-     space: postData.space,
-     description :postData.description, 
-     pricePerNight :postData.pricePerNight , 
-     furnish: !postData.furnish,
-     gas : postData.gas, 
-     electricty :  postData.electricty,
-     water :postData.water ,
-     type : postData.type , 
-     image : selectedImages  
-
-  };
- setPostData(data);
- console.log(postData.gas)
- }}
- borderColor="#FF5A5F"
- cursorColor = "#FF5A5F"
- style={{ cursor: "pointer" , marginRight: 5
-}}
- labelStyle={{  userSelect: "none" }}
- label="furniture"
-/>
-
-
-
-
-</div>   
+      onChange={(e) => {
+        const data =  {
+          title: postData.title ,
+          city: postData.city ,
+          street:  postData.street,
+          nbBeds :postData.nbBeds,
+          nbBaths: postData.nbBaths,
+          space: postData.space,
+          description :postData.description, 
+          pricePerNight :postData.pricePerNight , 
+          furnish: !postData.furnish,
+          gas : postData.gas, 
+          electricty :  postData.electricty,
+          water :postData.water ,
+          type : postData.type , 
+          image : selectedImages  
+     
+       };
+      setPostData(data);
+      console.log(postData.gas)
+      }}
+  >
+    forniture
+  </Checkbox>
+       </Stack>
+       </div>   
          
 
          <Menu>
@@ -560,12 +543,13 @@ className="cb"
     transition='all 0.2s'
     borderRadius='md'
     borderWidth='1px'
+    marginTop={"15px"}
     _hover={{ bg: '#FF5A5F20' }}
     _expanded={{ bg: '#FF5A5F' }}
     _focus={{ boxShadow: 'outline' }}
     rightIcon= {<IoIosArrowDown/>} 
     >
-    types 
+    type of houssing  
   </MenuButton>
   <MenuList type='radio'>
     <MenuItem   onClick={() => { 
@@ -665,9 +649,9 @@ className="cb"
   </MenuList>
         </Menu>
 
-         {/* _____________________Descriptions  */}
-         <div className='checkbox'>
-                 <p>description </p>
+         {/* _____________________Descriptions _________________________  */}
+         <div className='description'>
+                 {/* <p>description </p> */}
                  <textarea 
                    type="text"
                    value={postData.description}

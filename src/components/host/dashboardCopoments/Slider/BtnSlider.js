@@ -1,8 +1,8 @@
 import React from "react";
 import "../../../../styles/Slider.sass";
-import leftArrow from "../../../../icons/left-arrow.png";
-import rightArrow from "../../../../icons/right-arrow.png";
+
 import {AiOutlineArrowRight ,AiOutlineArrowLeft } from "react-icons/ai"
+import {BsArrowLeft} from "react-icons/bs"
 
 export default function BtnSlider({ direction, moveSlide }) {
   console.log(direction, moveSlide);
@@ -11,7 +11,8 @@ export default function BtnSlider({ direction, moveSlide }) {
       onClick={moveSlide}
       className={direction === "next" ? "btn-slide next" : "btn-slide prev"}
     >
-      <img src={direction === "next" ? rightArrow : leftArrow} />
+      
+      {direction === "next" ? <AiOutlineArrowRight /> : <AiOutlineArrowLeft />} 
     </button>
   );
 }
