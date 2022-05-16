@@ -12,7 +12,7 @@ import {
   useDisclosure,
   Drawer,
   DrawerBody,
-  DrawerFooter,
+  Avatar,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
@@ -24,14 +24,14 @@ import {
   StackDivider,
   List,
   ListItem,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Divider,
 } from "@chakra-ui/react";
 import { BsCheck2Circle, BsSnow } from "react-icons/bs";
 import { FaCouch, FaWifi, FaYoutube } from "react-icons/fa";
@@ -232,6 +232,18 @@ function DetailsDrawerData({
   space,
   city,
 }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isConfirmOpen,
+    onOpen: onConfirmOpen,
+    onClose: onConfirmClose,
+  } = useDisclosure();
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose,
+  } = useDisclosure();
+
   return (
     <Container maxW={"7xl"}>
       <SimpleGrid
@@ -370,73 +382,179 @@ function DetailsDrawerData({
                 <ListItem className="flex justify-between">
                   <div>
                     <Text as={"span"} fontWeight={"bold"}>
-                      Verified:
+                      Verification:
                     </Text>{" "}
-                    </div>
-                    {verified ? (
-                      <Badge
-                        display="flex"
-                        alignItems="center"
-                        borderRadius="full"
-                        px="2"
-                        mx="2"
-                        colorScheme="teal"
+                  </div>
+                  {verified ? (
+                    <Badge
+                      display="flex"
+                      alignItems="center"
+                      borderRadius="full"
+                      px="2"
+                      mx="2"
+                      colorScheme="teal"
+                    >
+                      Verified &nbsp; <BsCheck2Circle />
+                    </Badge>
+                  ) : (
+                    <div>
+                      <Button onClick={onOpen} variant="ghost">
+                        Assign an agent
+                      </Button>
+
+                      <Modal
+                        scrollBehavior={"inside"}
+                        isOpen={isOpen}
+                        onClose={onClose}
                       >
-                       Verified &nbsp; <BsCheck2Circle />
-                      </Badge>
-                    ) : (
-                      <div>
-                      <Menu isLazy>
-                        <MenuButton>Assign an agent</MenuButton>
-                        <MenuList>
-                          {/* MenuItems are not rendered unless Menu is open */}
-                          <MenuItem>Agent 1</MenuItem>
-                          <MenuItem>Agent 2</MenuItem>
-                          <MenuItem>Agent 3</MenuItem>
-                        </MenuList>
-                      </Menu>
+                        <ModalOverlay />
+                        <ModalContent>
+                          <ModalHeader>Agents</ModalHeader>
+                          <ModalCloseButton />
+                          <ModalBody>
+                            {Array(5)
+                              .fill("")
+                              .map((_, i) => (
+                                <AgentsCard key={i} />
+                              ))}
+                          </ModalBody>
+                        </ModalContent>
+                      </Modal>
                     </div>
-                    )}
-                  
+                  )}
                 </ListItem>
               </List>
             </Box>
           </Stack>
-          <div className="flex justify-between  ">
+          <div className="flex flex-col justify-center  items-center ">
+            {verified ? (
+              ""
+            ) : (
+              <div>
+                <Button
+                  rounded={"lg"}
+                  w={"sm"}
+                  mt={6}
+                  size={"lg"}
+                  py={"7"}
+                  bg={"green.600"}
+                 
+                  color={"white"}
+                  _hover={{
+                    transform: "translateY(2px)",
+                    boxShadow: "lg",
+                  }}
+                  onClick={onConfirmOpen}
+                >
+                  Confirm the post
+                </Button>
+                <Modal isOpen={isConfirmOpen} onClose={onConfirmClose}>
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>
+                    </ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody className="font-semibold">
+                    Are you sue you want to confirm this post?
+
+                    </ModalBody>
+
+                    <ModalFooter>
+                      <Button variant="ghost" mr={3} onClick={onConfirmClose}>
+                        Cancel
+                      </Button>
+                      <Button variant="solid"colorScheme="green" >Confirm</Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
+              </div>
+            )}
             <Button
               rounded={"lg"}
               w={"sm"}
-              mt={8}
+              mt={4}
               size={"lg"}
               py={"7"}
-              bg={"green.600"}
-              color={"white"}
-              className="mr-5"
+              bg={"white"}
+              color={"red"}
+              border={"solid"}
+              borderColor={"red"}
               _hover={{
                 transform: "translateY(2px)",
                 boxShadow: "lg",
               }}
+              onClick={onDeleteOpen}
             >
-              Change status
+              Delete the post
             </Button>
-            <Button
-              rounded={"lg"}
-              w={"sm"}
-              mt={8}
-              size={"lg"}
-              py={"7"}
-              bg={"red"}
-              color={"white"}
-              _hover={{
-                transform: "translateY(2px)",
-                boxShadow: "lg",
-              }}
-            >
-              Delete
-            </Button>
+            <Modal isOpen={isDeleteOpen} onClose={onDeleteClose}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>
+                </ModalHeader>
+                <ModalCloseButton />
+                <ModalBody className="font-semibold">
+                Are you sue you want to Delete this post?
+
+                </ModalBody>
+
+
+                <ModalFooter>
+                  <Button variant="ghost" mr={3} onClick={onDeleteClose}>
+                    Cancel
+                  </Button>
+                  <Button variant="solid" colorScheme="red">
+                    Delete
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
           </div>
         </Stack>
       </SimpleGrid>
     </Container>
+  );
+}
+
+function AgentsCard() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <>
+      <div
+        className="flex  items-center justify-between p-3 
+     rounded-md hover:bg-gray-200 transition ease-in-out 
+     cursor-pointer	focus:outline-none focus:ring focus:gray-900
+     "
+      >
+        <div className="flex  items-center">
+          <Avatar name="merzouk ilyes" className="mr-3" />
+          <div className="flex flex-col">
+            <p className="text-gray-900 font-semibold">Merzouk ilyes reda</p>
+            <p className="text-gray-500">Oran</p>
+          </div>
+        </div>
+        <Button variant="outline" onClick={onOpen}>
+          {" "}
+          Assign
+        </Button>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Are you sure ?</ModalHeader>
+            <ModalCloseButton />
+
+            <ModalFooter>
+              <Button variant="ghost" mr={3} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button variant="solid" colorScheme="green">
+                Confirm
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </div>
+      <Divider />
+    </>
   );
 }
