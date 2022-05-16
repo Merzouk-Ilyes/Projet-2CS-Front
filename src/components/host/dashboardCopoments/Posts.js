@@ -549,7 +549,7 @@ function Posts() {
     _focus={{ boxShadow: 'outline' }}
     rightIcon= {<IoIosArrowDown/>} 
     >
-    type of houssing  
+    type of housing  
   </MenuButton>
   <MenuList type='radio'>
     <MenuItem   onClick={() => { 

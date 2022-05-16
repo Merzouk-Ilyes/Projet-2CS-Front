@@ -79,7 +79,7 @@ function Reservations() {
             </div>
           </div>
         </div>
-      </div>
+      </div>=
     </SidebarWithHeader>
   );
 }

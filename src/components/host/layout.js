@@ -236,7 +236,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
   );
 };
 
-const NotificationItem = ({ notif, iconType }) => {
+const NotificationItem = ({ notif, iconType }) => { 
   if (iconType == 1) {
     return (
       <MenuItem minH="75px" minW="350px">
