@@ -106,7 +106,7 @@ function Search() {
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
                   : filteredPosts
-                      .filter((post) => post.type === 1)
+                      .filter((post) => post.type === 1 && post.verified)
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
@@ -130,7 +130,7 @@ function Search() {
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
                   : filteredPosts
-                      .filter((post) => post.type === 2)
+                      .filter((post) => post.type === 2 && post.verified)
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
@@ -155,7 +155,7 @@ function Search() {
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
                   : filteredPosts
-                      .filter((post) => post.type === 3)
+                      .filter((post) => post.type === 3 && post.verified)
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
@@ -180,7 +180,7 @@ function Search() {
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
                   : filteredPosts
-                      .filter((post) => post.type === 4)
+                      .filter((post) => post.type === 4 && post.verified)
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
@@ -205,7 +205,7 @@ function Search() {
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
                   : filteredPosts
-                      .filter((post) => post.type === 5)
+                      .filter((post) => post.type === 5 && post.verified)
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
