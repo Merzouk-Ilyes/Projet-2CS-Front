@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Admin from "./components/admin/Admin";
-import Agent from "./components/agent/Agent";
+import Admin from "./components/admin/adminHome";
+import Agent from "./components/agent/agentHome";
 
 import Login from "./components/auth/login";
 import SignupHost from "./components/auth/signup_host";
@@ -18,13 +18,13 @@ import Search from "./components/products/search";
 import About from "./components/about";
 import ForgetPassword from "./components/auth/forget";
 
-import Home from "./components/host/home";
+import Home from "./components/host/hostHome";
 import Reservations from "./components/host/reservations";
 
 import Posts from "./components/host/dashboardCopoments/Posts";
 import SeePosts from "./components/host/dashboardCopoments/Dashboard";
 import "./App.sass";
-import AdminPosts from "./components/admin/posts";
+import AdminPosts from "./components/admin/adminPosts";
 
 ReactDOM.render(
   <Provider store={store}>

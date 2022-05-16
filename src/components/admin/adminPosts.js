@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import SidebarWithHeader from "./layout";
+import SidebarWithHeader from "./adminLayout";
 import {
   Badge,
   Button,
@@ -243,6 +243,11 @@ function DetailsDrawerData({
     onOpen: onDeleteOpen,
     onClose: onDeleteClose,
   } = useDisclosure();
+  const {
+    isOpen: isFeedOpen,
+    onOpen: onFeedOpen,
+    onClose: onFeedClose,
+  } = useDisclosure();
 
   return (
     <Container maxW={"7xl"}>
@@ -434,11 +439,38 @@ function DetailsDrawerData({
                 <Button
                   rounded={"lg"}
                   w={"sm"}
-                  mt={6}
+                  size={"lg"}
+                  py={"7"}
+                  variant="ghost"
+                  onClick={onFeedOpen}
+                >
+                  See agent's feedback
+                </Button>
+                <Modal isOpen={isFeedOpen} onClose={onFeedClose}>
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>Agent's feedback</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody className="font-semibold">
+                      This house is very well organised , everything is
+                      authentic just like in the host's post
+                    </ModalBody>
+
+                    <ModalFooter>
+                      <Button variant="ghost" mr={3} onClick={onFeedClose}>
+                        OK
+                      </Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
+
+                <Button
+                  rounded={"lg"}
+                  w={"sm"}
+                  mt={4}
                   size={"lg"}
                   py={"7"}
                   bg={"green.600"}
-                 
                   color={"white"}
                   _hover={{
                     transform: "translateY(2px)",
@@ -451,19 +483,19 @@ function DetailsDrawerData({
                 <Modal isOpen={isConfirmOpen} onClose={onConfirmClose}>
                   <ModalOverlay />
                   <ModalContent>
-                    <ModalHeader>
-                    </ModalHeader>
+                    <ModalHeader></ModalHeader>
                     <ModalCloseButton />
                     <ModalBody className="font-semibold">
-                    Are you sue you want to confirm this post?
-
+                      Are you sue you want to confirm this post?
                     </ModalBody>
 
                     <ModalFooter>
                       <Button variant="ghost" mr={3} onClick={onConfirmClose}>
                         Cancel
                       </Button>
-                      <Button variant="solid"colorScheme="green" >Confirm</Button>
+                      <Button variant="solid" colorScheme="green">
+                        Confirm
+                      </Button>
                     </ModalFooter>
                   </ModalContent>
                 </Modal>
@@ -480,8 +512,8 @@ function DetailsDrawerData({
               border={"solid"}
               borderColor={"red"}
               _hover={{
-                transform: "translateY(2px)",
-                boxShadow: "lg",
+                color: "white",
+                bg: "red",
               }}
               onClick={onDeleteOpen}
             >
@@ -490,14 +522,11 @@ function DetailsDrawerData({
             <Modal isOpen={isDeleteOpen} onClose={onDeleteClose}>
               <ModalOverlay />
               <ModalContent>
-                <ModalHeader>
-                </ModalHeader>
+                <ModalHeader></ModalHeader>
                 <ModalCloseButton />
                 <ModalBody className="font-semibold">
-                Are you sue you want to Delete this post?
-
+                  Are you sue you want to Delete this post?
                 </ModalBody>
-
 
                 <ModalFooter>
                   <Button variant="ghost" mr={3} onClick={onDeleteClose}>

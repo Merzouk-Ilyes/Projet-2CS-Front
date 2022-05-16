@@ -1,5 +1,5 @@
 import React from "react";
-import SidebarWithHeader from "./layout";
+import SidebarWithHeader from "./hostLayout";
 import {
   Menu,
   MenuButton,

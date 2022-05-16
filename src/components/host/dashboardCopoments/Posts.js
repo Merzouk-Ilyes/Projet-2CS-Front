@@ -6,7 +6,7 @@ import Checkbox from "react-custom-checkbox";
 import * as Icon from "react-icons/fi";
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import BtnSlider from './Slider/BtnSlider'; 
-import SidebarWithHeader from "../layout" ; 
+import SidebarWithHeader from "../hostLayout" ; 
 import {IoIosArrowDown} from "react-icons/io"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
