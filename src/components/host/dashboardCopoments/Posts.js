@@ -179,7 +179,7 @@ function Posts() {
 
 <div className='div1' >
  <h3 className="title">Add post</h3>
- <form className="form" onSubmit={handleSubmit}>
+ <form className="form"  onSubmit={handleSubmit}>
 
  {/* _______________________________________title ______________________________________________________ */}
       <div>

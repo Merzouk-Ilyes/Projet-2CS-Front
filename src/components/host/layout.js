@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios' ; 
 import {
   IconButton,
   Avatar,
@@ -43,6 +44,33 @@ const LinkItems = [
 
 export default function SidebarWithHeader({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+
+  // const [notifications, setNotifications] = useState([]);
+  
+  // // useEffect(() => {
+  // //   getNotifications();
+  // //   }, []);
+
+
+  //   const getNotifications = () => {
+  //     axios
+  //     .post("http://localhost:8000/getNotificationByidHost" ,
+  //      {
+  //       "id":"6245f759dcaa169f72781127"
+  //      })  
+  //     .then((response) => {
+  //       console.log(response)
+  //       const notifications = response.data.result ; 
+  //        setNotifications(notifications);
+  //        console.log(notifications);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //   }; 
+    
+
   return (
     <Box minH="100vh" bg={useColorModeValue("white", "white")}>
       <SidebarContent
@@ -136,6 +164,29 @@ const NavItem = ({ icon, children, path, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }) => {
+
+  const [notifications, setNotifications] = useState([]);
+    useEffect(() => {
+    getNotifications();
+    }, []);
+      const getNotifications = () => {
+      console.log('opened') ; 
+      axios
+      .post("http://localhost:8000/getNotificationByidHost" ,
+       {
+        "id":"6245f759dcaa169f72781127"
+       })  
+      .then((response) => {
+        console.log(response)
+        const notifications = response.data.result ; 
+         setNotifications(notifications);
+         console.log(notifications);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }; 
+    
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -174,9 +225,22 @@ const MobileNav = ({ onOpen, ...rest }) => {
             icon={<BsBell />}
             variant="ghost"
             transition="all 0.3s"
+            // onOpen ={ getNotifications }
+          
           />
           <MenuList>
-            <NotificationItem
+
+            
+           
+              { notifications.map((item, index ) => {
+                return ( 
+                  <NotificationItem
+                  notif=  {item.discreption}
+                  iconType={item.type}
+                /> ) } ).reverse() }
+
+
+            {/* <NotificationItem
               notif="One of your posts has been verified"
               iconType={1}
             />
@@ -191,7 +255,8 @@ const MobileNav = ({ onOpen, ...rest }) => {
             <NotificationItem
               notif="One of your posts is under verification"
               iconType={4}
-            />
+            /> */}
+
           </MenuList>
         </Menu>
         <Flex alignItems={"center"}>
