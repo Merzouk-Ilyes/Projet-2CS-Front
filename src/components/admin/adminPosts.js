@@ -38,6 +38,7 @@ import { FaCouch, FaWifi, FaYoutube } from "react-icons/fa";
 import { MdKitchen, MdOutlineElectricalServices } from "react-icons/md";
 import { BiWater } from "react-icons/bi";
 import axios from "axios";
+import { toast } from 'react-toastify'
 
 function AdminPosts() {
   const [posts, setPosts] = useState([]);
@@ -65,6 +66,7 @@ function AdminPosts() {
         {posts.map((post, i) => (
           <AdminPostCard
             key={post._id}
+            id={post._id}
             imageUrl={post.images[0]}
             title={post.title}
             price={post.PricePerNight}
@@ -93,6 +95,7 @@ function AdminPostCard({
   verified,
   space,
   city,
+  id
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -177,6 +180,8 @@ function AdminPostCard({
             verified={verified}
             space={space}
             city={city}
+            id={id}
+
           />
         </Stack>
       </Stack>
@@ -196,6 +201,7 @@ function DetailsDrawer({
   verified,
   space,
   city,
+  id
 }) {
   return (
     <Drawer onClose={onClose} isOpen={isOpen} size={"xl"}>
@@ -214,6 +220,8 @@ function DetailsDrawer({
             verified={verified}
             space={space}
             city={city}
+            idPost={id}
+
           />
         </DrawerBody>
       </DrawerContent>
@@ -231,6 +239,7 @@ function DetailsDrawerData({
   verified,
   space,
   city,
+  idPost
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
@@ -248,6 +257,25 @@ function DetailsDrawerData({
     onOpen: onFeedOpen,
     onClose: onFeedClose,
   } = useDisclosure();
+
+
+  const ConfirmPostHandler = (id) => {
+    axios.patch('http://localhost:8001/UpdatePostStatus', {
+      id: id,
+    })
+    .then(function (response) {
+      console.log(response);
+      onConfirmClose()
+      toast.success('This post is now verified !')
+      setTimeout(() => {
+        window.location.reload(false);
+      }, 3000)
+
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 
   return (
     <Container maxW={"7xl"}>
@@ -476,7 +504,7 @@ function DetailsDrawerData({
                     transform: "translateY(2px)",
                     boxShadow: "lg",
                   }}
-                  onClick={onConfirmOpen}
+                  onClick={onConfirmOpen }
                 >
                   Confirm the post
                 </Button>
@@ -493,7 +521,10 @@ function DetailsDrawerData({
                       <Button variant="ghost" mr={3} onClick={onConfirmClose}>
                         Cancel
                       </Button>
-                      <Button variant="solid" colorScheme="green">
+                      <Button variant="solid" colorScheme="green"
+                      onClick={() => ConfirmPostHandler(idPost)}
+                      
+                      >
                         Confirm
                       </Button>
                     </ModalFooter>
