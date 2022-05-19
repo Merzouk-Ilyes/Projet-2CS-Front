@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { BsCheck2Circle, BsHeart, BsHeartFill } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
-import "../../../styles/Host.sass";
+
 import { getHostPosts } from '../../utilities/Data';
 import SidebarWithHeader from "../hostLayout"
 

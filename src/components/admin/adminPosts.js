@@ -38,7 +38,7 @@ import { FaCouch, FaWifi, FaYoutube } from "react-icons/fa";
 import { MdKitchen, MdOutlineElectricalServices } from "react-icons/md";
 import { BiWater } from "react-icons/bi";
 import axios from "axios";
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify";
 
 function AdminPosts() {
   const [posts, setPosts] = useState([]);
@@ -95,7 +95,7 @@ function AdminPostCard({
   verified,
   space,
   city,
-  id
+  id,
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -121,8 +121,11 @@ function AdminPostCard({
           p={1}
           pt={2}
         >
-          <Heading fontSize={"2xl"} fontFamily={"body"} className="flex  ">
-            {title}
+          <div className="flex justify-between">
+            <Heading fontSize={"2xl"} fontFamily={"body"} className="flex  ">
+              {title}
+            </Heading>
+
             {verified ? (
               <Badge
                 display="flex"
@@ -137,7 +140,7 @@ function AdminPostCard({
             ) : (
               ""
             )}
-          </Heading>
+          </div>
           <Text fontWeight={600} color={"gray.500"} size="sm" mb={4}>
             {city}
           </Text>
@@ -181,7 +184,6 @@ function AdminPostCard({
             space={space}
             city={city}
             id={id}
-
           />
         </Stack>
       </Stack>
@@ -201,7 +203,7 @@ function DetailsDrawer({
   verified,
   space,
   city,
-  id
+  id,
 }) {
   return (
     <Drawer onClose={onClose} isOpen={isOpen} size={"xl"}>
@@ -221,7 +223,6 @@ function DetailsDrawer({
             space={space}
             city={city}
             idPost={id}
-
           />
         </DrawerBody>
       </DrawerContent>
@@ -239,7 +240,7 @@ function DetailsDrawerData({
   verified,
   space,
   city,
-  idPost
+  idPost,
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
@@ -258,24 +259,23 @@ function DetailsDrawerData({
     onClose: onFeedClose,
   } = useDisclosure();
 
-
   const ConfirmPostHandler = (id) => {
-    axios.patch('http://localhost:8001/UpdatePostStatus', {
-      id: id,
-    })
-    .then(function (response) {
-      console.log(response);
-      onConfirmClose()
-      toast.success('This post is now verified !')
-      setTimeout(() => {
-        window.location.reload(false);
-      }, 3000)
-
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
+    axios
+      .patch("http://localhost:8001/UpdatePostStatus", {
+        id: id,
+      })
+      .then(function (response) {
+        console.log(response);
+        onConfirmClose();
+        toast.success("This post is now verified !");
+        setTimeout(() => {
+          window.location.reload(false);
+        }, 3000);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <Container maxW={"7xl"}>
@@ -504,7 +504,7 @@ function DetailsDrawerData({
                     transform: "translateY(2px)",
                     boxShadow: "lg",
                   }}
-                  onClick={onConfirmOpen }
+                  onClick={onConfirmOpen}
                 >
                   Confirm the post
                 </Button>
@@ -521,9 +521,10 @@ function DetailsDrawerData({
                       <Button variant="ghost" mr={3} onClick={onConfirmClose}>
                         Cancel
                       </Button>
-                      <Button variant="solid" colorScheme="green"
-                      onClick={() => ConfirmPostHandler(idPost)}
-                      
+                      <Button
+                        variant="solid"
+                        colorScheme="green"
+                        onClick={() => ConfirmPostHandler(idPost)}
                       >
                         Confirm
                       </Button>

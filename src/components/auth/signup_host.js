@@ -297,7 +297,7 @@ function SignupHost() {
 
             <button
               type="button"
-              className="upload-file"
+              className="upload-file101"
               onClick={() => {
                 document.getElementById("file").click();
               }}
