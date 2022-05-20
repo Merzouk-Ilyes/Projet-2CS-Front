@@ -15,6 +15,7 @@ import ResetPwd from './components/auth/reset'
 import { store } from './state/store'
 import { Provider } from 'react-redux'
 import Search from './components/products/search'
+import Details from './components/products/details'
 import About from './components/about'
 import ForgetPassword from './components/auth/forget'
 
@@ -36,6 +37,7 @@ ReactDOM.render(
         <Routes>
           <Route path='/' element={<App />} />
           <Route path='/search' element={<Search />} />
+          <Route path='/details' element={<Details />} />
           <Route path='about' element={<About />} />
           <Route path='login' element={<Login />} />
           <Route path='signuphost' element={<SignupHost />} />
