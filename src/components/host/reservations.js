@@ -31,22 +31,22 @@ function Reservations() {
               <table className="min-w-full leading-normal">
                 <thead>
                   <tr>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th className="px-[20px] py-[20px] border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                       Client
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th className="px-[20px] py-[20px] border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                       Amount
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th className="px-[20px] py-[20px] border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                       Start date
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th className="px-[20px] py-[20px] border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                       End date
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    <th className="px-[20px] py-[20px] border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th>
+                    <th className="px-[20px] py-[20px] border-b-2 border-gray-200 bg-gray-100"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -100,7 +100,7 @@ export default Reservations;
 const TableItem = ({ clientName, amount, startDate, endDate, status }) => {
   return (
     <tr>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-[20px] py-[20px] border-b border-gray-200 bg-white text-sm">
         <div className="flex">
           <div className="flex-shrink-0 w-10 h-10 flex items-center">
             <Avatar name={clientName} size="sm" />
@@ -110,21 +110,21 @@ const TableItem = ({ clientName, amount, startDate, endDate, status }) => {
           </div>
         </div>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-[20px] py-[20px] border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 whitespace-no-wrap">${amount}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-[20px] py-[20px] border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 whitespace-no-wrap">{startDate}</p>
         <p className="text-gray-600 whitespace-no-wrap">Due in 3 days</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-[20px] py-[20px] border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 whitespace-no-wrap">{endDate}</p>
         <p className="text-gray-600 whitespace-no-wrap">Due in 7 days</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-[20px] py-[20px] border-b border-gray-200 bg-white text-sm">
         <Status status={status} />
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
+      <td className="px-[20px] py-[20px] border-b border-gray-200 bg-white text-sm text-right">
         <Menu>
           <MenuButton
             as={IconButton}

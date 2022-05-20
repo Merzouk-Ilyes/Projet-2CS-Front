@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import '../../../styles/dashboardCompoments/Dashboard.sass'
-import axios from 'axios'
+import "../../../styles/dashboardCompoments/Dashboard.sass";
+import axios from "axios";
 import {
   Tabs,
   TabList,
@@ -13,11 +13,8 @@ import {
 import { BsCheck2Circle, BsHeart, BsHeartFill } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 
-import { getHostPosts } from '../../utilities/Data';
-import SidebarWithHeader from "../hostLayout"
-
-
-
+import { getHostPosts } from "../../utilities/Data";
+import SidebarWithHeader from "../hostLayout";
 
 function Dashboard() {
   const [posts, setPosts] = useState([]);
@@ -25,56 +22,47 @@ function Dashboard() {
   useEffect(() => {
     getPosts();
     setLoading(false);
-   
   }, []);
 
   const getPosts = () => {
     axios
-      .post("http://localhost:8001/findPostByIdHost" , {
-         idHost:"6245f759dcaa169f72781127" 
-        })  
+      .post("http://localhost:8001/findPostByIdHost", {
+        idHost: "6248ae87204af883c140395e",
+      })
       .then((response) => {
-        console.log(response)
-        const posts = response.data.result ; 
+        console.log(response);
+        const posts = response.data.result;
         setPosts(posts);
-         console.log(posts);
+        console.log(posts);
       })
       .catch((err) => {
         console.log(err);
       });
-  }; 
+  };
 
   // console.log(posts);
   return (
     <SidebarWithHeader>
-    <div className='posts'>
-     
-
-     { posts.map((item, index ) => {
-      return (
- 
-        <PostCard 
-        key={item._id}
-        imageUrl={item.images}
-        title={item.title}
-        price={item.price}
-        baths={item.baths}
-        beds={item.beds}
-        rating={item.rating}
-        verified={item.verified}
-        space={item.space}
-        city={item.city}
-        
-      />  
-
-
-      )
-
-     } )}
-
-    </div>
+      <div className="posts">
+        {posts.map((item, index) => {
+          return (
+            <PostCard
+              key={item._id}
+              imageUrl={item.images}
+              title={item.title}
+              price={item.price}
+              baths={item.baths}
+              beds={item.beds}
+              rating={item.rating}
+              verified={item.verified}
+              space={item.space}
+              city={item.city}
+            />
+          );
+        })}
+      </div>
     </SidebarWithHeader>
-  )
+  );
 }
 export const PostCard = ({
   imageUrl,
@@ -86,7 +74,7 @@ export const PostCard = ({
   price,
   verified,
   space,
-  city 
+  city,
 }) => {
   const property = {
     imageAlt: "Rear view of modern home with pool",
@@ -95,8 +83,8 @@ export const PostCard = ({
     title: "Modern home in city center",
     formattedPrice: "1.900",
     reviewCount: 34,
-    rating: 4, 
-   };
+    rating: 4,
+  };
 
   return (
     <Box
@@ -149,7 +137,7 @@ export const PostCard = ({
           lineHeight="tight"
           isTruncated
         >
-          {title} - {city} 
+          {title} - {city}
         </Box>
 
         <Box>
@@ -173,4 +161,4 @@ export const PostCard = ({
     </Box>
   );
 };
-export default Dashboard
+export default Dashboard;
