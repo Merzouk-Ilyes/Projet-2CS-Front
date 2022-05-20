@@ -27,7 +27,7 @@ function Search() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchField, setSearchField] = useState("");
-  const url = "http://localhost:8001/findAllPosts";
+  const url = "http://localhost:8001/findAllPosts"; 
 
   useEffect(() => {
     getPosts();
@@ -38,14 +38,18 @@ function Search() {
     axios
       .get(url)
       .then((response) => {
-        const posts = response.data;
+      
+        const posts = response.data.result;
         setPosts(posts);
-        console.log(posts);
+        console.log("posts =>"+posts);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+
+
   const filteredPosts = posts.filter(
     post => {
       return (
@@ -102,11 +106,11 @@ function Search() {
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
                   : filteredPosts
-                      .filter((post) => post.type == 1)
+                      .filter((post) => post.type === 1 && post.verified)
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
-                          imageUrl={post.images[0]}
+                          imageUrl={post.images[0]} 
                           title={post.title}
                           price={post.PricePerNight}
                           baths={post.nbrBathes}
@@ -126,32 +130,7 @@ function Search() {
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
                   : filteredPosts
-                      .filter((post) => post.type == 2)
-                      .map((post, i) => (
-                        <PostCard
-                          key={post._id}
-                          imageUrl={post.images[0]}
-                          title={post.title}
-                          price={post.PricePerNight}
-                          baths={post.nbrBathes}
-                          beds={post.nbrBeds}
-                          rating={post.RatingTotal}
-                          verified={post.verified}
-                          space={post.space}
-                          city={post.city}
-
-                        />
-                      ))}
-              </div>
-            </TabPanel>
-            <TabPanel>
-              <div className="posts-grid">
-                {loading
-                  ? Array(8)
-                      .fill("")
-                      .map((_, i) => <SkeltonPostCard key={i} />)
-                  : filteredPosts
-                      .filter((post) => post.type == 3)
+                      .filter((post) => post.type === 2 && post.verified)
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
@@ -176,7 +155,7 @@ function Search() {
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
                   : filteredPosts
-                      .filter((post) => post.type == 4)
+                      .filter((post) => post.type === 3 && post.verified)
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
@@ -201,7 +180,32 @@ function Search() {
                       .fill("")
                       .map((_, i) => <SkeltonPostCard key={i} />)
                   : filteredPosts
-                      .filter((post) => post.type == 5)
+                      .filter((post) => post.type === 4 && post.verified)
+                      .map((post, i) => (
+                        <PostCard
+                          key={post._id}
+                          imageUrl={post.images[0]}
+                          title={post.title}
+                          price={post.PricePerNight}
+                          baths={post.nbrBathes}
+                          beds={post.nbrBeds}
+                          rating={post.RatingTotal}
+                          verified={post.verified}
+                          space={post.space}
+                          city={post.city}
+
+                        />
+                      ))}
+              </div>
+            </TabPanel>
+            <TabPanel>
+              <div className="posts-grid">
+                {loading
+                  ? Array(8)
+                      .fill("")
+                      .map((_, i) => <SkeltonPostCard key={i} />)
+                  : filteredPosts
+                      .filter((post) => post.type === 5 && post.verified)
                       .map((post, i) => (
                         <PostCard
                           key={post._id}

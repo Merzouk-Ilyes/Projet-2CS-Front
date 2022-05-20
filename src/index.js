@@ -18,6 +18,16 @@ import Search from './components/products/search'
 import Details from './components/products/details'
 import About from './components/about'
 import ForgetPassword from './components/auth/forget'
+import AgentHome from './components/agent/agentHome'
+import 'react-toastify/dist/ReactToastify.css'
+
+import Home from './components/host/hostHome'
+import Reservations from './components/host/reservations'
+
+import Posts from './components/host/dashboardCopoments/Posts'
+import SeePosts from './components/host/dashboardCopoments/Dashboard'
+import './App.sass'
+import AdminPosts from './components/admin/adminPosts'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -35,18 +45,31 @@ ReactDOM.render(
       />
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<App />} />
-          <Route path='/search' element={<Search />} />
-          <Route path='/details' element={<Details />} />
+          {/* <Route path='/' element={<App />} /> */}
+          <Route path='/' element={<Search />} />
           <Route path='about' element={<About />} />
+          <Route path='/details' element={<Details />} />
+
           <Route path='login' element={<Login />} />
           <Route path='signuphost' element={<SignupHost />} />
           <Route path='signupclient' element={<SignupClient />} />
-          <Route path='/reset' element={<ResetPwd />} />
-          <Route path='/forget' element={<ForgetPassword />} />
-          <Route path='admin' element={<Admin />} />
-          <Route path='host' element={<Host />} />
-          <Route path='agent' element={<Agent />} />
+          <Route path='reset' element={<ResetPwd />} />
+          <Route path='forget' element={<ForgetPassword />} />
+          <Route path='admin'>
+            <Route path='' element={<Admin />} />
+            <Route path='posts' element={<AdminPosts />} />
+          </Route>
+
+          <Route path='host'>
+            <Route path='' element={<Home />} />
+            <Route path='reservations' element={<Reservations />} />
+            <Route path='addpost' element={<Posts />} />
+            <Route path='posts' element={<SeePosts />} />
+          </Route>
+
+          <Route path='agent'>
+            <Route path='' element={<AgentHome />} />
+          </Route>
 
           <Route
             path='*'

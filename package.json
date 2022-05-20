@@ -7,6 +7,7 @@
     "@chakra-ui/react": "^1.8.7",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
+    "@iconscout/react-unicons": "^1.1.6",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
@@ -15,6 +16,7 @@
     "framer-motion": "^6.2.8",
     "node-sass": "^7.0.1",
     "react": "^17.0.2",
+    "react-custom-checkbox": "^2.0.1",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-loading-skeleton": "^3.1.0",
@@ -48,5 +50,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.13",
+    "tailwindcss": "^3.0.24"
   }
 }
