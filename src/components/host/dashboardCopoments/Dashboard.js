@@ -30,9 +30,12 @@ function Dashboard() {
 
   const getPosts = () => {
     axios
-      .get("http://localhost:8001/findPostByIdHost")  
+      .post("http://localhost:8001/findPostByIdHost" , {
+         idHost:"6245f759dcaa169f72781127" 
+        })  
       .then((response) => {
-        const posts = response.data.result ;
+        console.log(response)
+        const posts = response.data.result ; 
         setPosts(posts);
          console.log(posts);
       })

@@ -13,24 +13,33 @@
 
 .form
     margin : 20px   
+    input 
+         padding: 20px
+
     
     
 
 .group
-   display: flex
-   justify-content: space-between
-
-p
-   font-size: 1em
-    margin: 1em 0 .2em 0
-    font-weight: 500
+    display: flex
+    justify-content: space-between
+    input 
+        margin-top: 10px
+        width: 200px
+        height: 45px
+        border-radius: 5px
+        border: 1px solid #00000026
+        padding: 20px
+        &:focus
+            border: 1px solid $primary-color
+            outline: none
 input 
-    width: 200px
-    height: 45px
-    border-radius: 5px
-    border: 1px solid #00000026
-    padding: 20px
-    &:focus
+     margin-top: 10px
+     width: 200px
+     height: 45px
+     border-radius: 5px
+     border: 1px solid #00000026
+     padding: 20px
+     &:focus
         border: 1px solid $primary-color
         outline: none
 
@@ -39,22 +48,21 @@ input
 .titre
     width: 100%
             
-textarea 
-    width: 100%
-    height: 100px
-    border-radius: 5px
-    border: 1px solid #00000026
-    padding: 20px
-    &:focus
-        border: 1px solid $primary-color
-        outline: none        
+       
 input[type="file"]
                 display: none
-.chekboxes
-    display : flex 
 
-input[chekbox]
-    backgroundColor: 'red'
+.description 
+     textarea 
+         width: 100%
+         height: 100px
+         border-radius: 5px
+         border: 1px solid #00000026
+         padding: 20px
+         margin-top : 10px 
+         &:focus
+             border: 1px solid $primary-color
+             outline: none 
 
 .cb 
     display : flex       
@@ -89,8 +97,8 @@ input[chekbox]
    align-items: center
    font-size: 1.2em  
 
-
-
+.chekboxes 
+       margin-top : 20px 
 .container-slider 
 
    
