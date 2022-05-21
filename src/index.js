@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Admin from './components/admin/adminHome'
 
+import Agent from './components/agent/agentHome'
+import Host from './components/host/hostHome'
 import Login from './components/auth/login'
 import SignupHost from './components/auth/signup_host'
 import SignupClient from './components/auth/signup_client'

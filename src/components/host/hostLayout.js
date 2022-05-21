@@ -178,7 +178,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
         "id":"6245f759dcaa169f72781127"
        })  
       .then((response) => {
-        console.log(response)
+        console.log("nnnn=>"+ response)
         const notifications = response.data.result ; 
          setNotifications(notifications);
          console.log(notifications);

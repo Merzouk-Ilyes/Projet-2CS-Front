@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../utilities/Navbar'
 import '../../styles/details.sass'
-import { StarIcon, CheckCircleIcon } from '@chakra-ui/icons'
+// import { StarIcon, CheckCircleIcon } from '@chakra-ui/icons'
 import {
   Modal,
   ModalOverlay,
@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react'
 
 import { FaCopy, FaBed, FaGasPump, FaWater } from 'react-icons/fa'
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiOutlineHeart,AiFillStar,AiFillCheckCircle } from 'react-icons/ai'
 import { GiElectric } from 'react-icons/gi'
 import axios from 'axios'
 
@@ -88,7 +88,7 @@ function Detail() {
         <p className='title'>{loadingP ? 'title' : post.title}</p>
         <div className='subtitles'>
           <p>
-            <StarIcon className='icon' />
+            <AiFillStar className='icon' />
             {loadingP ? '' : globalRating}
             <span
               // eslint-disable-next-line no-undef
@@ -102,7 +102,7 @@ function Detail() {
             >
               {loadingP ? '' : comments.length} commentaires
             </span>
-            <CheckCircleIcon className='icon2' />
+            <AiFillCheckCircle className='icon2' />
             Verified
             <span
               style={{
@@ -327,7 +327,7 @@ function Detail() {
           <ModalHeader>
             {' '}
             <p>
-              <StarIcon className='icon' />
+              <AiFillStar className='icon' />
               {loadingP ? '' : globalRating}
               <span
                 // eslint-disable-next-line no-undef
