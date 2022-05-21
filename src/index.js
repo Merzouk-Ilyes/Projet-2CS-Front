@@ -34,7 +34,7 @@ ReactDOM.render(
     <ChakraProvider>
       <ToastContainer
         position='top-center'
-        autoClose={3500}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

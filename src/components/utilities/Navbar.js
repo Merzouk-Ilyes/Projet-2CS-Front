@@ -19,13 +19,25 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { actions } from "../../state/auth_slice";
 
 function Navbar({ searchInput }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const isLogged = useSelector((state) => state.isLogged.value);
-  console.log(isLogged);
   const dispatch = useDispatch();
+  let userSession =  JSON.parse(sessionStorage.getItem("USER"));
+  if (userSession) {
+    dispatch(actions.setLogin(true));
+  } else {
+    dispatch(actions.setLogin(false));
+  }
+  const isLogged = useSelector((state) => state.isLogged);
+  const logoutHandler = () => {
+    sessionStorage.removeItem("USER");
+    dispatch(actions.setLogin(false));
+    toast.success("Logged out successfully !");
+  };
+  
   return (
     <div className="navbar">
       <div className="logo">Rented</div>
@@ -55,21 +67,21 @@ function Navbar({ searchInput }) {
           </div>
         </div>
         {!isLogged ? (
-           <Link to="/signupclient">
-          <div className="join">
-            <button>Join now</button>
-          </div>
+          <Link to="/signupclient">
+            <div className="join">
+              <button>Join now</button>
+            </div>
           </Link>
         ) : (
           <Menu>
             <MenuButton>
-              <Avatar name="MERZOUK ILYES" size="md" />
+              <Avatar name={userSession.user.firstname + userSession.user.lastname} size="md" />
             </MenuButton>
             <Box color="black">
               <MenuList>
                 <MenuItem>Profile</MenuItem>
                 <Box color="red">
-                  <MenuItem>Logout </MenuItem>
+                  <MenuItem onClick={() => logoutHandler()}>Logout </MenuItem>
                 </Box>
               </MenuList>
             </Box>
