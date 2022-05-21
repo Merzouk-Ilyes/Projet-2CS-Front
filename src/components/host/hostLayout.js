@@ -30,16 +30,16 @@ import {
   BsPatchCheck,
   BsPatchExclamation,
 } from "react-icons/bs";
-import { BiTimeFive } from "react-icons/bi";
+import { BiTimeFive ,BiImageAdd} from "react-icons/bi";
 import { Link as reactRouter } from "react-router-dom";
 import {MdPublic} from "react-icons/md"
 
 const LinkItems = [
 
   { name: "Home", icon: FiHome,path:"/host" },
-  { name: "Reservations", icon: BsCalendarCheck,path:"/host/reservations" },
-  { name: "Add post", icon: BsCalendarCheck ,path:"/host/addpost" },
   { name: "Posts", icon: MdPublic ,path:"/host/posts" },
+  { name: "Add post", icon: BiImageAdd ,path:"/host/addpost" },
+  { name: "Reservations", icon: BsCalendarCheck,path:"/host/reservations" },
 
 ];
 
