@@ -1,10 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Admin from './components/admin/Admin'
-import Agent from './components/agent/Agent'
-import Host from './components/host/Host'
+import Admin from './components/admin/adminHome'
+
 import Login from './components/auth/login'
 import SignupHost from './components/auth/signup_host'
 import SignupClient from './components/auth/signup_client'
