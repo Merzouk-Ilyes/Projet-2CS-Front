@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios' ; 
+import axios from "axios";
 import {
   IconButton,
   Avatar,
@@ -30,50 +30,33 @@ import {
   BsPatchCheck,
   BsPatchExclamation,
 } from "react-icons/bs";
-import { BiTimeFive ,BiImageAdd} from "react-icons/bi";
-import { Link as reactRouter } from "react-router-dom";
-import {MdPublic} from "react-icons/md"
+import { BiTimeFive, BiImageAdd } from "react-icons/bi";
+import { Link as reactRouter, useNavigate, Navigate } from "react-router-dom";
+import { MdPublic } from "react-icons/md";
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { actions } from "../../state/auth_slice";
 
 const LinkItems = [
-
-  { name: "Home", icon: FiHome,path:"/host" },
-  { name: "Posts", icon: MdPublic ,path:"/host/posts" },
-  { name: "Add post", icon: BiImageAdd ,path:"/host/addpost" },
-  { name: "Reservations", icon: BsCalendarCheck,path:"/host/reservations" },
-
+  { name: "Home", icon: FiHome, path: "/host" },
+  { name: "Posts", icon: MdPublic, path: "/host/posts" },
+  { name: "Add post", icon: BiImageAdd, path: "/host/addpost" },
+  { name: "Reservations", icon: BsCalendarCheck, path: "/host/reservations" },
 ];
 
 export default function SidebarWithHeader({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-
-  // const [notifications, setNotifications] = useState([]);
-  
-  // // useEffect(() => {
-  // //   getNotifications();
-  // //   }, []);
-
-
-  //   const getNotifications = () => {
-  //     axios
-  //     .post("http://localhost:8000/getNotificationByidHost" ,
-  //      {
-  //       "id":"6245f759dcaa169f72781127"
-  //      })  
-  //     .then((response) => {
-  //       console.log(response)
-  //       const notifications = response.data.result ; 
-  //        setNotifications(notifications);
-  //        console.log(notifications);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  //   }; 
-    
+  const isLogged = useSelector((state) => state.isLogged);
+  let navigate = useNavigate();
+  console.log(isLogged);
+  // useEffect(() => {
+  //   if (!isLogged) {
+  //     navigate("/login");
+  //   }
+  // });
 
   return (
-    <Box minH="100vh" bg={useColorModeValue("white", "white")}>
+    <Box minH="100vh" bg={"white"}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -165,29 +148,39 @@ const NavItem = ({ icon, children, path, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }) => {
-
   const [notifications, setNotifications] = useState([]);
-    useEffect(() => {
+  useEffect(() => {
     getNotifications();
-    }, []);
-      const getNotifications = () => {
-      console.log('opened') ; 
-      axios
-      .post("http://localhost:8000/getNotificationByidHost" ,
-       {
-        "id":"6245f759dcaa169f72781127"
-       })  
+  }, []);
+  const getNotifications = () => {
+    console.log("opened");
+    axios
+      .post("http://localhost:8000/getNotificationByidHost", {
+        id: "6245f759dcaa169f72781127",
+      })
       .then((response) => {
-        console.log("nnnn=>"+ response)
-        const notifications = response.data.result ; 
-         setNotifications(notifications);
-         console.log(notifications);
+        const notifications = response.data.result;
+        setNotifications(notifications);
+        console.log(notifications);
       })
       .catch((err) => {
         console.log(err);
       });
-    }; 
-    
+  };
+  const dispatch = useDispatch();
+  let userSession = JSON.parse(sessionStorage.getItem("USER"));
+  if (userSession) {
+    dispatch(actions.setLogin(true));
+  } else {
+    dispatch(actions.setLogin(false));
+  }
+
+  const logoutHandler = () => {
+    sessionStorage.removeItem("USER");
+    dispatch(actions.setLogin(false));
+    toast.success("Logged out successfully !");
+  };
+
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -227,19 +220,18 @@ const MobileNav = ({ onOpen, ...rest }) => {
             variant="ghost"
             transition="all 0.3s"
             // onOpen ={ getNotifications }
-          
           />
           <MenuList>
-
-            
-           
-              { notifications.map((item, index ) => {
-                return ( 
+            {notifications
+              .map((item, index) => {
+                return (
                   <NotificationItem
-                  notif=  {item.discreption}
-                  iconType={item.type}
-                /> ) } ).reverse() }
-
+                    notif={item.discreption}
+                    iconType={item.type}
+                  />
+                );
+              })
+              .reverse()}
 
             {/* <NotificationItem
               notif="One of your posts has been verified"
@@ -257,7 +249,6 @@ const MobileNav = ({ onOpen, ...rest }) => {
               notif="One of your posts is under verification"
               iconType={4}
             /> */}
-
           </MenuList>
         </Menu>
         <Flex alignItems={"center"}>
@@ -268,14 +259,18 @@ const MobileNav = ({ onOpen, ...rest }) => {
               _focus={{ boxShadow: "none" }}
             >
               <HStack>
-                <Avatar size={"sm"} name="Merzouk ilyes reda" />
+                <Avatar size={"sm"} />
                 <VStack
                   display={{ base: "none", md: "flex" }}
                   alignItems="flex-start"
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">Merzouk ilyes reda</Text>
+                  <Text fontSize="sm">
+                    {userSession
+                      ? userSession.firstname + userSession.lastname
+                      : ""}
+                  </Text>
                   <Text fontSize="xs" color="gray.600">
                     Host
                   </Text>
@@ -302,7 +297,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
   );
 };
 
-const NotificationItem = ({ notif, iconType }) => { 
+const NotificationItem = ({ notif, iconType }) => {
   if (iconType == 1) {
     return (
       <MenuItem minH="75px" minW="350px">

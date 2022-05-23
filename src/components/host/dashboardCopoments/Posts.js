@@ -692,7 +692,7 @@ function Posts() {
 
             {/* submit btn  */}
 
-            <button className='btn' type='submit'>
+            <button className='bt' type='submit'>
               add post
             </button>
           </form>

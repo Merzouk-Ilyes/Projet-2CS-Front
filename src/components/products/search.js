@@ -23,6 +23,8 @@ import { BsCheck2Circle, BsHeart, BsHeartFill } from "react-icons/bs";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { Link } from 'react-router-dom'
+
 function Search() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,16 +33,16 @@ function Search() {
 
   useEffect(() => {
     getPosts();
-    setLoading(false);
   }, []);
-
+  
   const getPosts = () => {
     axios
-      .get(url)
-      .then((response) => {
+    .get(url)
+    .then((response) => {
       
-        const posts = response.data.result;
-        setPosts(posts);
+      const posts = response.data.result;
+      setPosts(posts);
+      setLoading(false);
         console.log("posts =>"+posts);
       })
       .catch((err) => {
@@ -110,6 +112,7 @@ function Search() {
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
+                          postId={post._id}
                           imageUrl={post.images[0]} 
                           title={post.title}
                           price={post.PricePerNight}
@@ -134,6 +137,8 @@ function Search() {
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
+                          postId={post._id}
+
                           imageUrl={post.images[0]}
                           title={post.title}
                           price={post.PricePerNight}
@@ -159,6 +164,8 @@ function Search() {
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
+                          postId={post._id}
+
                           imageUrl={post.images[0]}
                           title={post.title}
                           price={post.PricePerNight}
@@ -184,6 +191,8 @@ function Search() {
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
+                          postId={post._id}
+
                           imageUrl={post.images[0]}
                           title={post.title}
                           price={post.PricePerNight}
@@ -209,6 +218,8 @@ function Search() {
                       .map((post, i) => (
                         <PostCard
                           key={post._id}
+                          postId={post._id}
+
                           imageUrl={post.images[0]}
                           title={post.title}
                           price={post.PricePerNight}
@@ -233,6 +244,7 @@ function Search() {
 export default Search;
 
 export const PostCard = ({
+  postId,
   imageUrl,
   title,
   beds,
@@ -255,6 +267,7 @@ export const PostCard = ({
   };
 
   return (
+    <Link to={`/details?id=${postId}`}>
     <Box
       height={"400px"}
       maxW="sm"
@@ -321,12 +334,14 @@ export const PostCard = ({
             .map((_, i) => (
               <AiFillStar key={i} fill={i < rating ? "gold" : "grey"} />
             ))}
+            {/* {rating} */}
           {/* <Box as="span" ml="2" color="gray.600" fontSize="sm">
             {property.reviewCount} reviews
           </Box> */}
         </Box>
       </Box>
     </Box>
+    </Link>
   );
 };
 
