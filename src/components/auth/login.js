@@ -30,8 +30,11 @@ function Login() {
         password: loginData.password,
       })
       .then((response) => {
+        
+        
         if (response.data.token) {
           toast.success('Login successful !')
+          sessionStorage.setItem("USER", JSON.stringify(response.data.user));
           //Changing the isLogged state in the redux store
           dispatch(actions.setLogin(true))
           //Redirection arroding to user role

@@ -32,7 +32,7 @@ function SignupHost() {
     street: '',
   })
 
-  //////////////// Firebase database for image upload
+  
 
   const uploadFile = async (e) => {
     const storageRef = ref(storage, `/files/pic1s`)
@@ -63,13 +63,13 @@ function SignupHost() {
           toast.error('Your phone number is not valid')
           return
         }
-        if (!signupData.image) {
+        if (!img) {
           toast.error('Please upload an ID image')
           return
         }
         if (signupData.password === signupData.confirmpassword) {
           axios
-            .post('http:localhost:8000/signup', {
+            .post('http://localhost:8000/signup', {
               firstname: signupData.firstname,
               lastname: signupData.lastname,
               phonenumber: signupData.phonenumber,

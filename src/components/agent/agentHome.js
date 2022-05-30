@@ -24,6 +24,14 @@ import {
   List,
   ListItem,
   Textarea,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Input,
 } from "@chakra-ui/react";
 import { BsCheck2Circle, BsSnow } from "react-icons/bs";
 import { FaCouch, FaWifi } from "react-icons/fa";
@@ -225,6 +233,7 @@ function DetailsDrawerData({
   city,
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {isOpen: isFOpen,onOpen: onFOpen,onClose: onFClose } = useDisclosure();
 
   return (
     <Container maxW={"7xl"}>
@@ -279,7 +288,6 @@ function DetailsDrawerData({
               >
                 Features
               </Text>
-              
 
               <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                 <List spacing={2}>
@@ -366,27 +374,95 @@ function DetailsDrawerData({
             </Box>
           </Stack>
           <div className="flex flex-col justify-center  items-center ">
-            <Textarea
-            placeholder= "Give your feedback"
-              resize={"none"}
-            />
             <Button
               rounded={"lg"}
               w={"sm"}
               mt={4}
               size={"lg"}
               py={"7"}
-              bg={"white"}
-              color={"telegram.900"}
-              border={"solid"}
-              borderColor={"telegram.900"}
+              color={"white"}
+              bg={"telegram.900"}
+              
+              onClick={onOpen}
               _hover={{
                 color: "white",
                 bg: "telegram.900",
               }}
             >
-              Submit feedback
+              Select meeting date
             </Button>
+            <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader></ModalHeader>
+              
+                <ModalBody>
+                  <Input placeholder="large size" size="lg" type="date" />
+                </ModalBody>
+
+                <ModalFooter>
+                  <Button colorScheme="blue" variant="ghost"mr={3} onClick={onClose}>
+                    Close
+                  </Button>
+                  <Button colorScheme="blue" >Confirm</Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
+
+            <Button
+              rounded={"lg"}
+              w={"sm"}
+              mt={4}
+              size={"lg"}
+              py={"7"}
+              
+              color={"white"}
+              bg={"orange.900"}
+            
+              onClick={onFOpen}
+              _hover={{
+                color: "white",
+                bg: "orange.900",
+              }}
+            >
+              Give feedback
+            </Button>
+
+            <Modal isOpen={isFOpen} onClose={onFClose}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader></ModalHeader>
+            
+                <ModalBody>
+                  <Textarea placeholder="Give your feedback" resize={"none"} />
+                </ModalBody>
+
+                <ModalFooter>
+                  <Button colorScheme="blue"  variant="ghost" mr={3} onClick={onFClose}>
+                    Close
+                  </Button>
+                  <Button colorScheme="blue">Submit</Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
+            {/* <Button
+              rounded={"lg"}
+              w={"sm"}
+              mt={4}
+              size={"lg"}
+              py={"7"}
+              
+              color={"white"}
+              bg={"orange.900"}
+            
+              onClick={onFOpen}
+              _hover={{
+                color: "white",
+                bg: "telegram.900",
+              }}
+            >
+              Download PDF
+            </Button> */}
           </div>
         </Stack>
       </SimpleGrid>

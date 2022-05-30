@@ -261,7 +261,7 @@ function DetailsDrawerData({
 
   const ConfirmPostHandler = (id) => {
     axios
-      .patch("http://localhost:8001/UpdatePostStatus", {
+      .post("http://localhost:8001/UpdatePostStatus", {
         id: id,
       })
       .then(function (response) {

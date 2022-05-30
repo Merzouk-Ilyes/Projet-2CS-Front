@@ -25,7 +25,7 @@ import Home from './components/host/hostHome'
 import Reservations from './components/host/reservations'
 
 import Posts from './components/host/dashboardCopoments/Posts'
-import SeePosts from './components/host/dashboardCopoments/Dashboard'
+import HostPosts from './components/host/hostPosts'
 import './App.sass'
 import AdminPosts from './components/admin/adminPosts'
 
@@ -34,7 +34,7 @@ ReactDOM.render(
     <ChakraProvider>
       <ToastContainer
         position='top-center'
-        autoClose={3500}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -64,7 +64,7 @@ ReactDOM.render(
             <Route path='' element={<Home />} />
             <Route path='reservations' element={<Reservations />} />
             <Route path='addpost' element={<Posts />} />
-            <Route path='posts' element={<SeePosts />} />
+            <Route path='posts' element={<HostPosts />} />
           </Route>
 
           <Route path='agent'>
