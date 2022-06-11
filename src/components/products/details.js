@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../utilities/Navbar'
 import '../../styles/details.sass'
+import 'react-date-range/dist/styles.css' // main style file
+import 'react-date-range/dist/theme/default.css' // theme css file
 // import { StarIcon, CheckCircleIcon } from '@chakra-ui/icons'
 import {
   Modal,
@@ -12,11 +14,13 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react'
+import { addDays, parseISO } from 'date-fns'
 
 import { FaCopy, FaBed, FaGasPump, FaWater } from 'react-icons/fa'
-import { AiOutlineHeart,AiFillStar,AiFillCheckCircle } from 'react-icons/ai'
+import { AiOutlineHeart, AiFillStar, AiFillCheckCircle } from 'react-icons/ai'
 import { GiElectric } from 'react-icons/gi'
 import axios from 'axios'
+import { DateRangePicker } from 'react-date-range'
 
 import {
   Container,
@@ -33,11 +37,25 @@ import {
 function Detail() {
   const [searchField, setSearchField] = useState('')
   const url = 'http://localhost:8001/findPostById'
+
   const [post, setPost] = useState({})
   const [globalRating, setGlobalRating] = useState(0)
   const [comments, setComments] = useState([])
-
+  const [reservations, setReservations] = useState([])
   const [loadingP, setLoadingP] = useState(true)
+
+  const [selectionRange, setSelectionRange] = useState([
+    // {
+    //   startDate: new Date('2022-05-20T00:00:00.000Z'),
+    //   endDate: addDays(new Date(), 7),
+    //   key: 'selection',
+    // },
+    // {
+    //   startDate: new Date(),
+    //   endDate: addDays(new Date(), 7),
+    //   key: 'selection',
+    // },
+  ])
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -59,6 +77,7 @@ function Detail() {
 
   useEffect(() => {
     getPost()
+    getDates()
   }, [])
 
   const getPost = () => {
@@ -74,6 +93,31 @@ function Detail() {
         setGlobalRating(sumRating(response.data.result.rating))
         setComments(post.result.comment)
         console.log(globalRating)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const getDates = () => {
+    const queryParams = new URLSearchParams(window.location.search)
+    const id = queryParams.get('id')
+    axios
+      .get(`http://localhost:8002/PostHasReservations?idpost=${id}`)
+      .then((response) => {
+        console.log(response.data.result)
+        const tab = []
+        // eslint-disable-next-line array-callback-return
+        response.data.result.map((x) => {
+          tab.push({
+            startDate: parseISO(`${x.startDate}`),
+            endDate: parseISO(`${x.endDate}`),
+            key: 'selection',
+          })
+        })
+
+        setSelectionRange(tab)
+        console.log(tab)
       })
       .catch((err) => {
         console.log(err)
@@ -228,6 +272,20 @@ function Detail() {
                   <GiElectric className='iconEquip' /> Gas
                 </div>
               </Col>
+            </Row>
+            <hr id='first-breaker' />
+            <Row style={{ marginTop: '40px' }}>
+              <DateRangePicker
+                ranges={selectionRange}
+                showSelectionPreview={true}
+                moveRangeOnFirstSelection={false}
+                months={2}
+                direction='horizontal'
+                onChange={(item) =>
+                  // setSelectionRange(...selectionRange, ...item)
+                  console.log('it changed')
+                }
+              />
             </Row>
           </Col>
 
