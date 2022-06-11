@@ -30,7 +30,6 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
   Input,
 } from "@chakra-ui/react";
 import { BsCheck2Circle, BsSnow } from "react-icons/bs";
@@ -38,6 +37,7 @@ import { FaCouch, FaWifi } from "react-icons/fa";
 import { MdKitchen, MdOutlineElectricalServices } from "react-icons/md";
 import { BiWater } from "react-icons/bi";
 import axios from "axios";
+// import { Page, Text as pdfText, View, Document, StyleSheet ,PDFDownloadLink} from '@react-pdf/renderer';
 
 function AgentHome() {
   const [posts, setPosts] = useState([]);
@@ -374,6 +374,11 @@ function DetailsDrawerData({
             </Box>
           </Stack>
           <div className="flex flex-col justify-center  items-center ">
+          {/* <PDFDownloadLink document={<MyDoc />} fileName="agent.pdf">
+      {({ blob, url, loading, error }) =>
+        loading ? 'Loading document...' : 'Download now!'
+      }
+    </PDFDownloadLink> */}
             <Button
               rounded={"lg"}
               w={"sm"}
@@ -469,3 +474,29 @@ function DetailsDrawerData({
     </Container>
   );
 }
+// // Create styles
+// const styles = StyleSheet.create({
+//   page: {
+//     flexDirection: 'row',
+//     backgroundColor: '#E4E4E4'
+//   },
+//   section: {
+//     margin: 10,
+//     padding: 10,
+//     flexGrow: 1
+//   }
+// });
+
+// // Create Document Component
+// const MyDoc = () => (
+//   <Document>
+//     <Page size="A4" style={styles.page}>
+//       <View style={styles.section}>
+//         <pdfText>Section #1</pdfText>
+//       </View>
+//       <View style={styles.section}>
+//         <pdfText>Section #2</pdfText>
+//       </View>
+//     </Page>
+//   </Document>
+// );
