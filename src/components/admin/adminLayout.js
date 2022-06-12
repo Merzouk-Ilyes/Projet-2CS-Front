@@ -32,6 +32,8 @@ import {
 import { BiTimeFive } from "react-icons/bi";
 import { Link as reactRouter } from "react-router-dom";
 import { MdPublic } from "react-icons/md";
+import logo from "../../assets/Rented.png"
+
 const LinkItems = [
   { name: "Home", icon: FiHome, path: "/admin" },
   { name: "Posts", icon: MdPublic, path: "/admin/posts" },
@@ -79,10 +81,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
-        </Text>
+      <Flex h="20" alignItems="center"  justifyContent="space-between">
+      <div className=" logo  w-[250px] h-[100px] flex justify-start items-center">
+        <img src={logo} alt="RENTED" className="" />
+      </div>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -151,15 +153,14 @@ const MobileNav = ({ onOpen, ...rest }) => {
         aria-label="open menu"
         icon={<FiMenu />}
       />
-
-      <Text
+<Box
         display={{ base: "flex", md: "none" }}
-        fontSize="2xl"
-        fontFamily="monospace"
-        fontWeight="bold"
+        
       >
-        Logo
-      </Text>
+        <div className=" logo  w-[250px] h-[100px] flex justify-center items-center">
+        <img src={logo} alt="RENTED" className="" />
+      </div>
+      </Box>
 
       <HStack spacing={{ base: "0", md: "6" }}>
         <Menu>

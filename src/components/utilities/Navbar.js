@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { actions } from "../../state/auth_slice";
-
+import logo from "../../assets/Rented.png"
 function Navbar({ searchInput }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
@@ -40,7 +40,9 @@ function Navbar({ searchInput }) {
   
   return (
     <div className="navbar">
-      <div className="logo">Rented</div>
+      <div className=" logo  w-[250px] h-[100px] flex justify-center items-center">
+        <img src={logo} alt="RENTED" className="" />
+      </div>
       <Show breakpoint="(min-width: 1200px)">
         <div className="links">
           <Link to="/">

@@ -51,7 +51,7 @@ function HostPosts() {
   const getPosts = () => {
     axios
       .post("http://localhost:8001/findPostByIdHost", {
-        idHost: "6248ae87204af883c140395e",
+        idHost: "624b05de38b856734316b248",
       })
       .then((response) => {
         console.log(response);

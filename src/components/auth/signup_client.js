@@ -61,10 +61,10 @@ function SignupClient() {
           toast.error('Your phone number is not valid')
           return
         }
-        if (!signupData.image) {
-          toast.error('Please upload an ID image')
-          return
-        }
+        // if (!signupData.image) {
+        //   toast.error('Please upload an ID image')
+        //   return
+        // }
         if (signupData.password === signupData.confirmpassword) {
           axios
             .post('http://localhost:8000/signup', {
@@ -74,7 +74,7 @@ function SignupClient() {
               email: signupData.email,
               password: signupData.password,
               role: 2,
-              image: profilePic,
+              // image: profilePic,
             })
             .then((response) => {
               console.log(response)
@@ -273,7 +273,7 @@ function SignupClient() {
 
             <button
               type='button'
-              className='upload-file'
+              className='upload-file101'
               onClick={() => {
                 document.getElementById('file').click()
               }}
