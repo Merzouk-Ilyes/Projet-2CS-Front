@@ -32,6 +32,7 @@ import {
   ModalBody,
   ModalCloseButton,
   Divider,
+  Spinner
 } from "@chakra-ui/react";
 import { BsCheck2Circle, BsSnow } from "react-icons/bs";
 import { FaCouch, FaWifi, FaYoutube } from "react-icons/fa";
@@ -39,11 +40,11 @@ import { MdKitchen, MdOutlineElectricalServices } from "react-icons/md";
 import { BiWater } from "react-icons/bi";
 import axios from "axios";
 import { toast } from "react-toastify";
-
 function AdminPosts() {
   const [posts, setPosts] = useState([]);
   const url = "http://localhost:8001/findAllPosts";
   const [agents, setAgents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getPosts();
@@ -65,7 +66,9 @@ function AdminPosts() {
       .then((response) => {
         const posts = response.data.result;
         setPosts(posts);
-        console.log("posts =>" + posts);
+        console.log("posts =>" +JSON.stringify(posts[0].feedBack.description)); 
+      setLoading(false);
+
       })
       .catch((err) => {
         console.log(err);
@@ -75,7 +78,7 @@ function AdminPosts() {
     <SidebarWithHeader>
       <h1 className="text-[40px] font-semibold mx-4  ">Posts</h1>
       <div className="grid grid-cols-1 lg:grid-cols-2">
-        {posts.map((post, i) => (
+        {loading ? <Spinner size='lg' /> : posts.map((post, i) => (
           <AdminPostCard
             key={post._id}
             id={post._id}
@@ -89,6 +92,8 @@ function AdminPosts() {
             space={post.space}
             city={post.city}
             agents={agents}
+            // feedBack={post.feedBack.description ?? ""}
+            feedBack={""}
           />
         ))}
       </div>
@@ -109,7 +114,7 @@ function AdminPostCard({
   space,
   city,
   id,
-  agents,
+  agents,feedBack
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -199,6 +204,7 @@ function AdminPostCard({
             city={city}
             id={id}
             agents={agents}
+            feedBack={feedBack}
           />
         </Stack>
       </Stack>
@@ -219,7 +225,7 @@ function DetailsDrawer({
   space,
   city,
   id,
-  agents,
+  agents,feedBack
 }) {
   return (
     <Drawer onClose={onClose} isOpen={isOpen} size={"xl"}>
@@ -240,6 +246,7 @@ function DetailsDrawer({
             city={city}
             idPost={id}
             agents={agents}
+            feedBack={feedBack}
           />
         </DrawerBody>
       </DrawerContent>
@@ -258,7 +265,7 @@ function DetailsDrawerData({
   space,
   city,
   idPost,
-  agents,
+  agents,feedBack
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
@@ -522,8 +529,7 @@ function DetailsDrawerData({
                     <ModalHeader>Agent's feedback</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody className="font-semibold">
-                      This house is very well organised , everything is
-                      authentic just like in the host's post
+                      {feedBack}
                     </ModalBody>
 
                     <ModalFooter>

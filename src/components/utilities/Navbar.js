@@ -40,8 +40,8 @@ function Navbar({ searchInput }) {
   
   return (
     <div className="navbar">
-      <div className=" logo  w-[250px] h-[100px] flex justify-center items-center">
-        <img src={logo} alt="RENTED" className="" />
+      <div className=" logo   w-[250px] h-[30px] flex justify-center items-center">
+        <img src={logo} alt="RENTED" className=" z-[-1] " />
       </div>
       <Show breakpoint="(min-width: 1200px)">
         <div className="links">

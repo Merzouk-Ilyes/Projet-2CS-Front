@@ -36,7 +36,7 @@ import { MdPublic } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { actions } from "../../state/auth_slice";
-import logo from "../../assets/Rented.png"
+import logo from "../../assets/Rented.png";
 
 const LinkItems = [
   { name: "Home", icon: FiHome, path: "/host" },
@@ -96,12 +96,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}
     >
-      <Flex h="20" alignItems="center"  justifyContent="space-between">
-      
+      <Flex h="20" alignItems="center" justifyContent="space-between">
         <div className=" logo  w-[250px] h-[100px] flex justify-start items-center">
-        <img src={logo} alt="RENTED" className="" />
-      </div>
-   
+          <img src={logo} alt="RENTED" className="" />
+        </div>
+
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -204,13 +203,10 @@ const MobileNav = ({ onOpen, ...rest }) => {
         icon={<FiMenu />}
       />
 
-      <Box
-        display={{ base: "flex", md: "none" }}
-        
-      >
+      <Box display={{ base: "flex", md: "none" }}>
         <div className=" logo  w-[250px] h-[100px] flex justify-center items-center">
-        <img src={logo} alt="RENTED" className="" />
-      </div>
+          <img src={logo} alt="RENTED" className="" />
+        </div>
       </Box>
 
       <HStack spacing={{ base: "0", md: "6" }}>
