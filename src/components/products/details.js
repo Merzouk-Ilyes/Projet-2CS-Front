@@ -157,10 +157,10 @@ function Detail() {
       .post('http://localhost:8002/addreservation', {
         startDate: st,
         endDate: en,
-        id_post: post.id,
+        id_post: post._id,
       })
       .then((response) => {
-        console.log(response)
+        console.log(post._id)
         toast.success('reservation made')
       })
       .then(
@@ -168,6 +168,7 @@ function Detail() {
           navigate('/')
         }, 2000)
       )
+
       .catch((error) => toast.error('check your internet conection'))
   }
 
