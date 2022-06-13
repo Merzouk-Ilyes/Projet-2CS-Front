@@ -147,6 +147,7 @@ function Detail() {
     e.preventDefault()
     const st = new Date(reservationDate.dateDepart)
     const en = new Date(reservationDate.dateDarive)
+    let userSession = JSON.parse(sessionStorage.getItem('USER'))
 
     console.log(st, en)
     if (!validDate(st, en, selectionRange)) {
@@ -158,9 +159,10 @@ function Detail() {
         startDate: st,
         endDate: en,
         id_post: post._id,
+        id_user: userSession.user._id,
       })
       .then((response) => {
-        console.log(post._id)
+        console.log(userSession.user._id)
         toast.success('reservation made')
       })
       .then(
