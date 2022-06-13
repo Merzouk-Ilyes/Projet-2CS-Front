@@ -66,7 +66,6 @@ function Login() {
       <Navbar />
       <div className='login'>
         <div className='form-group'>
-          <div className='logo'> Logo</div>
           <h2 className='title'>Welcome back </h2>
           <form className='form' onSubmit={handleSubmit}>
             <p>Email Address</p>

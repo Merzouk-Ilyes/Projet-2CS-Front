@@ -43,10 +43,22 @@ import { toast } from "react-toastify";
 function AdminPosts() {
   const [posts, setPosts] = useState([]);
   const url = "http://localhost:8001/findAllPosts";
+  const [agents, setAgents] = useState([]);
 
   useEffect(() => {
     getPosts();
+    getAgents();
   }, []);
+  const getAgents = () => {
+    axios
+      .get("http://localhost:8000/getAgents")
+      .then((response) => {
+        const agents = response.data;
+
+        setAgents(agents);
+      })
+      .catch((error) => console.error(error));
+  };
   const getPosts = () => {
     axios
       .get(url)
@@ -76,6 +88,7 @@ function AdminPosts() {
             verified={post.verified}
             space={post.space}
             city={post.city}
+            agents={agents}
           />
         ))}
       </div>
@@ -96,6 +109,7 @@ function AdminPostCard({
   space,
   city,
   id,
+  agents,
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -184,6 +198,7 @@ function AdminPostCard({
             space={space}
             city={city}
             id={id}
+            agents={agents}
           />
         </Stack>
       </Stack>
@@ -204,6 +219,7 @@ function DetailsDrawer({
   space,
   city,
   id,
+  agents,
 }) {
   return (
     <Drawer onClose={onClose} isOpen={isOpen} size={"xl"}>
@@ -223,6 +239,7 @@ function DetailsDrawer({
             space={space}
             city={city}
             idPost={id}
+            agents={agents}
           />
         </DrawerBody>
       </DrawerContent>
@@ -241,6 +258,7 @@ function DetailsDrawerData({
   space,
   city,
   idPost,
+  agents,
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
@@ -270,7 +288,28 @@ function DetailsDrawerData({
         toast.success("This post is now verified !");
         setTimeout(() => {
           window.location.reload(false);
-        }, 3000);
+        }, 2500);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  const DeletePostHandler = (id) => {
+    axios
+      .post("http://localhost:8001/deletePost", {
+        id: id,
+      })
+      .then(function (response) {
+        console.log(response.data.deleted);
+        onDeleteClose();
+        if (response.data.deleted) {
+          toast.success("Post has been deleted !");
+          setTimeout(() => {
+            window.location.reload(false);
+          }, 2500);
+        } else {
+          toast.error("This post has a reservation !");
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -445,11 +484,14 @@ function DetailsDrawerData({
                           <ModalHeader>Agents</ModalHeader>
                           <ModalCloseButton />
                           <ModalBody>
-                            {Array(5)
-                              .fill("")
-                              .map((_, i) => (
-                                <AgentsCard key={i} />
-                              ))}
+                            {agents.map((agent, i) => (
+                              <AgentsCard
+                                key={i}
+                                name={agent.firstname + " " + agent.lastname}
+                                idAgent={agent._id}
+                                idPost={idPost}
+                              />
+                            ))}
                           </ModalBody>
                         </ModalContent>
                       </Modal>
@@ -564,7 +606,11 @@ function DetailsDrawerData({
                   <Button variant="ghost" mr={3} onClick={onDeleteClose}>
                     Cancel
                   </Button>
-                  <Button variant="solid" colorScheme="red">
+                  <Button
+                    variant="solid"
+                    colorScheme="red"
+                    onClick={() => DeletePostHandler(idPost)}
+                  >
                     Delete
                   </Button>
                 </ModalFooter>
@@ -577,8 +623,25 @@ function DetailsDrawerData({
   );
 }
 
-function AgentsCard() {
+
+function AgentsCard({ idAgent,idPost, name }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const AssignAgentHandler = () => {
+    axios
+      .post("http://localhost:8001/assignAgent", {
+        agent: idAgent,
+        post:idPost
+      })
+      .then(function (response) {
+        console.log("agentHandler:"+ response);
+        onClose();
+        toast.success("Agent has been assigned!");
+       
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   return (
     <>
       <div
@@ -590,7 +653,7 @@ function AgentsCard() {
         <div className="flex  items-center">
           <Avatar name="merzouk ilyes" className="mr-3" />
           <div className="flex flex-col">
-            <p className="text-gray-900 font-semibold">Merzouk ilyes reda</p>
+            <p className="text-gray-900 font-semibold">{name}</p>
             <p className="text-gray-500">Oran</p>
           </div>
         </div>
@@ -608,14 +671,16 @@ function AgentsCard() {
               <Button variant="ghost" mr={3} onClick={onClose}>
                 Cancel
               </Button>
-              <Button variant="solid" colorScheme="green">
+              <Button variant="solid" colorScheme="green"
+              onClick={()=> AssignAgentHandler()}
+              >
                 Confirm
               </Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
       </div>
-      <Divider />
+      {/* <Divider /> */}
     </>
   );
 }
