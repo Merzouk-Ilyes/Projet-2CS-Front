@@ -74,7 +74,7 @@ function SignupClient() {
               email: signupData.email,
               password: signupData.password,
               role: 2,
-              // image: profilePic,
+              image: profilePic,
             })
             .then((response) => {
               console.log(response)
