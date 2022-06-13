@@ -15,6 +15,7 @@
     "date-fns": "^2.28.0",
     "firebase": "^9.8.1",
     "framer-motion": "^6.2.8",
+    "moment": "^2.29.3",
     "node-sass": "^7.0.1",
     "react": "^17.0.2",
     "react-custom-checkbox": "^2.0.1",

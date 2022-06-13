@@ -14,13 +14,17 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react'
-import { addDays, parseISO } from 'date-fns'
+import { parseISO } from 'date-fns'
 
 import { FaCopy, FaBed, FaGasPump, FaWater } from 'react-icons/fa'
 import { AiOutlineHeart, AiFillStar, AiFillCheckCircle } from 'react-icons/ai'
 import { GiElectric } from 'react-icons/gi'
 import axios from 'axios'
 import { DateRangePicker } from 'react-date-range'
+import * as moment from 'moment'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { toast } from 'react-toastify'
 
 import {
   Container,
@@ -37,25 +41,22 @@ import {
 function Detail() {
   const [searchField, setSearchField] = useState('')
   const url = 'http://localhost:8001/findPostById'
+  let navigate = useNavigate()
 
   const [post, setPost] = useState({})
   const [globalRating, setGlobalRating] = useState(0)
   const [comments, setComments] = useState([])
-  const [reservations, setReservations] = useState([])
   const [loadingP, setLoadingP] = useState(true)
 
-  const [selectionRange, setSelectionRange] = useState([
-    // {
-    //   startDate: new Date('2022-05-20T00:00:00.000Z'),
-    //   endDate: addDays(new Date(), 7),
-    //   key: 'selection',
-    // },
-    // {
-    //   startDate: new Date(),
-    //   endDate: addDays(new Date(), 7),
-    //   key: 'selection',
-    // },
-  ])
+  const [reservationDate, setReservationDate] = useState({
+    dateDepart: '',
+    dateDarive: '',
+  })
+
+  const [reservationPrice, setReservationPrice] = useState(true)
+
+  //for calendar seting
+  const [selectionRange, setSelectionRange] = useState([])
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -99,6 +100,24 @@ function Detail() {
       })
   }
 
+  const validDate = (st, en, tab) => {
+    let cnt = 0
+    if (en === '' || st === '' || en < st) {
+      return false
+    }
+
+    for (let i = 0; i < tab.length; i++) {
+      if (st > tab[i].endDate || en < tab[i].startDate) {
+        cnt++
+      }
+    }
+    if (cnt === tab.length) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   const getDates = () => {
     const queryParams = new URLSearchParams(window.location.search)
     const id = queryParams.get('id')
@@ -122,6 +141,34 @@ function Detail() {
       .catch((err) => {
         console.log(err)
       })
+  }
+
+  const makeReservation = (e) => {
+    e.preventDefault()
+    const st = new Date(reservationDate.dateDepart)
+    const en = new Date(reservationDate.dateDarive)
+
+    console.log(st, en)
+    if (!validDate(st, en, selectionRange)) {
+      toast.error('remake your reservation date')
+      return false
+    }
+    axios
+      .post('http://localhost:8002/addreservation', {
+        startDate: st,
+        endDate: en,
+        id_post: post.id,
+      })
+      .then((response) => {
+        console.log(response)
+        toast.success('reservation made')
+      })
+      .then(
+        setTimeout(() => {
+          navigate('/')
+        }, 2000)
+      )
+      .catch((error) => toast.error('check your internet conection'))
   }
 
   return (
@@ -244,7 +291,7 @@ function Detail() {
               </p>
             </div>
             <img
-              src={loadingP ? imgUrl : post.imageUser}
+              src={loadingP && !post.imageUser ? imgUrl : post.imageUser}
               alt='user'
               className='userImg'
             />
@@ -300,7 +347,7 @@ function Detail() {
                 marginRight: '-1px',
               }}
             >
-              <Form>
+              <Form onSubmit={makeReservation}>
                 <p className='title' style={{ margin: '17px 0' }}>
                   <span style={{ fontFamily: 'sans-serif' }}>
                     {loadingP ? 'title' : post.PricePerNight}$
@@ -311,26 +358,55 @@ function Detail() {
                   <Col md={6}>
                     <FormGroup>
                       <Label for='exampleEmail ' style={{ fontWeight: 400 }}>
-                        ARRIVE
+                        DEPART
                       </Label>
                       <Input
-                        id='exampleEmail'
-                        name='dateDarrive'
+                        id='dateDepart'
+                        name='dateDepart'
                         placeholder='with a placeholder'
                         type='date'
+                        onChange={(e) => {
+                          const data = {
+                            dateDepart: e.target.value,
+                            dateDarive: reservationDate.dateDarive,
+                          }
+                          setReservationDate(data)
+                          setReservationPrice(
+                            moment(`${reservationDate.dateDarive}`).diff(
+                              moment(`${e.target.value}`),
+                              'days'
+                            )
+                          )
+                        }}
                       />
                     </FormGroup>
                   </Col>
                   <Col md={6}>
                     <FormGroup>
                       <Label for='exampleEmail' style={{ fontWeight: 400 }}>
-                        DEPART
+                        ARRIVE
                       </Label>
                       <Input
-                        id='exampleEmail'
+                        id='dateDarrive'
                         name='dateDarrive'
                         placeholder='with a placeholder'
                         type='date'
+                        onChange={(e) => {
+                          const data = {
+                            dateDepart: reservationDate.dateDepart,
+                            dateDarive: e.target.value,
+                          }
+                          setReservationDate(data)
+                          setReservationPrice(
+                            // parseISO(reservationDate.dateDepart) -
+                            //   parseISO(reservationDate.dateDarive)
+                            moment(`${e.target.value}`).diff(
+                              moment(`${reservationDate.dateDepart}`),
+                              'days'
+                            )
+                          )
+                          // console.log(reservationPrice)
+                        }}
                       />
                     </FormGroup>
                   </Col>
@@ -360,6 +436,14 @@ function Detail() {
                       type='number'
                     />
                   </FormGroup>
+                  <p className='title' style={{ margin: '17px 0' }}>
+                    <span style={{ fontFamily: 'sans-serif' }}>
+                      {isNaN(reservationPrice)
+                        ? '0'
+                        : reservationPrice * post.PricePerNight}
+                      $
+                    </span>
+                  </p>
                 </Row>
 
                 <Row style={{ padding: '0 12px' }}>
@@ -369,7 +453,7 @@ function Detail() {
                       color: 'white',
                       margin: '12px 0',
                     }}
-                    onClick={(e) => e.preventDefault}
+                    type='submit'
                   >
                     Verifier la disponibility
                   </Button>
