@@ -91,6 +91,7 @@ function Detail() {
         setLoadingP(false)
         setGlobalRating(sumRating(response.data.result.rating))
         setComments(post.result.comment)
+        console.log(post)
       })
       .catch((err) => {
         console.log(err)
@@ -171,6 +172,8 @@ function Detail() {
         endDate: en,
         id_post: post._id,
         id_user: userSession.user._id,
+        nom_user: `${userSession.user.firstname} ${userSession.user.lastname}`,
+        id_host: post.idUser,
       })
       .then((response) => {
         toast.success('reservation made')
@@ -193,7 +196,7 @@ function Detail() {
         <div className='subtitles'>
           <p>
             <AiFillStar className='icon' />
-            {loadingP ? '' : globalRating}
+            {loadingP ? '' : isNaN(globalRating) ? 'rating' : globalRating}
             <span
               // eslint-disable-next-line no-undef
               onClick={onOpen}
@@ -204,7 +207,7 @@ function Detail() {
                 cursor: 'pointer',
               }}
             >
-              {loadingP ? '' : comments.length} commentaires
+              {loadingP ? '' : comments.length} comments
             </span>
             <AiFillCheckCircle className='icon2' />
             Verified
@@ -228,7 +231,7 @@ function Detail() {
                 marginTop: '-3px',
               }}
             >
-              Copier
+              Copy
             </span>
             <AiOutlineHeart style={{ marginLeft: '10px', fontSize: '17px' }} />
             <span
@@ -239,7 +242,7 @@ function Detail() {
                 marginTop: '-3px',
               }}
             >
-              Enregistrer
+              like
             </span>
           </p>
         </div>
@@ -297,10 +300,10 @@ function Detail() {
       <Container>
         <Row>
           <Col md='8'>
-            <p className='title'>{post.nameUser}</p>
+            {/* <p className='title'>{post.nameUser}</p> */}
             <div className='subtitles'>
               <p style={{ fontFamily: '400', fontSize: '16px' }}>
-                {`${post.nbrBeds} Lit et ${post.nbrBathes} douche , ${post.space} metres carre`}
+                {`${post.nbrBeds} Bed et ${post.nbrBathes} Shower , ${post.space} square metres `}
               </p>
             </div>
             <img
@@ -314,7 +317,7 @@ function Detail() {
               {loadingP ? '' : post.description}
             </p>
             <hr id='first-breaker' />
-            <p className='title'>Ce que propose ce logement</p>
+            <p className='title'>What you'll find in this appartement</p>
             <Row style={{ marginTop: '12px' }}>
               <Col className='colEqp'>
                 <div className='colDv'>
@@ -326,10 +329,10 @@ function Detail() {
               </Col>
               <Col>
                 <div className='colDv'>
-                  <FaWater className='iconEquip' /> Gas
+                  <FaWater className='iconEquip' /> water
                 </div>
                 <div className='colDv'>
-                  <GiElectric className='iconEquip' /> Gas
+                  <GiElectric className='iconEquip' /> electricity
                 </div>
               </Col>
             </Row>
@@ -365,13 +368,13 @@ function Detail() {
                   <span style={{ fontFamily: 'sans-serif' }}>
                     {loadingP ? 'title' : post.PricePerNight}$
                   </span>{' '}
-                  / nuit
+                  / night
                 </p>
                 <Row>
                   <Col md={6}>
                     <FormGroup>
                       <Label for='exampleEmail ' style={{ fontWeight: 400 }}>
-                        DEPART
+                        From
                       </Label>
                       <Input
                         id='dateDepart'
@@ -397,7 +400,7 @@ function Detail() {
                   <Col md={6}>
                     <FormGroup>
                       <Label for='exampleEmail' style={{ fontWeight: 400 }}>
-                        ARRIVE
+                        To
                       </Label>
                       <Input
                         id='dateDarrive'
@@ -452,7 +455,9 @@ function Detail() {
                     <span style={{ fontFamily: 'sans-serif' }}>
                       {isNaN(reservationPrice)
                         ? '0'
-                        : reservationPrice * post.PricePerNight}
+                        : reservationPrice > 0
+                        ? reservationPrice * post.PricePerNight
+                        : '0'}
                       $
                     </span>
                   </p>
@@ -467,7 +472,7 @@ function Detail() {
                     }}
                     type='submit'
                   >
-                    Verifier la disponibility
+                    Reserve
                   </Button>
                 </Row>
               </Form>
@@ -494,7 +499,7 @@ function Detail() {
                   cursor: 'pointer',
                 }}
               >
-                {loadingP ? '' : comments.length} commentaires
+                {loadingP ? '' : comments.length} comments
               </span>
             </p>
           </ModalHeader>
