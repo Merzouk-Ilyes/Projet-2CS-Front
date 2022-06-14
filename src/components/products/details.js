@@ -47,6 +47,7 @@ function Detail() {
   const [globalRating, setGlobalRating] = useState(0)
   const [comments, setComments] = useState([])
   const [loadingP, setLoadingP] = useState(true)
+  const [likedd, setLikedd] = useState(false)
 
   const [reservationDate, setReservationDate] = useState({
     dateDepart: '',
@@ -109,6 +110,11 @@ function Detail() {
       })
       .then((response) => {
         console.log(response.data.favourit)
+        response.data.favourit.map((idp) => {
+          if (post._id === idp) {
+            setLikedd(true)
+          }
+        })
       })
       .catch((err) => {
         console.log(err)
@@ -150,6 +156,24 @@ function Detail() {
         })
 
         setSelectionRange(tab)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const liking = (e) => {
+    let postId = post._id
+    let userSession = JSON.parse(sessionStorage.getItem('USER'))
+    let userId = userSession.user._id
+
+    axios
+      .post('http://localhost:8001/liked', {
+        postId: postId,
+        userId: userId,
+      })
+      .then((result) => {
+        toast.success('you have liked this post')
       })
       .catch((err) => {
         console.log(err)
@@ -233,17 +257,41 @@ function Detail() {
             >
               Copy
             </span>
-            <AiOutlineHeart style={{ marginLeft: '10px', fontSize: '17px' }} />
-            <span
-              style={{
-                marginLeft: '5px',
-                textDecoration: 'underline',
-                fontWeight: '600',
-                marginTop: '-3px',
-              }}
-            >
-              like
-            </span>
+            {likedd ? (
+              <>
+                <AiOutlineHeart
+                  style={{ marginLeft: '10px', fontSize: '17px' }}
+                  onClick={liking}
+                />
+                <span
+                  style={{
+                    marginLeft: '5px',
+                    textDecoration: 'underline',
+                    fontWeight: '600',
+                    marginTop: '-3px',
+                  }}
+                >
+                  like
+                </span>
+              </>
+            ) : (
+              <>
+                <AiOutlineHeart
+                  style={{ marginLeft: '10px', fontSize: '17px', color: 'red' }}
+                  onClick={liking}
+                />
+                <span
+                  style={{
+                    marginLeft: '5px',
+                    textDecoration: 'underline',
+                    fontWeight: '600',
+                    marginTop: '-3px',
+                  }}
+                >
+                  like
+                </span>
+              </>
+            )}
           </p>
         </div>
         <div className='pics'>
