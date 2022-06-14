@@ -65,13 +65,11 @@ function Detail() {
 
   const handleChange = (e) => {
     setSearchField(e.target.value)
-    console.log(searchField)
   }
 
   const sumRating = (table) => {
     var a = 0
     table.map((x) => (a = a + x.ratingValue))
-    console.log(a)
 
     return a / table.length
   }
@@ -79,6 +77,7 @@ function Detail() {
   useEffect(() => {
     getPost()
     getDates()
+    isLiked()
   }, [])
 
   const getPost = () => {
@@ -90,10 +89,25 @@ function Detail() {
         const post = response.data
         setPost(post.result)
         setLoadingP(false)
-        console.log(post)
         setGlobalRating(sumRating(response.data.result.rating))
         setComments(post.result.comment)
-        console.log(globalRating)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const isLiked = () => {
+    const queryParams = new URLSearchParams(window.location.search)
+    const id = queryParams.get('id')
+    let userSession = JSON.parse(sessionStorage.getItem('USER'))
+    let id_user = userSession.user._id
+    axios
+      .post('http://localhost:8000/userById', {
+        id: id_user,
+      })
+      .then((response) => {
+        console.log(response.data.favourit)
       })
       .catch((err) => {
         console.log(err)
@@ -124,7 +138,6 @@ function Detail() {
     axios
       .get(`http://localhost:8002/PostHasReservations?idpost=${id}`)
       .then((response) => {
-        console.log(response.data.result)
         const tab = []
         // eslint-disable-next-line array-callback-return
         response.data.result.map((x) => {
@@ -136,7 +149,6 @@ function Detail() {
         })
 
         setSelectionRange(tab)
-        console.log(tab)
       })
       .catch((err) => {
         console.log(err)
@@ -149,7 +161,6 @@ function Detail() {
     const en = new Date(reservationDate.dateDarive)
     let userSession = JSON.parse(sessionStorage.getItem('USER'))
 
-    console.log(st, en)
     if (!validDate(st, en, selectionRange)) {
       toast.error('remake your reservation date')
       return false
@@ -162,7 +173,6 @@ function Detail() {
         id_user: userSession.user._id,
       })
       .then((response) => {
-        console.log(userSession.user._id)
         toast.success('reservation made')
       })
       .then(
@@ -408,7 +418,6 @@ function Detail() {
                               'days'
                             )
                           )
-                          // console.log(reservationPrice)
                         }}
                       />
                     </FormGroup>
