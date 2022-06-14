@@ -35,7 +35,7 @@ function SignupHost() {
   
 
   const uploadFile = async (e) => {
-    const storageRef = ref(storage, `/files/pic1s`)
+    const storageRef = ref(storage, `/files/pic1s/${profilePic.name}`)
     const uploadTask = uploadBytesResumable(storageRef, profilePic)
 
     uploadTask.on(

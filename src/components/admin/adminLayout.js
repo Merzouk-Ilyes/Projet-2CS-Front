@@ -22,7 +22,7 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import { FiHome, FiMenu, FiChevronDown } from "react-icons/fi";
+import { FiHome, FiMenu, FiChevronDown,FiUsers } from "react-icons/fi";
 import {
   BsCalendarCheck,
   BsBell,
@@ -32,11 +32,12 @@ import {
 import { BiTimeFive } from "react-icons/bi";
 import { Link as reactRouter } from "react-router-dom";
 import { MdPublic } from "react-icons/md";
-import logo from "../../assets/Rented.png"
+import logo from "../../assets/Rented.png";
 
 const LinkItems = [
   { name: "Home", icon: FiHome, path: "/admin" },
   { name: "Posts", icon: MdPublic, path: "/admin/posts" },
+  { name: "Users", icon: FiUsers, path: "/admin/users" },
 ];
 
 export default function SidebarWithHeader({ children }) {
@@ -62,7 +63,7 @@ export default function SidebarWithHeader({ children }) {
       </Drawer>
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 60 }} px="4">
         {children}
       </Box>
     </Box>
@@ -81,10 +82,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}
     >
-      <Flex h="20" alignItems="center"  justifyContent="space-between">
-      <div className=" logo  w-[250px] h-[100px] flex justify-start items-center">
-        <img src={logo} alt="RENTED" className="" />
-      </div>
+      <Flex h="20" alignItems="center" justifyContent="space-between">
+        <div className=" logo  w-[250px] h-[100px] flex justify-start items-center">
+          <img src={logo} alt="RENTED" className="" />
+        </div>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -153,13 +154,10 @@ const MobileNav = ({ onOpen, ...rest }) => {
         aria-label="open menu"
         icon={<FiMenu />}
       />
-<Box
-        display={{ base: "flex", md: "none" }}
-        
-      >
+      <Box display={{ base: "flex", md: "none" }}>
         <div className=" logo  w-[250px] h-[100px] flex justify-center items-center">
-        <img src={logo} alt="RENTED" className="" />
-      </div>
+          <img src={logo} alt="RENTED" className="" />
+        </div>
       </Box>
 
       <HStack spacing={{ base: "0", md: "6" }}>
@@ -173,7 +171,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
             transition="all 0.3s"
           />
           <MenuList>
-            <NotificationItem
+            {/* <NotificationItem
               notif="One of your posts has been verified"
               iconType={1}
             />
@@ -188,7 +186,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
             <NotificationItem
               notif="One of your posts is under verification"
               iconType={4}
-            />
+            /> */}
           </MenuList>
         </Menu>
         <Flex alignItems={"center"}>

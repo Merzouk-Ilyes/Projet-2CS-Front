@@ -28,6 +28,7 @@ import Posts from './components/host/dashboardCopoments/Posts'
 import HostPosts from './components/host/hostPosts'
 import './App.sass'
 import AdminPosts from './components/admin/adminPosts'
+import AdminUsers from './components/admin/adminUsers'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -58,6 +59,7 @@ ReactDOM.render(
           <Route path='admin'>
             <Route path='' element={<Admin />} />
             <Route path='posts' element={<AdminPosts />} />
+            <Route path='users' element={<AdminUsers />} />
           </Route>
 
           <Route path='host'>
