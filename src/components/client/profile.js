@@ -27,6 +27,8 @@ const profile = () => {
   const [profilePic, setProfilePic] = useState('')
   const [src, setSrc] = useState('')
 
+  const src2 =
+    'https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
   const getUser = () => {
     let userSession = JSON.parse(sessionStorage.getItem('USER'))
     setUser(userSession.user)
@@ -69,7 +71,7 @@ const profile = () => {
               }}
             />
             <button className='btn' type='submit'>
-              Change image
+              Set profile picture
             </button>
             <div className='profilePicDiv'>
               <img src={src} className='profilePic' />
@@ -81,7 +83,7 @@ const profile = () => {
               <AdminPostCard
                 key={0}
                 id={0}
-                imageUrl={src}
+                imageUrl={src2}
                 title={'titre'}
                 price={300}
                 baths={3}
@@ -100,7 +102,7 @@ const profile = () => {
               <AdminPostCard
                 key={0}
                 id={0}
-                imageUrl={src}
+                imageUrl={src2}
                 title={'titre'}
                 price={300}
                 baths={3}

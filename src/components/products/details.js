@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react'
 import { parseISO } from 'date-fns'
 
-import { FaCopy, FaBed, FaGasPump, FaWater } from 'react-icons/fa'
+import { FaCopy, FaBed, FaGasPump, FaWater, FaHeart } from 'react-icons/fa'
 import { AiOutlineHeart, AiFillStar, AiFillCheckCircle } from 'react-icons/ai'
 import { GiElectric } from 'react-icons/gi'
 import axios from 'axios'
@@ -167,6 +167,7 @@ function Detail() {
     let postId = post._id
     let userSession = JSON.parse(sessionStorage.getItem('USER'))
     let userId = userSession.user._id
+    setLikedd(!likedd)
 
     axios
       .post('http://localhost:8001/liked', {
@@ -261,8 +262,12 @@ function Detail() {
             </span>
             {likedd ? (
               <>
-                <AiOutlineHeart
-                  style={{ marginLeft: '10px', fontSize: '17px', color: 'red' }}
+                <FaHeart
+                  style={{
+                    marginLeft: '10px',
+                    fontSize: '17px',
+                    color: 'red',
+                  }}
                   onClick={liking}
                 />
                 <span
