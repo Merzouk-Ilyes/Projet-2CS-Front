@@ -32,7 +32,7 @@ function Posts() {
   })
 
   const [images, setPath] = useState([])
-  const [postImages, setPostImages] = useState([])
+  const [profileImage, setProfileImage] = useState([])
 
   // console.log( images , "images")
 
@@ -51,20 +51,22 @@ function Posts() {
       (err) => console.log(err),
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          setPostImages(postImages.push(url))
+          setProfileImage([...profileImage, url])
         })
       }
     )
   }
 
   const handleSubmit = (e) => {
+    console.log('it cliked')
+    let userSession = JSON.parse(sessionStorage.getItem('USER'))
+    let nameUser = userSession.user.firstname
+    let idUser = userSession.user._id
+
     // eslint-disable-next-line array-callback-return
-    images
-      // eslint-disable-next-line array-callback-return
-      .map((image) => {
-        uploadFile(image)
-      })
+    uploadFile(images[0])
       .then((result) => {
+        console.log('IT IS HAPENING')
         e.preventDefault()
         var pattern = new RegExp('[0-9][0-9]*')
 
@@ -104,7 +106,7 @@ function Posts() {
         axios
           .post('http://localhost:8001/addpost', {
             title: postData.title,
-            idUser: 3,
+            idUser: idUser,
             city: postData.city,
             street: postData.street,
             nbrBeds: postData.nbBeds,
@@ -117,10 +119,11 @@ function Posts() {
             electricty: postData.electricty,
             water: postData.water,
             type: postData.type,
-            images: postImages,
+            images: profileImage,
+            nameUser: nameUser,
           })
           .then((response) => {
-            console.log(response)
+            console.log('HERE 2')
             if (response.data.post) {
               toast.success('post added succefuly')
             } else {

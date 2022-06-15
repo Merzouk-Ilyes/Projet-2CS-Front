@@ -29,6 +29,7 @@ import HostPosts from './components/host/hostPosts'
 import './App.sass'
 import AdminPosts from './components/admin/adminPosts'
 import AdminUsers from './components/admin/adminUsers'
+import Profile from './components/client/profile'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -71,6 +72,9 @@ ReactDOM.render(
 
           <Route path='agent'>
             <Route path='' element={<AgentHome />} />
+          </Route>
+          <Route path='client'>
+            <Route path='proile' element={<Profile />} />
           </Route>
 
           <Route

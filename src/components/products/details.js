@@ -79,7 +79,7 @@ function Detail() {
     getPost()
     getDates()
     isLiked()
-  }, [])
+  }, [likedd])
 
   const getPost = () => {
     const queryParams = new URLSearchParams(window.location.search)
@@ -99,7 +99,7 @@ function Detail() {
       })
   }
 
-  const isLiked = () => {
+  const isLiked = async () => {
     const queryParams = new URLSearchParams(window.location.search)
     const id = queryParams.get('id')
     let userSession = JSON.parse(sessionStorage.getItem('USER'))
@@ -111,8 +111,9 @@ function Detail() {
       .then((response) => {
         console.log(response.data.favourit)
         response.data.favourit.map((idp) => {
-          if (post._id === idp) {
+          if (post._id == idp.postId) {
             setLikedd(true)
+            console.log(likedd)
           }
         })
       })
@@ -198,6 +199,7 @@ function Detail() {
         id_user: userSession.user._id,
         nom_user: `${userSession.user.firstname} ${userSession.user.lastname}`,
         id_host: post.idUser,
+        amount: reservationPrice * post.PricePerNight,
       })
       .then((response) => {
         toast.success('reservation made')
@@ -260,7 +262,7 @@ function Detail() {
             {likedd ? (
               <>
                 <AiOutlineHeart
-                  style={{ marginLeft: '10px', fontSize: '17px' }}
+                  style={{ marginLeft: '10px', fontSize: '17px', color: 'red' }}
                   onClick={liking}
                 />
                 <span
@@ -277,7 +279,11 @@ function Detail() {
             ) : (
               <>
                 <AiOutlineHeart
-                  style={{ marginLeft: '10px', fontSize: '17px', color: 'red' }}
+                  style={{
+                    marginLeft: '10px',
+                    fontSize: '17px',
+                    color: 'black',
+                  }}
                   onClick={liking}
                 />
                 <span
