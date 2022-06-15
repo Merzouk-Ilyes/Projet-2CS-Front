@@ -31,16 +31,16 @@ function Posts() {
     image: [],
   })
 
-  const [images, setPath] = useState([])
-  const [profileImage, setProfileImage] = useState([])
+  const [images, setPath] = useState('')
+  const [profileImage, setProfileImage] = useState('')
 
   // console.log( images , "images")
 
   console.log(images)
 
   const uploadFile = async (image) => {
-    const storageRef = ref(storage, `/files/posts/pic1s`)
-    const uploadTask = uploadBytesResumable(storageRef, image)
+    const storageRef = ref(storage, `/files/posts/${profileImage.name}`)
+    const uploadTask = uploadBytesResumable(storageRef, images)
 
     uploadTask.on(
       'state changed',
@@ -51,13 +51,14 @@ function Posts() {
       (err) => console.log(err),
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          setProfileImage([...profileImage, url])
+          setProfileImage(url)
         })
       }
     )
   }
 
   const handleSubmit = (e) => {
+    let tabii = []
     console.log('it cliked')
     let userSession = JSON.parse(sessionStorage.getItem('USER'))
     let nameUser = userSession.user.firstname
@@ -66,7 +67,8 @@ function Posts() {
     // eslint-disable-next-line array-callback-return
     uploadFile(images[0])
       .then((result) => {
-        console.log('IT IS HAPENING')
+        tabii.push(profileImage)
+        console.log(`picture is named${profileImage}`)
         e.preventDefault()
         var pattern = new RegExp('[0-9][0-9]*')
 
@@ -119,7 +121,7 @@ function Posts() {
             electricty: postData.electricty,
             water: postData.water,
             type: postData.type,
-            images: profileImage,
+            images: tabii,
             nameUser: nameUser,
           })
           .then((response) => {
@@ -762,8 +764,7 @@ function Posts() {
             type='file'
             id='file'
             name='file'
-            multiple
-            accept='image/*'
+            value={images}
             // value={images}
 
             onChange={onSelectFile}
