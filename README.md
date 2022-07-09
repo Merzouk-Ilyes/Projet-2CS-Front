@@ -6,10 +6,9 @@ RENTED
 
 
  
- <img src="./1.PNG" width="48%" /> <img src="./2.PNG" width="48%" height="210px"/> 
-![](./1.PNG) ![](./3.PNG) 
+ <img src="./1.PNG" width="48%" height="215px"/> <img src="./2.PNG" width="48%" height="215px"/> 
+ <img src="./4.PNG" width="48%" height="215px"/> <img src="./5.PNG" width="48%" height="215px"/> 
 
-![](./4.PNG) ![](./5.PNG)
 
 
 ## Summary :
