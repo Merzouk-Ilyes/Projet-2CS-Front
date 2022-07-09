@@ -59,6 +59,8 @@ User story
 
 ```
 
+### general use case diagram : 
+![](./10.PNG)
 
 
 
