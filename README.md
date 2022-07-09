@@ -7,7 +7,7 @@ RENTED
 
  
  <img src="./1.PNG" width="48%" height="215px"/> <img src="./2.PNG" width="48%" height="215px"/> 
-  <img src="./si.PNG" width="48%" height="215px"/> <img src="./ca.PNG" width="48%" height="215px"/> 
+  <img src="./si.jpg" width="48%" height="215px"/> <img src="./ca.jpg" width="48%" height="215px"/> 
  <img src="./4.PNG" width="48%" height="215px"/> <img src="./5.PNG" width="48%" height="215px"/> 
  
 
