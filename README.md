@@ -61,7 +61,8 @@ User story
 ```
 
 ### general use case diagram : 
-![](./10.PNG)
+ <img src="./10.PNG" width="50%" /> 
+
 
 
 
