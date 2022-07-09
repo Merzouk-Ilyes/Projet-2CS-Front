@@ -15,7 +15,7 @@ RENTED
 ## Summary :
 #### RENTED is a website app created to be a link between poeple searching for appartemens to rent , and hosts . it provides confidential solutions to make renting easier then ever . created with the mern stack .  
 
- [View project specifications !](https://docs.google.com/document/d/1zSXcCNSuju0yjo6r1XsT2eeDOzfdce5G6oAezfQk198/edit)
+ [View project specifications !](https://www.canva.com/design/DAFDhx_rEnk/vQuHlD6T1Fswz2f0AcIeBw/edit?utm_content=DAFDhx_rEnk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
  
  
 
@@ -38,26 +38,33 @@ User story
 
 ```gherkin=
     As a client, I can serve the website.
-    As a client, I can reserve an appointment 
-    As a client, I can choose the date of appointment besides the time.
-```
-```gherkin=
-    As a doctor, I can view my calendar.
-    As a doctor, I can accept or refuse an appointment 
-    As a doctor, I can write and extract medical prescriptions.
-    As a doctor, I can view my daily , weekly and monthly statistics.
+    As a client, I can reserve an appartement 
+    As a client, I can search appartements
+    As a client, I can view or cancel my reservations
 
 ```
 ```gherkin=
-    As an admin, I can manage accounts.
+    As a host, I can post new locations
+    As a host, I can accept or refuse reservation requests
+    As a host, I can review my posts hystory
+    As a host, I can report a client 
+
+
+```
+```gherkin=
+    As an admin, I can manage accounts , validate or delete accounts
     As an admin, I can view my daily , weekly and monthly statistics.
+    As an admin, I can assign post to agents and verify posts.
+
 ```
 
 
 
 
-## Class schema
-![](./im.png)
+## archetecture schema
+we used microservices in this project , 
+
+![](./6.png)
 
 
 
