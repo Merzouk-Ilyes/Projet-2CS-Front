@@ -69,12 +69,12 @@ User story
 ## architecture schema
 we used microservices in this project , Microservices refer to both an architecture and a software development approach that consists of breaking down applications into the simplest elements, independent of each other.  
 
-![](./6.png)
+ <img src="./6.png" width="50%" /> 
 
 
 ## Our recomendations 
 we used a js library that uses the KNN algorithme for a Collaborative Filtering  Recommendation system 
-![](./7.png)
+ <img src="./7.png" width="50%" /> 
 
 
 
