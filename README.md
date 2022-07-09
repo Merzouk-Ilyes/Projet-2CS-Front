@@ -21,11 +21,11 @@ RENTED
 
 ## How use this app as a developer
 
-#Using Docker
+###Using Docker
 1. git clone the repo
 2. run docker compose-up
 
-#Old way 
+###Old way 
 1. git clone 
 2. npm install for all the repositories
 3. run all project repos 
