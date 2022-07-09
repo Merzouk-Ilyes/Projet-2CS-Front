@@ -41,6 +41,7 @@ User story
     As a client, I can reserve an appartement 
     As a client, I can search appartements
     As a client, I can view or cancel my reservations
+    As a client, I can upgrade to host
 
 ```
 ```gherkin=
@@ -62,44 +63,48 @@ User story
 
 
 ## archetecture schema
-we used microservices in this project , 
+we used microservices in this project , Microservices refer to both an architecture and a software development approach that consists of breaking down applications into the simplest elements, independent of each other.  
 
 ![](./6.png)
+
+
+## Our recomendations 
+we used a js library that uses the KNN algorithme for a Collaborative Filtering  Recommendation system 
+![](./7.png)
+
 
 
 
 Used Technology
 ---
 
+
 ![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
-![](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
 
-![](https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
+![](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+![](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
-
-![](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)
-![](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)
+![](https://img.shields.io/badge/Spring_Boot-F2F4F9?style=for-the-badge&logo=spring-boot)
 
 
 
 
 availble roles
 ---
-1. admin
-2. doctor
-3. clinet(PATIENT)
-4. doc assistant
+1. client
+2. host
+3. agent
+4. admin
 
-Clinity provides
+Rented provides
 ---
-- appointement gesture
+- reservation gesture
 - accounts gesture
-- medical folder gesture
-- medical prescription gesture
-- medical exams gesture
+- posts gesture
+- recommendation gesture
 
 ---
 ---
