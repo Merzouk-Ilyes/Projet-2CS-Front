@@ -7,7 +7,10 @@ RENTED
 
  
 ![](./1.PNG)
-
+![](./2.PNG)
+![](./3.PNG)
+![](./4.PNG)
+![](./5.PNG)
 
 ## Summary :
 #### RENTED is a website app created to be a link between poeple searching for appartemens to rent , and hosts . it provides confidential solutions to make renting easier then ever . created with the mern stack .  
