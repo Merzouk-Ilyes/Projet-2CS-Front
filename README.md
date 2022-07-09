@@ -7,7 +7,6 @@ RENTED
 
  
 ![](./1.PNG)
-![](./2.PNG)
 ![](./3.PNG)
 ![](./4.PNG)
 ![](./5.PNG)
@@ -59,6 +58,8 @@ User story
 
 ```
 
+### general use case diagram : 
+![](./10.PNG)
 
 
 
