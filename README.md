@@ -26,10 +26,10 @@ RENTED
 2. run docker compose-up
 
 #Old way 
-1.git clone 
-2.npm install for all the repositories
-3.run all project repos 
-4.the the reduis server (use wsl for windows)
+1. git clone 
+2. npm install for all the repositories
+3. run all project repos 
+4. the the reduis server (use wsl for windows)
 
 if you have any question don't hesitate to ask :+1: 
 
