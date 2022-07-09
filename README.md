@@ -28,7 +28,7 @@ RENTED
 1. git clone 
 2. npm install for all the repositories
 3. run all project repos 
-4. the the reduis server (use wsl for windows)
+4. run the reduis server (use wsl for windows)
 
 if you have any question don't hesitate to ask :+1: 
 
