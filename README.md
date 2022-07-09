@@ -116,7 +116,8 @@ If you liked the repo then kindly support it by giving it a star ⭐ and share i
 If you find any bug in the code or have any improvements in mind then feel free to generate a pull request.
 
 ## Issues
-[![GitHub Issues](https://github.com/Merzouk-Ilyes/Projet-2CS-Front/issues)
+
+[![GitHub Issues](https://img.shields.io/github/issues/Merzouk-Ilyes/Projet-2CS-Front.svg?style=flat&label=Issues&maxAge=2592000)](https://github.com/Merzouk-Ilyes/Projet-2CS-Front/issues)
 
 If you face any issue, you can create a new issue in the Issues Tab and I will be glad to help you out.
 
