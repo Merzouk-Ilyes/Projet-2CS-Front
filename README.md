@@ -63,7 +63,7 @@ User story
 
 
 
-## archetecture schema
+## architecture schema
 we used microservices in this project , Microservices refer to both an architecture and a software development approach that consists of breaking down applications into the simplest elements, independent of each other.  
 
 ![](./6.png)
