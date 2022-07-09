@@ -6,10 +6,10 @@ RENTED
 
 
  
-![](./1.PNG)
-![](./3.PNG)
-![](./4.PNG)
-![](./5.PNG)
+ <img src="./1.PNG" width="48%" height="215px"/> <img src="./2.PNG" width="48%" height="215px"/> 
+ <img src="./4.PNG" width="48%" height="215px"/> <img src="./5.PNG" width="48%" height="215px"/> 
+
+
 
 ## Summary :
 #### RENTED is a website app created to be a link between poeple searching for appartemens to rent , and hosts . it provides confidential solutions to make renting easier then ever . created with the mern stack .  
@@ -28,7 +28,7 @@ RENTED
 1. git clone 
 2. npm install for all the repositories
 3. run all project repos 
-4. the the reduis server (use wsl for windows)
+4. run the reduis server (use wsl for windows)
 
 if you have any question don't hesitate to ask :+1: 
 
@@ -63,7 +63,7 @@ User story
 
 
 
-## archetecture schema
+## architecture schema
 we used microservices in this project , Microservices refer to both an architecture and a software development approach that consists of breaking down applications into the simplest elements, independent of each other.  
 
 ![](./6.png)
