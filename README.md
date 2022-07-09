@@ -116,7 +116,7 @@ If you liked the repo then kindly support it by giving it a star ⭐ and share i
 If you find any bug in the code or have any improvements in mind then feel free to generate a pull request.
 
 ## Issues
-[![GitHub Issues](https://img.shields.io/github/issues/med-zino/clientWeb-1.svg?style=flat&label=Issues&maxAge=2592000)](https://github.com/PROJET-3CS/clientWeb/issues)
+[![GitHub Issues](https://github.com/Merzouk-Ilyes/Projet-2CS-Front/issues)
 
 If you face any issue, you can create a new issue in the Issues Tab and I will be glad to help you out.
 
@@ -125,7 +125,7 @@ If you face any issue, you can create a new issue in the Issues Tab and I will b
 
 ## Contributors
 
-<a href="https://github.com/med-zino/clientWeb-1/graphs/contributors">
+<a href="https://github.com/Merzouk-Ilyes/Projet-2CS-Front/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=med-zino/clientWeb-1" />
 </a>
 
