@@ -14,7 +14,7 @@ RENTED
 
 
 ## Summary :
-#### RENTED is a website app created to be a link between poeple searching for appartemens to rent , and hosts . it provides confidential solutions to make renting easier then ever . created with the mern stack .  
+#### RENTED is a web app created to be a link between people searching for appartements to rent, and hosts. it provides confidential solutions to make renting easier then ever, created with the mern stack .  
 
  [View project specifications !](https://www.canva.com/design/DAFDhx_rEnk/vQuHlD6T1Fswz2f0AcIeBw/view?utm_content=DAFDhx_rEnk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
  
